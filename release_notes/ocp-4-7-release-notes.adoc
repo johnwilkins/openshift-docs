@@ -76,12 +76,24 @@ The xref:../support/remote_health_monitoring/using-insights-to-identify-issues-w
 
 You can now remove or rotate the GCP admin-level credential that the xref:../operators/operator-reference.adoc#cloud-credential-operator_red-hat-operators[Cloud Credential Operator] uses in Mint mode. This option requires the presence of the admin-level credential during installation, but the credential is not stored in the cluster permanently and does not need to be long-lived.
 
+[id="ocp-4-7-security-secure-boot"]
 === Secure Boot support for installer-provisioned clusters
 
 You can now deploy a cluster with Secure Boot when using installer-provisioned infrastructure on bare metal nodes. Deploying a cluster with Secure Boot requires UEFI boot mode and Red Fish Virtual Media. You cannot use self-generated keys with Secure Boot.
 
 [id="ocp-4-7-networking"]
 === Networking
+
+[id="ocp-4-7-networking-k8s-nmstate"]
+==== Kubernetes NMState (Technology Preview)
+
+{product-title} 4.7 provides post-installation state-driven network configuration on the secondary network interfaces of cluster nodes using `kubernetes-nmstate` as a technology preview. For more information, see
+xref:../networking/k8s_nmstate/k8s-nmstate-using-kubernetes-nmstate.adoc[Using Kubernetes NMState (Technology Preview)].
+
+[NOTE]
+====
+Configuration must occur before scheduling pods.
+====
 
 
 [id="ocp-4-7-storage"]
@@ -350,6 +362,11 @@ In the table below, features are marked with the following statuses:
 |TP
 |TP
 |
+
+|Kubernetes NMState
+|
+|
+|TP
 
 |====
 
