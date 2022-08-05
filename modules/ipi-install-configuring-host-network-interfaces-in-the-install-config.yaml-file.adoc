@@ -27,8 +27,7 @@ interfaces:
 - name: <NIC1_name>
   type: ethernet
   state: up
-  ipv4:See link:https://nmstate.io/examples.html#interfaces-ethernet[NMState] for additional examples of the NMState syntax.
-
+  ipv4:
     address:
     - ip: <IP_address>
       prefix-length: 24
@@ -111,11 +110,11 @@ interface-name=<interface_name>
 [ipv4]
 method=manual
 addresses=<ip_address>/<CIDR>
-gateway=
+gateway=<gateway_IP_address>
 dns=<dns_IP_address>"
 cat > bootstrap_network_config.ign << EOF
 {
-  "path": "/etc/NetworkManager/system-connections/ens3.nmconnection",
+  "path": "/etc/NetworkManager/system-connections/<interface_name>.nmconnection",
   "mode": 384,
   "contents": {
     "source": "data:text/plain;charset=utf-8;base64,$(echo "${BOOTSTRAP_CONFIG}" | base64 -w 0)"
@@ -125,9 +124,16 @@ EOF
 ----
 +
 Replace `<interface_name>` with the name of the NIC. Replace `<ip_address>` and `<CIDR>` with the IP address and CIDR of the address range. Replace `<gateway_IP_address>` with the IP address of
-the gateway on the `baremetal` network. Replace `<dns_IP_address>` with the IP address of the DNS server on the `baremetal` network.
+the gateway on the `baremetal` network. Replace `<dns_IP_address>` with the IP address of the DNS server on the `baremetal` network. Replace `<interface_name>` with the name of the interface.
 
-.. Run the `bootstrap_config.sh` script to create the `json` configuration file:
+.. Make the `bootstrap_config.sh` file executable:
++
+[source,terminal]
+----
+$ chmod 755 bootstrap_config.sh
+----
+
+.. Run the `bootstrap_config.sh` script to create the `bootstrap_network_config.ign` file:
 +
 [source,terminal]
 ----
@@ -141,9 +147,9 @@ $ ./bootstrap_config.sh
 $ mv clusterconfigs/bootstrap.ign clusterconfigs/bootstrap.ign.orig
 ----
 
-.. Inject the Ignition file into the configuration:
+.. Inject the `bootstrap_network_config.ign` file into the `bootstrap.ign` file:
 +
 [source,terminal]
 ----
-$ jq '.storage.files += $input' clusterconfigs/bootstrap.ign.orig --slurpfile input bootstrap_network_config.ign (output of bootstrap_config.sh) > clusterconfigs/bootstrap.ign
+$ jq '.storage.files += $input' clusterconfigs/bootstrap.ign.orig --slurpfile input bootstrap_network_config.ign > clusterconfigs/bootstrap.ign
 ----
