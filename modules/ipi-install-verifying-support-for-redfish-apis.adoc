@@ -47,14 +47,14 @@ $ curl -u $USER:$PASS -X POST -H'Content-Type: application/json' -H'Accept: appl
 +
 [source,terminal]
 ----
-$ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json"  https://$Server/redfish/v1/Systems/$SystemID/ -d '{"Boot": {"BootSourceOverrideTarget": "pxe", "BootSourceOverrideEnabled": "Once"}}
+$ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json" -H "If-Match: <ETAG>"  https://$Server/redfish/v1/Systems/$SystemID/ -d '{"Boot": {"BootSourceOverrideTarget": "pxe", "BootSourceOverrideEnabled": "Once"}}
 ----
 
 . Check the status of setting the BIOS boot mode that uses `Legacy` or `UEFI` by running the following command:
 +
 [source,terminal]
 ----
-$ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json"  https://$Server/redfish/v1/Systems/$SystemID/ -d '{"Boot": {"BootSourceOverrideMode":"UEFI"}}
+$ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json" -H "If-Match: <ETAG>"  https://$Server/redfish/v1/Systems/$SystemID/ -d '{"Boot": {"BootSourceOverrideMode":"UEFI"}}
 ----
 
 .List of Redfish virtual media APIs
@@ -63,14 +63,14 @@ $ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json"  https://$Ser
 +
 [source,terminal]
 ----
-$ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json" https://$Server/redfish/v1/Systems/$SystemID/ -d '{"Boot": {"BootSourceOverrideTarget": "cd", "BootSourceOverrideEnabled": "Once"}}'
+$ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json" -H "If-Match: <ETAG>" https://$Server/redfish/v1/Systems/$SystemID/ -d '{"Boot": {"BootSourceOverrideTarget": "cd", "BootSourceOverrideEnabled": "Once"}}'
 ----
 
 . Check the ability to mount virtual media by running the following command:
 +
 [source,terminal]
 ----
-$ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json" -H "If-Match: *" https://$Server/redfish/v1/Managers/$ManagerID/VirtualMedia/$VmediaId -d '{"Image": "https://example.com/test.iso", "TransferProtocolType": "HTTPS", "UserName": "", "Password":""}'
+$ curl -u $USER:$PASS -X POST -H "Content-Type: application/json" -H "If-Match: *" https://$Server/redfish/v1/Managers/$ManagerID/VirtualMedia/$VmediaId -d '{"Image": "https://example.com/test.iso", "TransferProtocolType": "HTTPS", "UserName": "", "Password":""}'
 ----
 
 [NOTE]
