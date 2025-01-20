@@ -3,15 +3,14 @@
 // * installing/installing_bare_metal/ipi/ipi-install-post-installation-configuration.adoc
 
 :_mod-docs-content-type: PROCEDURE
-[id="bmo-editing-the-hostfirmwaresettings-resource_{context}"]
-= Editing the HostFirmwareSettings resource
+[id="bmo-editing-the-hostfirmwaresettings-resource-of-a-provisioned-host_{context}"]
+= Editing the HostFirmwareSettings resource of a provisioned host
 
-You can edit the `HostFirmwareSettings` of provisioned hosts.
+You can edit the `HostFirmwareSettings` for a provisioned host, delete the host from the machineset, scale down the machine set, and then scale up the machine set to make the changes take effect.
 
 [IMPORTANT]
 ====
 You can only edit hosts when they are in the `provisioned` state, excluding read-only values. You cannot edit hosts in the `externally provisioned` state.
-
 ====
 
 .Procedure
