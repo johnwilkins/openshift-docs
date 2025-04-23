@@ -1,12 +1,12 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="ipi-install-post-installation-configuration"]
-= Installer-provisioned postinstallation configuration
+[id="bare-metal-post-installation-configuration"]
+= Postinstallation configuration
 include::_attributes/common-attributes.adoc[]
-:context: ipi-install-post-installation-configuration
+:context: bare-metal-post-installation-configuration
 
 toc::[]
 
-After successfully deploying an installer-provisioned cluster, consider the following postinstallation procedures.
+After successfully deploying a bare metal cluster, consider the following postinstallation procedures.
 
 // Configuring NTP for disconnected clusters
 include::modules/ipi-install-configuring-ntp-for-disconnected-clusters.adoc[leveloffset=+1]
