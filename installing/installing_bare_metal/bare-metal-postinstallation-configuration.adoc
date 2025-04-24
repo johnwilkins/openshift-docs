@@ -6,7 +6,7 @@ include::_attributes/common-attributes.adoc[]
 
 toc::[]
 
-After successfully deploying a bare metal cluster, consider the following postinstallation procedures.
+After successfully deploying a bare-metal cluster, consider the following postinstallation procedures.
 
 // Configuring NTP for disconnected clusters
 include::modules/ipi-install-configuring-ntp-for-disconnected-clusters.adoc[leveloffset=+1]
