@@ -39,7 +39,7 @@ $ oc get clusteroperator baremetal
 [source,terminal,subs="attributes+"]
 ----
 NAME        VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
-baremetal   {product-version}   True        False         False      3d15h
+baremetal   {product-version}     True          False      False   3d15h
 ----
 
 . Remove the old `BareMetalHost` and `Machine` objects:
@@ -122,12 +122,12 @@ apiVersion: machine.openshift.io/v1beta1
 kind: Machine
 metadata:
   annotations:
-    metal3.io/BareMetalHost: openshift-machine-api/control-plane-<num> <1>
+    metal3.io/BareMetalHost: openshift-machine-api/control-plane-<num>
   labels:
-    machine.openshift.io/cluster-api-cluster: control-plane-<num> <1>
+    machine.openshift.io/cluster-api-cluster: control-plane-<num>
     machine.openshift.io/cluster-api-machine-role: master
     machine.openshift.io/cluster-api-machine-type: master
-  name: control-plane-<num> <1>
+  name: control-plane-<num>
   namespace: openshift-machine-api
 spec:
   metadata: {}
@@ -147,7 +147,8 @@ spec:
         name: master-user-data-managed
 EOF
 ----
-<1> Replace `<num>` for the control plane number of the bare-metal node in the `name`, `labels` and `annotations` fields.
++
+Replace `<num>` with the control plane number of the bare-metal node in the `annotations`, `labels` and `name` fields.
 +
 . To view the `BareMetalHost` objects, run the following command:
 +
