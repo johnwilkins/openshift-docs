@@ -2,7 +2,7 @@
 [id="bare-metal-post-installation-configuration"]
 = Postinstallation configuration
 include::_attributes/common-attributes.adoc[]
-:context: bare-metal-post-installation-configuration
+:context: bare-metal-postinstallation-configuration
 
 toc::[]
 
