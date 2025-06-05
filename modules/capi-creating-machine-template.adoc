@@ -55,6 +55,9 @@ The following values are valid:
 |{vmw-first}
 |`VSphereMachineTemplate`
 
+| Metal^3^
+|`Metal3MachineTemplate`
+
 |====
 <2> Specify a name for the machine template.
 <3> Specify the details for your environment. These parameters are provider specific. For more information, see the sample Cluster API machine template YAML for your provider.

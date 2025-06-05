@@ -1,0 +1,12 @@
+// Module included in the following assemblies:
+//
+// * machine_management/cluster_api_machine_management/cluster-api-getting-started.adoc
+
+
+:_mod-docs-content-type: REFERENCE
+[id="capi-yaml-machine-template-metal3_{context}"]
+= Sample YAML for a Cluster API machine template resource on Metal^3^
+
+The machine template resource is provider-specific and defines the basic properties of the machines that a compute machine set creates.
+The compute machine set references this template when creating machines.
+

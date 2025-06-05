@@ -49,4 +49,7 @@ The following values are valid:
 |{vmw-full}
 |`VSphereCluster`
 
+|Metal^3^
+|`Metal3Cluster`
+
 |====
