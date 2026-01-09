@@ -1,0 +1,1042 @@
+Checking all *.adoc files recursively...
+Checking ./snippets/ref-s2i-task.adoc...
+
+ snippets/ref-s2i-task.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./snippets/technology-preview.adoc...
+
+ snippets/technology-preview.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./create/remote-pipelines-tasks-resolvers.adoc...
+
+ create/remote-pipelines-tasks-resolvers.adoc
+ 35:24    error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 103:110  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./create/using-rh-entitlements-pipelines.adoc...
+
+ create/using-rh-entitlements-pipelines.adoc
+ 68:208  error  Use the AsciiDoc attribute '{pipelines-shortname}' rather than the plain text product term 'OpenShift Pipelines', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./create/working-with-pipelines-web-console.adoc...
+
+ create/working-with-pipelines-web-console.adoc
+ 46:110  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./create/creating-applications-with-cicd-pipelines.adoc...
+
+ create/creating-applications-with-cicd-pipelines.adoc
+ 18:52   error  Use 'start' or 'call' rather than 'invoke'.                                                                                                              RedHat.TermsErrors                 
+ 88:176  error  Use the AsciiDoc attribute '{pipelines-shortname}' rather than the plain text product term 'OpenShift Pipelines', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 91:46   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.                    OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 3 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./create/using-manual-approval.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./pac/about-pipelines-as-code.adoc...
+
+ pac/about-pipelines-as-code.adoc
+ 23:78  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./pac/creating-pipeline-runs-pac.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./pac/pac-command-reference.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./pac/using-pipelines-as-code-repos.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./pac/using-repository-crd.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./pac/install-config-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./pac/managing-pipeline-runs-pac.adoc...
+
+ pac/managing-pipeline-runs-pac.adoc
+ 39:129  error  Use the AsciiDoc attribute '{pac}' rather than the plain text product term 'Pipelines as Code', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./records/using-tekton-results-for-openshift-pipelines-observability.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./records/viewing-pipeline-logs-using-the-openshift-logging-operator.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./records/understanding-the-tekton-results-retention-policy.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./tkn_cli/installing-tkn.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./tkn_cli/op-configuring-tkn.adoc...
+
+ tkn_cli/op-configuring-tkn.adoc
+ 3:19  error  Use the AsciiDoc attribute '{pipelines-shortname}' rather than the plain text product term 'OpenShift Pipelines', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./tkn_cli/op-tkn-reference.adoc...
+
+ tkn_cli/op-tkn-reference.adoc
+ 4:3  error  Use the AsciiDoc attribute '{pipelines-shortname}' rather than the plain text product term 'OpenShift Pipelines', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./README.adoc...
+
+ README.adoc
+ 1:1   error  Module is missing the '_mod-docs-content-type' variable.                                                                                                    OpenShiftAsciiDoc.ModuleContainsContentType 
+ 5:58  error  Use the AsciiDoc attribute '{product-title}' rather than the plain text product term 'OpenShift Container Platform', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute          
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./about/about-pipelines.adoc...
+
+ about/about-pipelines.adoc
+ 9:291  error  Use 'several' rather than 'a number of'.  RedHat.TermsErrors 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./about/understanding-openshift-pipelines.adoc...
+
+ about/understanding-openshift-pipelines.adoc
+ 11:291  error  Use 'several' rather than 'a number of'.  RedHat.TermsErrors 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./install_config/installing-pipelines.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./install_config/uninstalling-pipelines.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./install_config/customizing-configurations-in-the-tektonconfig-cr.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/making-open-source-more-inclusive.adoc...
+
+ modules/making-open-source-more-inclusive.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/odc-adding-a-GitHub-repository-containing-pipelines.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-pipelinerun.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-pipelines.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-pipelines-as-code-resolver.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-podtemplate.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-stepactions.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-taskrun.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-triggers.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-whenexpression.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-workspace.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-db.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-tkn-utility-commands.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-adding-new-users-in-tekton-hub-configuration.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-adding-triggers.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-additional-options-webhooks.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-alternative-approaches-compute-resource-quota-pipelines.adoc...
+
+ modules/op-alternative-approaches-compute-resource-quota-pipelines.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-annotations-for-automatic-pruning-taskruns-pipelineruns.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-approving-task-command-line.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-approving-task-web-console.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-assembling-a-pipeline.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-authenticating-to-an-oci-registry.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-automatic-pruning-taskrun-pipelinerun.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-finally_tasks.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-about-tasks.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-chains-generating-cosign-secret.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-chains-generating-x509-secret.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-chains-resolving-existing-secret.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-chains-signing-secrets-cosign.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-chains-signing-secrets-skopeo.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-changing-default-service-account.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-changing-source-branch-in-repository-crd.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-cleaning-up-pipeline-run-using-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuration-rbac-trusted-ca-flags.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-basic-authentication-for-git.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-buildah-to-use-build-user.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-container-registry-authentication-using-workspaces.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-custom-sa-and-scc.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-default-maximum-scc.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-eventlisteners-to-serve-multiple-namespaces.adoc...
+
+ modules/op-configuring-eventlisteners-to-serve-multiple-namespaces.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-git-ssh-authentication-using-workspaces.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-pipeline-resolvers.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-pipelines-as-code-logging.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-pipelines-control-plane.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-pull-request-capabilities-in-GitHub-interceptor.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-registry-authentication-sa.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-results.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-retention-policy-results.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-scc-namespace.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-ssh-authentication-for-git.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-tekton-chains.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-console-statistics.adoc...
+
+ modules/op-console-statistics.adoc
+ 12:115  error  Use the AsciiDoc attribute '{pipelines-shortname}' rather than the plain text product term 'OpenShift Pipelines', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-constructing-pipelines-using-pipeline-builder.adoc...
+
+ modules/op-constructing-pipelines-using-pipeline-builder.adoc
+ 17:51   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.                       OpenShiftAsciiDoc.SuggestAttribute 
+ 21:248  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.                       OpenShiftAsciiDoc.SuggestAttribute 
+ 21:293  error  Use the AsciiDoc attribute '{product-title}' rather than the plain text product term 'OpenShift Container Platform', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 22:32   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.                       OpenShiftAsciiDoc.SuggestAttribute 
+ 22:112  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.                       OpenShiftAsciiDoc.SuggestAttribute 
+ 48:34   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.                       OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 6 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-a-github-application-in-administrator-perspective.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-and-verifying-task-run-signatures-without-any-additional-authentication.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-global-repository-cr.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-mounting-kms-authentication-token-secret.adoc...
+
+ modules/op-creating-mounting-kms-authentication-token-secret.adoc
+ 10:138  error  Use 'path name' rather than 'pathname'.  RedHat.TermsErrors 
+ 28:199  error  Use 'path name' rather than 'pathname'.  RedHat.TermsErrors 
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-mounting-mongo-server-url-secret.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-pipeline-run-pac.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-pipeline-tasks.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-pipeline-templates-admin-console.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-pipelines-along-with-applications.adoc...
+
+ modules/op-creating-pipelines-along-with-applications.adoc
+ 11:5    error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 11:81   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 11:162  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 11:193  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 4 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-project-and-checking-pipeline-service-account.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-repository-cr.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-creating-webhooks.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-custom-parameter-expansion.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-customizing-pipelines-as-code-configuration.adoc...
+
+ modules/op-customizing-pipelines-as-code-configuration.adoc
+ 25:28   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 27:43   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 27:124  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 55:185  error  Use 'canceled' rather than 'cancelled'.                                                                                                RedHat.TermsErrors                 
+ 57:163  error  Use 'canceled' rather than 'cancelled'.                                                                                                RedHat.TermsErrors                 
+
+[X] 5 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-default-pruner-configuration.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-deleting-pipelines.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-deleting-the-pipelines-custom-resources.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-disabling-inline-spec.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-disabling-pipeline-templates.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-differences-between-buildah-buildah-ns-tasks.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-disabling-automatic-creation-of-rbac-resources.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-disabling-pipeline-triggers.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-event-pruner-observability.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-event-pruner-reference.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-disabling-tekton-hub-authorization-after-upgrade.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-disabling-the-integretion-of-tekton-hub.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-event-pruner-configuration.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-enabling-manual-approval-gate.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-enabling-plugin.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-enabling-tekton-chains-to-operate-only-in-selected-namespaces.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-entitlements-shared-csi-driver.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-cluster-tasks-ref.adoc...
+
+ modules/op-resolver-cluster-tasks-ref.adoc
+ 697:334  error  Use 'start' or 'call' rather than 'invoke'.  RedHat.TermsErrors 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-filtering-pipeline-run-using-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-disabling-the-service-monitor.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-pipelines-as-code-cli.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-pipelines-operator-in-web-console.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-tekton-hub-with-login-and-rating.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-tkn-on-linux.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-odc-pipelines-abstract.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-running-pipeline-run-and-task-run-with-custom-scc-and-service-account.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-specifying-pipelines-resource-quota-using-priority-class.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-editing-pipelines.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-enabling-monitoring-of-event-listeners-for-triggers-for-user-defined-projects.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-entitlements-manual-copying.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-setting-resync-period.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-filtering-pull-requests-using-GitHub-interceptor.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-improving-performance.adoc...
+
+ modules/op-improving-performance.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-crunchy-postgres-database-and-tekton-hub.adoc...
+
+ modules/op-installing-crunchy-postgres-database-and-tekton-hub.adoc
+ 6:1  error  Do not begin a module or assembly title with 'Optional:'.  OpenShiftAsciiDoc.NoOptionalTitles 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-pipelines-operator-using-the-cli.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-tkn-on-linux-using-rpm.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-tkn-on-macos.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-pac-additional-controller.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-splitting-pipelines-as-code-logs-by-namespace.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-starting-a-task-run-pipeline-run-build-user.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-starting-pipelines-from-pipelines-view.adoc...
+
+ modules/op-starting-pipelines-from-pipelines-view.adoc
+ 45:16  error  Use 'checkmark' rather than 'check mark'.  RedHat.TermsErrors 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-starting-pipelines-from-topology-view.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-supported-parameters-tekton-chains-configuration.adoc...
+
+ modules/op-supported-parameters-tekton-chains-configuration.adoc
+ 166:205  error  Use 'plain text' rather than 'plain-text'.  RedHat.TermsErrors 
+ 284:96   error  Use 'plain text' rather than 'plain-text'.  RedHat.TermsErrors 
+ 290:12   error  Use 'path name' rather than 'pathname'.     RedHat.TermsErrors 
+
+[X] 3 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-tkn-pipeline-management.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-tkn-pipeline-resource-management.adoc...
+
+ modules/op-tkn-pipeline-resource-management.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-tkn-pipelines-compatibility-support-matrix.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-tkn-trigger-management.adoc...
+
+ modules/op-tkn-trigger-management.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-21-0.adoc...
+
+ modules/op-release-notes-1-21-0.adoc
+ 323:198  error  Use 'use' rather than 'utilize'.           RedHat.TermsErrors 
+ 698:19   error  Use 'canceling' rather than 'cancelling'.  RedHat.TermsErrors 
+ 699:66   error  Use 'canceling' rather than 'cancelling'.  RedHat.TermsErrors 
+ 799:147  error  Use 'canceled' rather than 'cancelled'.    RedHat.TermsErrors 
+ 799:394  error  Use 'canceled' rather than 'cancelled'.    RedHat.TermsErrors 
+ 799:466  error  Use 'canceled' rather than 'cancelled'.    RedHat.TermsErrors 
+ 840:78   error  Use 'hard-coded' rather than 'hardcoded'.  RedHat.TermsErrors 
+
+[X] 7 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-triggering-a-pipelinerun.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-deleting-the-tekton-dev-crds.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-understanding-pipelines-resource-consumption.adoc...
+
+ modules/op-understanding-pipelines-resource-consumption.adoc
+ 8:23  error  Use 'several' rather than 'a number of'.  RedHat.TermsErrors 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-uninstalling-the-pipelines-operator.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-and-deploying-tekton-hub-on-an-openshift-cluster.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-pipelines-as-code-on-an-openshift-cluster.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-tekton-hub-without-login-and-rating.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-installing-tkn-on-windows.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-pac-concepts.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-updating-tekton-hub-with-custom-categories-and-catalogs.adoc...
+
+ modules/op-updating-tekton-hub-with-custom-categories-and-catalogs.adoc
+ 9:35   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 14:93  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-a-custom-database-in-tekton-hub.adoc...
+
+ modules/op-using-a-custom-database-in-tekton-hub.adoc
+ 6:1  error  Do not begin a module or assembly title with 'Optional:'.  OpenShiftAsciiDoc.NoOptionalTitles 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-incoming-webhook-with-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-limitations-of-unprivileged-builds.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-pipelines-as-code-with-a-github-app.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-pipelines-as-code-with-bitbucket-cloud.adoc...
+
+ modules/op-using-pipelines-as-code-with-bitbucket-cloud.adoc
+ 78:35  error  Use the AsciiDoc attribute '{pac}' rather than the plain text product term 'Pipelines as Code', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-pipelines-as-code-with-bitbucket-server.adoc...
+
+ modules/op-using-pipelines-as-code-with-bitbucket-server.adoc
+ 38:33  error  Use the AsciiDoc attribute '{pac}' rather than the plain text product term 'Pipelines as Code', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-pipelines-as-code-with-github-webhook.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-pipelines-as-code-with-gitlab.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-private-repositories-with-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-interacting-pipelines-from-topology-view.adoc...
+
+ modules/op-interacting-pipelines-from-topology-view.adoc
+ 10:136  error  Use 'therefore' rather than 'hence'.  RedHat.TermsErrors 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-7.adoc...
+
+ modules/op-release-notes-1-7.adoc
+ 41:120   error  Use 'before' rather than 'Prior to'.                                                                                                         RedHat.TermsErrors                 
+ 53:165   error  Use 'regular expression' rather than 'regex'.                                                                                                RedHat.TermsErrors                 
+ 53:230   error  Use 'regular expression' rather than 'regex'.                                                                                                RedHat.TermsErrors                 
+ 105:1    error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 115:68   error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 115:183  error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 119:1    error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 126:86   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 126:101  error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 130:1    error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 130:33   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 134:42   error  Use the AsciiDoc attribute '{pac}' rather than the plain text product term 'Pipelines as Code', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 138:1    error  Use the AsciiDoc attribute '{pac}' rather than the plain text product term 'Pipelines as Code', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 162:56   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 192:11   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 195:1    error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 195:126  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 197:109  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 204:1    error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 207:1    error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 209:13   error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 211:1    error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 220:5    error  Use the AsciiDoc attribute '{pac}' rather than the plain text product term 'Pipelines as Code', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 224:1    error  Use the AsciiDoc attribute '{pac}' rather than the plain text product term 'Pipelines as Code', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 227:6    error  Use the AsciiDoc attribute '{pac}' rather than the plain text product term 'Pipelines as Code', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 229:1    error  Use the AsciiDoc attribute '{pac}' rather than the plain text product term 'Pipelines as Code', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 241:71   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 270:161  error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.    OpenShiftAsciiDoc.SuggestAttribute 
+ 270:190  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.            OpenShiftAsciiDoc.SuggestAttribute 
+ 275:71   error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.    OpenShiftAsciiDoc.SuggestAttribute 
+ 275:100  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.            OpenShiftAsciiDoc.SuggestAttribute 
+ 279:6    error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.    OpenShiftAsciiDoc.SuggestAttribute 
+ 279:25   error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.            OpenShiftAsciiDoc.SuggestAttribute 
+ 325:40   error  Use 'in case', 'if', or 'when' rather than 'in the event'.                                                                                   RedHat.TermsErrors                 
+
+[X] 34 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-secrets-as-a-nonroot-user.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-16.adoc...
+
+ modules/op-release-notes-1-16.adoc
+ 589:139  error  Use 'for example' rather than 'For instance'.               RedHat.TermsErrors 
+ 615:156  error  Use 'in case', 'if', or 'when' rather than 'in the event'.  RedHat.TermsErrors 
+ 645:294  error  Use 'canceled' rather than 'cancelled'.                     RedHat.TermsErrors 
+
+[X] 3 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-5.adoc...
+
+ modules/op-release-notes-1-5.adoc
+ 1:1      error  Module is missing the '_mod-docs-content-type' variable.                                                                                   OpenShiftAsciiDoc.ModuleContainsContentType 
+ 296:6    error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute          
+ 296:25   error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute          
+ 298:156  error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute          
+ 298:185  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute          
+
+[X] 5 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-running-pipeline-run-using-pipelines-as-code.adoc...
+
+ modules/op-running-pipeline-run-using-pipelines-as-code.adoc
+ 11:1  error  Use 'in case', 'if', or 'when' rather than 'In the event'.  RedHat.TermsErrors 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-performance-tuning-using-tektonconfig-cr.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-10.adoc...
+
+ modules/op-release-notes-1-10.adoc
+ 64:48    error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 64:166   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 98:56    error  Use 'hard-coded' rather than 'hardcoded'.                                                                                                    RedHat.TermsErrors                 
+ 115:60   error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 146:154  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 5 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-19-2.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-bundle-config.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-sample-eventlistener-resource.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-remote-pipeline-annotations-with-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-remote-task-annotations-with-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-ssh-authentication-in-git-type-tasks.adoc...
+
+ modules/op-using-ssh-authentication-in-git-type-tasks.adoc
+ 8:18  error  Use 'start' or 'call' rather than 'invoke'.  RedHat.TermsErrors 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-using-tekton-chains-to-sign-and-verify-image-and-provenance.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-3.adoc...
+
+ modules/op-release-notes-1-3.adoc
+ 1:1   error  Module is missing the '_mod-docs-content-type' variable.                                                                                   OpenShiftAsciiDoc.ModuleContainsContentType 
+ 9:1   error  Keep one space between words in '7.  TP'.                                                                                                  RedHat.Spacing                              
+ 15:3  error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute          
+ 16:3  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute          
+
+[X] 4 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-hub.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-validating-pull-requests-using-GitHub-interceptors.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-bundle.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-viewing-pipeline-logs-in-kibana.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-interacting-with-pipelines-using-the-developer-perspective.adoc...
+
+ modules/op-interacting-with-pipelines-using-the-developer-perspective.adoc
+ 46:404  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-interfacing-pipelines-as-code-with-custom-certificates.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-limiting-secret-workspace-to-step.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-optional-configuration-fields.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-matching-pipeline-run-using-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-mirroring-images-to-run-pipelines-in-restricted-environment.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-modifiable-fields-with-default-values.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-nonroot-buildah-user-namespaces.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-params-annots-pipeline-run-using-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-11.adoc...
+
+ modules/op-release-notes-1-11.adoc
+ 33:120  error  Use 'according to', 'as', or 'as in' rather than 'as per'.  RedHat.TermsErrors 
+ 191:73  error  Keep one space between words in 'API.  The'.                RedHat.Spacing     
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-19-3.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-cluster-config.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-git-config-scm.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-modifying-catalog-refresh-interval-tekton-hub.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-pac-configuring-github-app-manually.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-prepare-opc-for-results.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-12.adoc...
+
+ modules/op-release-notes-1-12.adoc
+ 56:268  error  Keep one space between words in 'spec.  You'.  RedHat.Spacing 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-19.adoc...
+
+ modules/op-release-notes-1-19.adoc
+ 551:117  error  Use 'canceled' rather than 'cancelled'.                     RedHat.TermsErrors 
+ 551:293  error  Use 'canceled' rather than 'cancelled'.                     RedHat.TermsErrors 
+ 561:184  error  Use 'in case', 'if', or 'when' rather than 'in the event'.  RedHat.TermsErrors 
+
+[X] 3 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-cluster.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-scoping-github-token.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-0.adoc...
+
+ modules/op-release-notes-1-0.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+ 9:1  error  Keep one space between words in '4.  TP'.                 RedHat.Spacing                              
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-17.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-6.adoc...
+
+ modules/op-release-notes-1-6.adoc
+ 197:156  error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 197:185  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute 
+ 200:6    error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 200:25   error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute 
+ 203:59   error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 203:88   error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute 
+ 223:45   error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 223:64   error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute 
+ 273:179  error  Use 'user' rather than 'end user'.                                                                                                         RedHat.TermsErrors                 
+
+[X] 9 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-tkn-enabling-tab-completion.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-git-anon.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-signing-secrets-in-tekton-chains.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-migrating-tekton-hub-data-to-an-existing-crunchy-postgres-database.adoc...
+
+ modules/op-migrating-tekton-hub-data-to-an-existing-crunchy-postgres-database.adoc
+ 6:1  error  Do not begin a module or assembly title with 'Optional:'.  OpenShiftAsciiDoc.NoOptionalTitles 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-mitigating-extra-pipeline-resource-consumption.adoc...
+
+ modules/op-mitigating-extra-pipeline-resource-consumption.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-monitoring-pipeline-run-status-using-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-pipelines-as-code-resolver-annotations.adoc...
+
+ modules/op-pipelines-as-code-resolver-annotations.adoc
+ 15:24  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-providing-secure-connection.adoc...
+
+ modules/op-providing-secure-connection.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-13.adoc...
+
+ modules/op-release-notes-1-13.adoc
+ 25:86    error  Use 'canceled' rather than 'cancelled'.                                                                                                      RedHat.TermsErrors                 
+ 125:45   error  Use 'canceled' rather than 'cancelled'.                                                                                                      RedHat.TermsErrors                 
+ 127:49   error  Use 'canceled' rather than 'cancelled'.                                                                                                      RedHat.TermsErrors                 
+ 127:79   error  Use 'canceled' rather than 'cancelled'.                                                                                                      RedHat.TermsErrors                 
+ 140:137  error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 154:65   error  Use 'canceled' rather than 'cancelled'.                                                                                                      RedHat.TermsErrors                 
+ 154:482  error  Use 'canceled' rather than 'cancelled'.                                                                                                      RedHat.TermsErrors                 
+
+[X] 7 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-2.adoc...
+
+ modules/op-release-notes-1-2.adoc
+ 1:1      error  Module is missing the '_mod-docs-content-type' variable.                                                                                   OpenShiftAsciiDoc.ModuleContainsContentType 
+ 9:1      error  Keep one space between words in '6.  TP'.                                                                                                  RedHat.Spacing                              
+ 15:3     error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute          
+ 16:3     error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute          
+ 28:73    error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute          
+ 28:92    error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute          
+ 63:182   error  Use 'therefore' rather than 'hence'.                                                                                                       RedHat.TermsErrors                          
+ 106:86   error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute          
+ 106:117  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute          
+
+[X] 9 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-git-scm.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-tkn-hub-interaction.adoc...
+
+ modules/op-tkn-hub-interaction.adoc
+ 1:1   error  Module is missing the '_mod-docs-content-type' variable.                                                                               OpenShiftAsciiDoc.ModuleContainsContentType 
+ 7:15  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute          
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-setting-annotations-labels-namespace.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-1.adoc...
+
+ modules/op-release-notes-1-1.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+ 9:1  error  Keep one space between words in '5.  TP'.                 RedHat.Spacing                              
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-18.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-8.adoc...
+
+ modules/op-release-notes-1-8.adoc
+ 146:5    error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.              OpenShiftAsciiDoc.SuggestAttribute 
+ 170:249  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.                    OpenShiftAsciiDoc.SuggestAttribute 
+ 170:287  error  Use the AsciiDoc attribute '{pipelines-shortname}' rather than the plain text product term 'OpenShift Pipelines', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 289:7    error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.              OpenShiftAsciiDoc.SuggestAttribute 
+ 295:72   error  Use 'includes' rather than 'ships with'.                                                                                                                 RedHat.TermsErrors                 
+ 375:161  error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.                OpenShiftAsciiDoc.SuggestAttribute 
+ 375:190  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.                        OpenShiftAsciiDoc.SuggestAttribute 
+ 381:71   error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.                OpenShiftAsciiDoc.SuggestAttribute 
+ 381:100  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.                        OpenShiftAsciiDoc.SuggestAttribute 
+ 386:11   error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.                OpenShiftAsciiDoc.SuggestAttribute 
+ 386:30   error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.                        OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 11 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-hub-config.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-tkn-pipeline-run.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-19-1.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-9.adoc...
+
+ modules/op-release-notes-1-9.adoc
+ 303:138  error  Use 'canceled' rather than 'cancelled'.                                                                                                                    RedHat.TermsErrors                 
+ 373:102  error  Use 'regular expression' rather than 'regex'.                                                                                                              RedHat.TermsErrors                 
+ 392:66   error  Use the AsciiDoc attribute '{product-registry}' rather than the plain text product term 'OpenShift image registry', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 392:123  error  Use 'hard-coded' rather than 'hardcoded'.                                                                                                                  RedHat.TermsErrors                 
+ 402:57   error  Use 'hard-coded' rather than 'hardcoded'.                                                                                                                  RedHat.TermsErrors                 
+ 419:99   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.                      OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 6 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-setting-concurrency-limits-in-repository-crd.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-pipelines-operator-in-restricted-environment.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-14.adoc...
+
+ modules/op-release-notes-1-14.adoc
+ 24:119   error  Use 'start' or 'call' rather than 'invoke'.                                                                                                  RedHat.TermsErrors                 
+ 60:36    error  Use 'data enumeration' rather than 'enum'.                                                                                                   RedHat.TermsErrors                 
+ 118:208  error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 214:81   error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 282:65   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 282:248  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.        OpenShiftAsciiDoc.SuggestAttribute 
+ 294:47   error  Use 'canceled' rather than 'cancelled'.                                                                                                      RedHat.TermsErrors                 
+ 294:178  error  Use 'canceled' rather than 'cancelled'.                                                                                                      RedHat.TermsErrors                 
+ 326:371  error  Keep one space between words in 'processed.  With'.                                                                                          RedHat.Spacing                     
+
+[X] 9 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-20-0.adoc...
+
+ modules/op-release-notes-1-20-0.adoc
+ 30:26   error  Use the AsciiDoc attribute '{sno}' rather than the plain text product term 'single-node OpenShift', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 131:26  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.      OpenShiftAsciiDoc.SuggestAttribute 
+ 187:16  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute 
+ 201:51  error  Use 'canceling' rather than 'Cancelling'.                                                                                                  RedHat.TermsErrors                 
+
+[X] 4 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-http-config.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-running-a-pipeline.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-tkn-task-management.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-pipelines-as-code-command-reference.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-pac-configuring-github-app-cli.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-parameters-pipeline-run-using-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-query-results-name.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-15.adoc...
+
+ modules/op-release-notes-1-15.adoc
+ 98:41    error  Use 'canceled' rather than 'cancelled'.                     RedHat.TermsErrors 
+ 269:162  error  Use 'in case', 'if', or 'when' rather than 'in the event'.  RedHat.TermsErrors 
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-release-notes-1-4.adoc...
+
+ modules/op-release-notes-1-4.adoc
+ 1:1     error  Module is missing the '_mod-docs-content-type' variable.                                                                                   OpenShiftAsciiDoc.ModuleContainsContentType 
+ 11:95   error  Use 'includes' rather than 'comes with'.                                                                                                   RedHat.TermsErrors                          
+ 127:6   error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute          
+ 127:25  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute          
+ 129:56  error  Use the AsciiDoc attribute '{ibm-power-title}' rather than the plain text product term 'IBM Power', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute          
+ 129:85  error  Use the AsciiDoc attribute '{ibm-z-title}' rather than the plain text product term 'IBM Z', unless your use case is an exception.          OpenShiftAsciiDoc.SuggestAttribute          
+
+[X] 6 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-community-tasks-ref.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-git-config-anon.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-git-config-multiple-providers.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-git-override-scm.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-git-specify-multiple-providers.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-http.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-stepactions-ref.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-resolver-tasks-step-actions-about.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-concepts.adoc...
+
+ modules/op-results-concepts.adoc
+ 19:127  error  Keep one space between words in 'CR.  The'.           RedHat.Spacing 
+ 26:160  error  Keep one space between words in 'corresponds.  The'.  RedHat.Spacing 
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-log-forward.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-opc-config.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-opc-pipelinerunlist.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-opc-pipelinerunresults.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-opc-shortnames.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-opc-taskrunlist.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-opc-taskrunresults.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-reference-records.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-reference-results.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-search-records.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-results-search-results.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-running-buildah-ns-task.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-security-model-buildah-ns-task.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-setting-eventlistener-scc.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-setting-up-openshift-pipelines-to-download-or-view-sboms.adoc...
+
+ modules/op-setting-up-openshift-pipelines-to-download-or-view-sboms.adoc
+ 19:222  error  Use the AsciiDoc attribute '{product-title}' rather than the plain text product term 'OpenShift Container Platform', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-setting-up-openshift-pipelines-to-view-project-vulnerabilities.adoc...
+
+ modules/op-setting-up-openshift-pipelines-to-view-project-vulnerabilities.adoc
+ 27:222  error  Use the AsciiDoc attribute '{product-title}' rather than the plain text product term 'OpenShift Container Platform', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-speccancel-pipeline-run-using-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-tkn-task-run.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-types-annotation-secrets.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-verifying-pipeline-run-pac.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-webstat-general.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-webstat-pipeline.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-workspaces-parameters-results-buildah-ns-task.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-assess-migration-impact.adoc...
+
+ modules/op-assess-migration-impact.adoc
+ 14:15  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-behavior-of-approvaltask-with-groups-and-users.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-configuring-private-artifact-hub.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-diagnosing-a-pipeline-with-opc-assist.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-fine-grained-retention-policies.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-lightspeed-utility-commands.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-managing-approval-task-with-cli.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-migrating-from-tekton-hub-to-artifact-hub.adoc...
+
+ modules/op-migrating-from-tekton-hub-to-artifact-hub.adoc
+ 6:18  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 8:1   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 13:3  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 3 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-migrating-to-artifact-hub.adoc...
+
+ modules/op-migrating-to-artifact-hub.adoc
+ 9:88   error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 34:69  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-restarting-or-canceling-pipeline-run-using-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-specifying-manual-approval-task.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-triggering-pipelinerun-on-git-tags-using-pipelines-as-code.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./modules/op-triggering-pipelineruns-for-gitops-commands-using-tagged-commits.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./hub/using-tekton-hub-with-openshift-pipelines.adoc...
+
+ hub/using-tekton-hub-with-openshift-pipelines.adoc
+ 4:9    error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+ 39:61  error  Use the AsciiDoc attribute '{tekton-hub}' rather than the plain text product term 'Tekton Hub', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 2 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./release_notes/op-release-notes-1-17.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./release_notes/op-release-notes-1-18.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./release_notes/op-release-notes-1-19.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./release_notes/op-release-notes-1-20.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./release_notes/op-release-notes-1-21.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./scripts/prow/README.adoc...
+
+ scripts/prow/README.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./secure/authenticating-pipelines-repos-using-secrets.adoc...
+
+ secure/authenticating-pipelines-repos-using-secrets.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./secure/configuring-security-context-for-pods.adoc...
+
+ secure/configuring-security-context-for-pods.adoc
+ 42:208  error  Use the AsciiDoc attribute '{pipelines-shortname}' rather than the plain text product term 'OpenShift Pipelines', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./secure/securing-webhooks-with-event-listeners.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./secure/setting-up-openshift-pipelines-to-view-software-supply-chain-security-elements.adoc...
+
+ secure/setting-up-openshift-pipelines-to-view-software-supply-chain-security-elements.adoc
+ 23:136  error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.                  OpenShiftAsciiDoc.SuggestAttribute 
+ 23:286  error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.                  OpenShiftAsciiDoc.SuggestAttribute 
+ 23:304  error  Use the AsciiDoc attribute '{pipelines-shortname}' rather than the plain text product term 'OpenShift Pipelines', unless your use case is an exception.      OpenShiftAsciiDoc.SuggestAttribute 
+ 33:3    error  Use .adoc instead of .html in xrefs                                                                                                                          OpenShiftAsciiDoc.XrefContainsHTML 
+ 33:127  error  Use the AsciiDoc attribute '{pipelines-title}' rather than the plain text product term 'Red Hat OpenShift Pipelines', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 5 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./secure/unprivileged-building-of-container-images-using-buildah.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./secure/using-buildah-ns-tekton-task.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./secure/using-tekton-chains-for-openshift-pipelines-supply-chain-security.adoc...
+
+ secure/using-tekton-chains-for-openshift-pipelines-supply-chain-security.adoc
+ 4:9  error  Use the AsciiDoc attribute '{tekton-chains}' rather than the plain text product term 'Tekton Chains', unless your use case is an exception.  OpenShiftAsciiDoc.SuggestAttribute 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./_attributes/common-attributes.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./.vale/styles/RedHat/README-IBM.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 0 files.
+Checking ./resource/managing-pipelines-performance.adoc...
+
+ resource/managing-pipelines-performance.adoc
+ 1:1  error  Module is missing the '_mod-docs-content-type' variable.  OpenShiftAsciiDoc.ModuleContainsContentType 
+
+[X] 1 error, 0 warnings and 0 suggestions in 1 file.
+Checking ./resource/reducing-pipelines-resource-consumption.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
+Checking ./resource/setting-compute-resource-quota-for-openshift-pipelines.adoc...
+[OK] 0 errors, 0 warnings and 0 suggestions in 1 file.
