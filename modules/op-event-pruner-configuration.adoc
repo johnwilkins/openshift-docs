@@ -5,8 +5,8 @@
 [id="event-pruner-configuration_{context}"]
 = Enabling the event-driven pruner
 
-You can use the event-driven `tektonpruner` controller to automatically delete completed resources, such as `PipelineRuns` and `TaskRuns`, based on configurable policies. Unlike the job-based pruner, the event-driven pruner responds to resource events and removes completed resources in near real-time. The pruner supports both time-to-live (TTL) and history-based retention policies.
-
+[role="_abstract"]
+You can enable the event-based pruner to delete completed `PipelineRun` and `TaskRun` resources in near real-time. By configuring the `tektonpruner` controller in the `TektonConfig` custom resource (CR), you can replace the default scheduled pruner with an event-driven approach for more immediate resource cleanup.
 
 [IMPORTANT]
 ====
