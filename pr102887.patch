@@ -1,0 +1,838 @@
+From 329566490cd8ebf8e11b906020428b79bbfa7964 Mon Sep 17 00:00:00 2001
+From: John Wilkins <jowilkin@redhat.com>
+Date: Thu, 8 Jan 2026 17:24:55 -0800
+Subject: [PATCH] RHDEVDOCS-6998: Changes to improve DITA compliance for
+ install_config.
+
+---
+ _attributes/common-attributes.adoc            |  2 +
+ modules/op-additional-options-webhooks.adoc   |  9 +--
+ ...tomatic-pruning-taskruns-pipelineruns.adoc |  3 +-
+ ...automatic-pruning-taskrun-pipelinerun.adoc |  3 +-
+ .../op-changing-default-service-account.adoc  |  5 +-
+ ...p-configuration-rbac-trusted-ca-flags.adoc | 12 ++--
+ .../op-configuring-pipeline-resolvers.adoc    |  3 +-
+ ...p-configuring-pipelines-control-plane.adoc |  5 +-
+ modules/op-default-pruner-configuration.adoc  |  3 +-
+ ...leting-the-pipelines-custom-resources.adoc |  5 +-
+ modules/op-deleting-the-tekton-dev-crds.adoc  |  8 ++-
+ ...-automatic-creation-of-rbac-resources.adoc | 15 +++--
+ modules/op-disabling-inline-spec.adoc         |  3 +
+ modules/op-disabling-pipeline-templates.adoc  |  5 +-
+ modules/op-disabling-pipeline-triggers.adoc   |  3 +-
+ ...sabling-the-integretion-of-tekton-hub.adoc |  3 +-
+ modules/op-disabling-the-service-monitor.adoc |  3 +-
+ modules/op-event-pruner-configuration.adoc    |  4 +-
+ modules/op-event-pruner-observability.adoc    |  5 +-
+ modules/op-event-pruner-reference.adoc        | 55 ++++++++++++++++++-
+ ...ing-pipelines-operator-in-web-console.adoc | 43 ++++++++-------
+ ...ling-pipelines-operator-using-the-cli.adoc | 24 ++++----
+ ...modifiable-fields-with-default-values.adoc | 12 ++--
+ modules/op-optional-configuration-fields.adoc |  5 +-
+ ...formance-tuning-using-tektonconfig-cr.adoc | 14 ++---
+ ...es-operator-in-restricted-environment.adoc |  4 +-
+ ...-setting-annotations-labels-namespace.adoc |  3 +-
+ modules/op-setting-resync-period.adoc         |  8 ++-
+ ...p-uninstalling-the-pipelines-operator.adoc |  5 +-
+ 29 files changed, 184 insertions(+), 88 deletions(-)
+
+diff --git a/_attributes/common-attributes.adoc b/_attributes/common-attributes.adoc
+index c7009b044403..bcee910924da 100644
+--- a/_attributes/common-attributes.adoc
++++ b/_attributes/common-attributes.adoc
+@@ -4,6 +4,8 @@
+ // {product-title} and {product-version} are parsed when AsciiBinder queries the _distro_map.yml file in relation to the base branch of a pull request.
+ // See https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#product-name-and-version for more information on this topic.
+ // Other common attributes are defined in the following lines:
++:_mod-docs-content-type: SNIPPET
++
+ :data-uri:
+ :icons:
+ :experimental:
+diff --git a/modules/op-additional-options-webhooks.adoc b/modules/op-additional-options-webhooks.adoc
+index c79051ca5548..1c6bebf25563 100644
+--- a/modules/op-additional-options-webhooks.adoc
++++ b/modules/op-additional-options-webhooks.adoc
+@@ -5,17 +5,19 @@
+ [id="op-additional-options-webhooks_{context}"]
+ = Setting additional options for webhooks
+ 
+-Optionally, you can set the `failurePolicy`, `timeoutSeconds`, or `sideEffects` options for the webhooks created by several controllers in {pipelines-shortname}. For more information about these options, see the link:https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/[Kubernetes documentation].
++[role="_abstract"]
++You can configure advanced webhook options, such as failure policies and timeouts, for {pipelines-shortname} controllers to improve stability and error handling. These settings are applied by using the `TektonConfig` custom resource (CR) and allow you to customize how admission controllers interact with the Kubernetes API server.
+ 
+ .Prerequisites
+ 
+ * You installed the `oc` command-line utility.
+ 
+-* You are logged into your {OCP} cluster with administrator rights for the namespace in which {pipelines-shortname} is installed, typically the `openshift-pipelines` namespace.
++* You have logged in to your {OCP} cluster with administrator rights for the namespace in which {pipelines-shortname} is installed, typically the `openshift-pipelines` namespace.
+ 
+ .Procedure
+ 
+ . View the list of webhooks that the {pipelines-shortname} controllers created. There are two types of webhooks: mutating webhooks and validating webhooks.
++
+ .. To view the list of mutating webhooks, enter the following command:
+ +
+ [source,terminal]
+@@ -24,7 +26,6 @@ $ oc get MutatingWebhookConfiguration
+ ----
+ +
+ .Example output
+-+
+ [source,terminal]
+ ----
+ NAME                             WEBHOOKS   AGE
+@@ -34,6 +35,7 @@ webhook.operator.tekton.dev      1          4m22s
+ webhook.pipeline.tekton.dev      1          4m20s
+ webhook.triggers.tekton.dev      1          3m50s
+ ----
++
+ .. To view the list of validating webhooks, enter the following command:
+ +
+ [source,terminal]
+@@ -42,7 +44,6 @@ $ oc get ValidatingWebhookConfiguration
+ ----
+ +
+ .Example output
+-+
+ [source,terminal]
+ ----
+ NAME                                                 WEBHOOKS   AGE
+diff --git a/modules/op-annotations-for-automatic-pruning-taskruns-pipelineruns.adoc b/modules/op-annotations-for-automatic-pruning-taskruns-pipelineruns.adoc
+index 94a9528aaff3..54f4288c35f5 100644
+--- a/modules/op-annotations-for-automatic-pruning-taskruns-pipelineruns.adoc
++++ b/modules/op-annotations-for-automatic-pruning-taskruns-pipelineruns.adoc
+@@ -6,7 +6,8 @@
+ [id="annotations-for-automatic-pruning-taskruns-pipelineruns_{context}"]
+ = Annotations for automatically pruning task runs and pipeline runs
+ 
+-To modify the configuration for automatic pruning of task runs and pipeline runs in a namespace, you can set annotations in the namespace.
++[role="_abstract"]
++You can customize the pruning behavior for specific namespaces by applying annotations to the `Namespace` resource. These annotations allow you to override global pruning settings, such as retention limits and schedules, for individual projects.
+ 
+ The following namespace annotations have the same meanings as the corresponding keys in the `TektonConfig` custom resource:
+ 
+diff --git a/modules/op-automatic-pruning-taskrun-pipelinerun.adoc b/modules/op-automatic-pruning-taskrun-pipelinerun.adoc
+index 95eed12ba1e5..ba63ebaa57c0 100644
+--- a/modules/op-automatic-pruning-taskrun-pipelinerun.adoc
++++ b/modules/op-automatic-pruning-taskrun-pipelinerun.adoc
+@@ -5,7 +5,8 @@
+ [id="op-automatic-pruning-taskrun-pipelinerun_{context}"]
+ = Automatic pruning of task runs and pipeline runs
+ 
+-Stale `TaskRun` and `PipelineRun` objects and their executed instances occupy physical resources that can be used for active runs. For optimal utilization of these resources, {pipelines-title} provides a pruner component that automatically removes unused objects and their instances in various namespaces.
++[role="_abstract"]
++You can automatically prune stale `TaskRun` and `PipelineRun` resources to free up cluster resources and maintain optimal performance. {pipelines-title} provides a configurable pruner component that removes unused objects based on your defined policies.
+ 
+ [NOTE]
+ ====
+diff --git a/modules/op-changing-default-service-account.adoc b/modules/op-changing-default-service-account.adoc
+index 6ca1fd9a6a59..4f79e74de4c6 100644
+--- a/modules/op-changing-default-service-account.adoc
++++ b/modules/op-changing-default-service-account.adoc
+@@ -5,9 +5,10 @@
+ [id="op-changing-default-service-account_{context}"]
+ = Changing the default service account for {pipelines-shortname}
+ 
+-You can change the default service account for {pipelines-shortname} by editing the `default-service-account` field in the `.spec.pipeline` and `.spec.trigger` specifications. The default service account name is `pipeline`.
++[role="_abstract"]
++You can change the default service account used by {pipelines-shortname} for task and pipeline runs to meet your security or operational requirements. By editing the `TektonConfig` custom resource (CR), you can specify a different service account for pipelines and triggers.
+ 
+-.Example
++.Example TektonConfig CR
+ [source,yaml]
+ ----
+ apiVersion: operator.tekton.dev/v1alpha1
+diff --git a/modules/op-configuration-rbac-trusted-ca-flags.adoc b/modules/op-configuration-rbac-trusted-ca-flags.adoc
+index 3bc72279ac24..f848373b6360 100644
+--- a/modules/op-configuration-rbac-trusted-ca-flags.adoc
++++ b/modules/op-configuration-rbac-trusted-ca-flags.adoc
+@@ -5,7 +5,8 @@
+ [id="op-configuration-rbac-trusted-ca-flags.adoc_{context}"]
+ = Configuration of RBAC and Trusted CA flags
+ 
+-The {pipelines-title} Operator provides independent control over RBAC resource creation and Trusted CA bundle config map through two separate flags, `createRbacResource` and `createCABundleConfigMaps`.
++[role="_abstract"]
++You can independently control the creation of RBAC resources and Trusted CA bundle config maps to customize your {pipelines-shortname} installation. The `TektonConfig` custom resource (CR) provides specific flags, `createRbacResource` and `createCABundleConfigMaps`, to manage these components separately.
+ 
+ [cols="1,3,1", options="header"]
+ |===
+@@ -30,12 +31,13 @@ spec:
+   profile: all
+   targetNamespace: openshift-pipelines
+   params:
+-    - name: createRbacResource # <1>
++    - name: createRbacResource
+       value: "true"
+-    - name: createCABundleConfigMaps # <2>
++    - name: createCABundleConfigMaps
+       value: "true"
+     - name: legacyPipelineRbac
+       value: "true"
+ ----
+-<1> Specifies RBAC resource creation.
+-<2> Specifies Trusted CA bundle config map creation.
+\ No newline at end of file
++
++`params[0].name`:: Specifies RBAC resource creation.
++`params[1].name`:: Specifies Trusted CA bundle config map creation.
+\ No newline at end of file
+diff --git a/modules/op-configuring-pipeline-resolvers.adoc b/modules/op-configuring-pipeline-resolvers.adoc
+index dd4692f59814..f18defa9ec5b 100644
+--- a/modules/op-configuring-pipeline-resolvers.adoc
++++ b/modules/op-configuring-pipeline-resolvers.adoc
+@@ -5,7 +5,8 @@
+ [id="op-configuring-pipeline-resolvers_{context}"]
+ = Configuring pipeline resolvers
+ 
+-You can configure pipeline resolvers in the `TektonConfig` custom resource (CR). You can enable or disable these pipeline resolvers:
++[role="_abstract"]
++You can enable or disable specific pipeline resolvers, such as git, cluster, bundle, and hub resolvers, to control how your pipelines fetch resources. These settings are managed within the `TektonConfig` custom resource (CR), where you can also provide resolver-specific configurations.
+ 
+ * `enable-bundles-resolver`
+ * `enable-cluster-resolver`
+diff --git a/modules/op-configuring-pipelines-control-plane.adoc b/modules/op-configuring-pipelines-control-plane.adoc
+index a228fd38dce2..72aa4c6d3a23 100644
+--- a/modules/op-configuring-pipelines-control-plane.adoc
++++ b/modules/op-configuring-pipelines-control-plane.adoc
+@@ -5,7 +5,8 @@
+ [id="op-configuring-pipelines-control-plane_{context}"]
+ = Configuring the {pipelines-title} control plane
+ 
+-You can customize the {pipelines-shortname} control plane by editing the configuration fields in the `TektonConfig` custom resource (CR). The {pipelines-title} Operator automatically adds the configuration fields with their default values so that you can use the {pipelines-shortname} control plane.
++[role="_abstract"]
++You can configure the {pipelines-shortname} control plane to suit your operational needs by editing the `TektonConfig` custom resource (CR). Customize settings such as metrics collection, sidecar injection, and service account defaults directly through the {OCP} web console as needed.
+ 
+ .Procedure
+ 
+@@ -21,7 +22,7 @@ You can customize the {pipelines-shortname} control plane by editing the configu
+ 
+ . Edit the `TektonConfig` YAML file based on your requirements.
+ +
+-.Example of `TektonConfig` CR with default values
++.Example TektonConfig CR
+ [source,yaml]
+ ----
+ apiVersion: operator.tekton.dev/v1alpha1
+diff --git a/modules/op-default-pruner-configuration.adoc b/modules/op-default-pruner-configuration.adoc
+index 0d36117ad050..4c21ecae728e 100644
+--- a/modules/op-default-pruner-configuration.adoc
++++ b/modules/op-default-pruner-configuration.adoc
+@@ -6,7 +6,8 @@
+ [id="default-pruner-configuration_{context}"]
+ = Configuring the pruner
+ 
+-You can use the `TektonConfig` custom resource to configure periodic pruning of resources associated with pipeline runs and task runs.
++[role="_abstract"]
++You can configure the default pruner to automatically remove old `TaskRun` and `PipelineRun` resources based on a schedule or resource count. By modifying the `TektonConfig` custom resource (CR), you can set retention limits and pruning intervals to manage resource usage.
+ 
+ The following example corresponds to the default configuration:
+ 
+diff --git a/modules/op-deleting-the-pipelines-custom-resources.adoc b/modules/op-deleting-the-pipelines-custom-resources.adoc
+index 7056726c27d7..b5d5311729b4 100644
+--- a/modules/op-deleting-the-pipelines-custom-resources.adoc
++++ b/modules/op-deleting-the-pipelines-custom-resources.adoc
+@@ -3,9 +3,10 @@
+ 
+ :_mod-docs-content-type: PROCEDURE
+ [id="op-deleting-the-pipelines-custom-resources_{context}"]
+-= Deleting the {pipelines-shortname} Custom Resources
++= Deleting the {pipelines-shortname} custom resources
+ 
+-If the Custom Resources (CRs) for the optional components, `TektonHub` and `TektonResult`, exist, delete these CRs. Then delete the `TektonConfig` CR.
++[role="_abstract"]
++You can remove the {pipelines-shortname} custom resources (CRs) to clean up the configuration before uninstalling the Operator. This involves deleting optional components such as `TektonHub` and `TektonResult`, followed by the main `TektonConfig` CR.
+ 
+ .Procedure
+ . In the *Administrator* perspective of the web console, navigate to *Administration* -> *CustomResourceDefinitions*.
+diff --git a/modules/op-deleting-the-tekton-dev-crds.adoc b/modules/op-deleting-the-tekton-dev-crds.adoc
+index 424f665e6681..71c2e3cc1cbc 100644
+--- a/modules/op-deleting-the-tekton-dev-crds.adoc
++++ b/modules/op-deleting-the-tekton-dev-crds.adoc
+@@ -3,11 +3,15 @@
+ 
+ :_mod-docs-content-type: PROCEDURE
+ [id="op-deleting-the-tekton-dev-crds_{context}"]
+-= Deleting the Custom Resource Definitions of the `operator.tekton.dev` group
++= Deleting the custom resource definitions of the `operator.tekton.dev` group
+ 
+-Delete the Custom Resource Definitions (CRDs) of the `operator.tekton.dev` group. These CRDs are created by default during the installation of the {pipelines-title} Operator.
++[role="_abstract"]
++You can delete the `operator.tekton.dev` custom resource definitions (CRDs) to fully remove all {pipelines-shortname} traces from your cluster. This step ensures that no residual definitions remain after the Operator uninstallation.
++
++Delete the `CustomResourceDefinitions` of the `operator.tekton.dev` group. The {pipelines-title} Operator creates these CRDs by default during installation.
+ 
+ .Procedure
++
+ . In the *Administrator* perspective of the web console, navigate to *Administration* -> *CustomResourceDefinitions*.
+ 
+ . Type `operator.tekton.dev` in the *Filter by name* box to search for the CRDs in the `operator.tekton.dev` group.
+diff --git a/modules/op-disabling-automatic-creation-of-rbac-resources.adoc b/modules/op-disabling-automatic-creation-of-rbac-resources.adoc
+index 5e6db7f0a40f..be42b215cbd7 100644
+--- a/modules/op-disabling-automatic-creation-of-rbac-resources.adoc
++++ b/modules/op-disabling-automatic-creation-of-rbac-resources.adoc
+@@ -1,13 +1,19 @@
+ // This module is included in the following assemblies:
+ // * install_config/customizing-configurations-in-the-tektonconfig-cr.adoc
+ 
+-:_mod-docs-content-type: CONCEPT
++:_mod-docs-content-type: PROCEDURE
+ [id="op-disabling-automatic-creation-of-rbac-resources_{context}"]
+ = Disabling the automatic creation of RBAC resources
+ 
+-The default installation of the {pipelines-title} Operator creates multiple role-based access control (RBAC) resources for all namespaces in the cluster, except the namespaces matching the `^(openshift|kube)-*` regular expression pattern. Among these RBAC resources, the `pipelines-scc-rolebinding` security context constraint (SCC) role binding resource is a potential security issue, because the associated `pipelines-scc` SCC has the `RunAsAny` privilege. 
++[role="_abstract"]
++You can disable the automatic creation of cluster-wide RBAC resources by using the {pipelines-title} Operator to improve security and control over permissions. This is done by setting the `createRbacResource` parameter to `false` in the `TektonConfig` custom resource (CR), preventing the creation of potentially privileged role bindings.
+ 
+-To disable the automatic creation of cluster-wide RBAC resources after the {pipelines-title} Operator is installed, cluster administrators can set the `createRbacResource` parameter to `false` in the cluster-level `TektonConfig` custom resource (CR).
++The default installation of the {pipelines-title} Operator creates multiple role-based access control (RBAC) resources for all namespaces in the cluster, except the namespaces matching the `^(openshift|kube)-*` regular expression pattern. Among these RBAC resources, the `pipelines-scc-rolebinding` security context constraint (SCC) role binding resource is a potential security issue, because the associated `pipelines-scc` SCC has the `RunAsAny` privilege.
++
++.Prerequisites
++
++* You have access to the cluster with `cluster-admin` privileges.
++* You installed the OpenShift CLI (`oc`).
+ 
+ .Procedure
+ 
+@@ -19,8 +25,7 @@ $ oc edit TektonConfig config
+ ----
+ 
+ . In the `TektonConfig` CR, set the `createRbacResource` param value to `false`:
+-
+-.Example `TektonConfig` CR
+++
+ [source,yaml]
+ ----
+ apiVersion: operator.tekton.dev/v1alpha1
+diff --git a/modules/op-disabling-inline-spec.adoc b/modules/op-disabling-inline-spec.adoc
+index 5bdf45f172ed..c67e03740e1f 100644
+--- a/modules/op-disabling-inline-spec.adoc
++++ b/modules/op-disabling-inline-spec.adoc
+@@ -5,6 +5,9 @@
+ [id="op-disabling-inline-spec_{context}"]
+ = Disabling inline specification of pipelines and tasks
+ 
++[role="_abstract"]
++You can disable the inline specification of tasks and pipelines to enforce the use of referenced resources and improve security. By configuring the `disable-inline-spec` field in the `TektonConfig` custom resource (CR), you can restrict the use of embedded specs in `Pipeline`, `PipelineRun`, and `TaskRun` resources.
++
+ By default, {pipelines-shortname} supports inline specification of pipelines and tasks in the following cases:
+ 
+ * You can create a `Pipeline` CR that includes one or more task specifications, as in the following example:
+diff --git a/modules/op-disabling-pipeline-templates.adoc b/modules/op-disabling-pipeline-templates.adoc
+index 45a559a9eac7..42cf842a3640 100644
+--- a/modules/op-disabling-pipeline-templates.adoc
++++ b/modules/op-disabling-pipeline-templates.adoc
+@@ -5,9 +5,10 @@
+ [id="op-disabling-pipeline-templates_{context}"]
+ = Disabling resolver tasks and pipeline templates
+ 
+-By default, the `TektonAddon` custom resource (CR) installs `resolverTasks` and `pipelineTemplates` resources along with {pipelines-shortname} on the cluster.
++[role="_abstract"]
++You can disable the automatic installation of resolver tasks and pipeline templates to customize your cluster's initial state. By modifying the `TektonConfig` custom resource (CR), you can prevent these default resources from being deployed if they are not required for your environment.
+ 
+-You can disable the installation of the resolver tasks and pipeline templates by setting the parameter value to `false` in the `.spec.addon` specification.
++By default, the `TektonAddon` custom resource (CR) installs `resolverTasks` and `pipelineTemplates` resources along with {pipelines-shortname} on the cluster.
+ 
+ .Procedure
+ 
+diff --git a/modules/op-disabling-pipeline-triggers.adoc b/modules/op-disabling-pipeline-triggers.adoc
+index 7421b47b8971..535295f3c791 100644
+--- a/modules/op-disabling-pipeline-triggers.adoc
++++ b/modules/op-disabling-pipeline-triggers.adoc
+@@ -5,7 +5,8 @@
+ [id="op-disabling-pipeline-triggers_{context}"]
+ = Disabling the installation of {tekton-triggers}
+ 
+-You can disable the automatic istallation of {tekton-triggers} when deploying {pipelines-shortname} through the Operator, to provide more flexibility for environments where triggers are managed separately. To disable the istallation of {tekton-triggers}, set the `disabled` parameter to `true` in the `spec.trigger` specification of your `TektonConfig` custom resource (CR):
++[role="_abstract"]
++You can disable the automatic installation of {tekton-triggers} during the {pipelines-shortname} deployment to manage triggers separately or exclude them from your environment. This is achieved by setting the `disabled` parameter to `true` in the `TektonConfig` custom resource (CR).
+ 
+ [source, yaml]
+ ----
+diff --git a/modules/op-disabling-the-integretion-of-tekton-hub.adoc b/modules/op-disabling-the-integretion-of-tekton-hub.adoc
+index 4027d48da1a3..f9367000943c 100644
+--- a/modules/op-disabling-the-integretion-of-tekton-hub.adoc
++++ b/modules/op-disabling-the-integretion-of-tekton-hub.adoc
+@@ -5,7 +5,8 @@
+ [id="op-disabling-the-integretion-of-tekton-hub_{context}"]
+ = Disabling the integration of {tekton-hub}
+ 
+-You can disable the integration of {tekton-hub} in the web console *Developer* perspective by setting the `enable-devconsole-integration` parameter to `false` in the `TektonConfig` custom resource (CR).
++[role="_abstract"]
++You can disable the {tekton-hub} integration in the {OCP} web console Developer perspective to customize the user experience. This setting is controlled by the `enable-devconsole-integration` parameter in the `TektonConfig` custom resource (CR).
+ 
+ .Example of disabling {tekton-hub}
+ 
+diff --git a/modules/op-disabling-the-service-monitor.adoc b/modules/op-disabling-the-service-monitor.adoc
+index 6bc924425128..59654c932a4a 100644
+--- a/modules/op-disabling-the-service-monitor.adoc
++++ b/modules/op-disabling-the-service-monitor.adoc
+@@ -5,7 +5,8 @@
+ [id="op-disabling-the-service-monitor_{context}"]
+ = Disabling the service monitor
+ 
+-You can disable the service monitor, which is part of {pipelines-shortname}, to expose the telemetry data. To disable the service monitor, set the `enableMetrics` parameter to `false` in the `.spec.pipeline` specification of the `TektonConfig` custom resource (CR):
++[role="_abstract"]
++You can disable the service monitor in {pipelines-shortname} if you do not need to expose telemetry data or want to reduce resource consumption. This configuration is managed by setting the `enableMetrics` parameter to `false` in the `TektonConfig` custom resource (CR).
+ 
+ .Example
+ [source,yaml]
+diff --git a/modules/op-event-pruner-configuration.adoc b/modules/op-event-pruner-configuration.adoc
+index 4a9665882e47..ff3a56743e6a 100644
+--- a/modules/op-event-pruner-configuration.adoc
++++ b/modules/op-event-pruner-configuration.adoc
+@@ -5,8 +5,8 @@
+ [id="event-pruner-configuration_{context}"]
+ = Enabling the event-driven pruner
+ 
+-You can use the event-driven `tektonpruner` controller to automatically delete completed resources, such as `PipelineRuns` and `TaskRuns`, based on configurable policies. Unlike the job-based pruner, the event-driven pruner responds to resource events and removes completed resources in near real-time. The pruner supports both time-to-live (TTL) and history-based retention policies.
+-
++[role="_abstract"]
++You can enable the event-based pruner to delete completed `PipelineRun` and `TaskRun` resources in near real-time. By configuring the `tektonpruner` controller in the `TektonConfig` custom resource (CR), you can replace the default scheduled pruner with an event-driven approach for more immediate resource cleanup.
+ 
+ [IMPORTANT]
+ ====
+diff --git a/modules/op-event-pruner-observability.adoc b/modules/op-event-pruner-observability.adoc
+index c31f1e832965..f0b84c713483 100644
+--- a/modules/op-event-pruner-observability.adoc
++++ b/modules/op-event-pruner-observability.adoc
+@@ -5,11 +5,12 @@
+ [id="event-pruner-observability_{context}"]
+ = Observability metrics of the event-driven pruner
+ 
+-The event-driven pruner exposes detailed metrics through the `tekton-pruner-controller` controller `Service` definition on port `9090` in OpenTelemetry format for monitoring, troubleshooting, and capacity planning.
++[role="_abstract"]
++You can monitor the performance and health of the event-based pruner using the metrics exposed by the `tekton-pruner-controller`. These metrics, available in OpenTelemetry format, provide insights into resource processing, error rates, and reconciliation times for effective troubleshooting and capacity planning.
+ 
+ Resource-level pruning rules configured using config maps in individual namespaces also emit metrics using the same labels, allowing you to track pruning at finer granularity.
+ 
+-Following are categories of the metrics exposed:
++The following bullets are categories of the metrics exposed:
+ 
+ * Resource processing
+ * Performance timing
+diff --git a/modules/op-event-pruner-reference.adoc b/modules/op-event-pruner-reference.adoc
+index 42e2d4cb159f..7ab2459ef183 100644
+--- a/modules/op-event-pruner-reference.adoc
++++ b/modules/op-event-pruner-reference.adoc
+@@ -5,9 +5,60 @@
+ [id="event-pruner-reference_{context}"]
+ = Configuration of the event-driven pruner
+ 
+-You can configure the pruning behavior of the event-driven pruner by modifying your `TektonConfig` custom resource (CR) for global and namespace-level policies, and config maps for resource-level pruning rules.
++[role="_abstract"]
++You can fine-tune the event-based pruner by adjusting settings in the `TektonConfig` custom resource (CR). This reference details the available configuration options, including history limits, time-to-live (TTL) values, and namespace-specific policies.
+ 
+-You can use the following parameters in your `tektonpruner` configuration:
++The following is an example of the `TektonConfig` CR with the default configuration that uses global pruning rules:
++
++[source,yaml]
++----
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++ name: config
++spec:
++  # ...
++  tektonpruner:
++    disabled: false
++    global-config:
++      enforcedConfigLevel: global
++      failedHistoryLimit: null
++      historyLimit: 10
++      namespaces: null
++      successfulHistoryLimit: null
++      ttlSecondsAfterFinished: null
++    options: {}
++  # ...
++----
++
++`failedHistoryLimit`:: The amount of retained failed runs.
++`historyLimit`:: The amount of runs to retain. Pruner uses this setting if status-specific limits are not defined.
++`namespaces`:: Definition of per-namespace pruning policies, when you set `enforcedConfigLevel` to `namespace`.
++`successfulHistoryLimit`:: The amount of retained successful runs. 
++`ttlSecondsAfterFinished`:: Time in seconds after completion, after which the pruner deletes resources.
++
++You can define pruning rules for individual namespaces by setting `enforcedConfigLevel` to `namespace` and configuring policies under the `namespaces` section. In the following example, a 60 second time to live (TTL) is applied to resources in the `dev-project` namespace:
++
++[source,yaml]
++----
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++ name: config
++spec:
++  # ...
++  tektonpruner:
++    disabled: false
++    global-config:
++      enforcedConfigLevel: namespace
++      ttlSecondsAfterFinished: 300
++      namespaces:
++        dev-project:
++          ttlSecondsAfterFinished: 60
++  # ...
++----
++
++You can use the following parameters in your `TektonConfig` CR `tektonpruner`:
+ 
+ [cols="1,3",options="header"]
+ |===
+diff --git a/modules/op-installing-pipelines-operator-in-web-console.adoc b/modules/op-installing-pipelines-operator-in-web-console.adoc
+index a1e3497308fc..0520bffabfec 100644
+--- a/modules/op-installing-pipelines-operator-in-web-console.adoc
++++ b/modules/op-installing-pipelines-operator-in-web-console.adoc
+@@ -5,7 +5,8 @@
+ [id="op-installing-pipelines-operator-in-web-console_{context}"]
+ = Installing the {pipelines-title} Operator in web console
+ 
+-You can install {pipelines-title} using the Operator listed in the {OCP} OperatorHub. When you install the {pipelines-title} Operator, the custom resources (CRs) required for the pipelines configuration are automatically installed along with the Operator.
++[role="_abstract"]
++You can install the {pipelines-title} Operator by using the {OCP} web console to automatically configure the necessary custom resources (CRs) for your pipelines. This method provides a graphical interface to manage the installation and seamless upgrades of the Operator and its components.
+ 
+ The default Operator custom resource definition (CRD) `config.operator.tekton.dev` is now replaced by `tektonconfigs.operator.tekton.dev`.  In addition, the Operator provides the following additional CRDs to individually manage {pipelines-shortname} components:
+  `tektonpipelines.operator.tekton.dev`, `tektontriggers.operator.tekton.dev` and `tektonaddons.operator.tekton.dev`.
+@@ -17,14 +18,13 @@ If you have {pipelines-shortname} already installed on your cluster, the existin
+ If you manually changed your existing installation, such as, changing the target namespace in the `config.operator.tekton.dev` CRD instance by making changes to the `resource name - cluster` field, then the upgrade path is not smooth. In such cases, the recommended workflow is to uninstall your installation and reinstall the {pipelines-title} Operator.
+ ====
+ 
+-The {pipelines-title} Operator now provides the option to choose the components that you want to install by specifying profiles as part of the `TektonConfig` custom resource (CR). The `TektonConfig` CR is automatically installed when the Operator is installed.
++The {pipelines-title} Operator now provides the option to select the components that you want to install by specifying profiles as part of the `TektonConfig` custom resource (CR). The Operator automatically installs the `TektonConfig` CR when you install the Operator.
+ The supported profiles are:
+ 
+ * Lite: This profile installs only Tekton Pipelines.
+ * Basic: This profile installs Tekton Pipelines, Tekton Triggers, {tekton-chains}, and {tekton-results}.
+-* All: This is the default profile used when the `TektonConfig` CR is installed. This profile installs all of the Tekton components, including Tekton Pipelines, Tekton Triggers, {tekton-chains}, {tekton-results}, {pac}, and Tekton Addons. Tekton Addons includes the `ClusterTriggerBindings`, `ConsoleCLIDownload`, `ConsoleQuickStart`, and `ConsoleYAMLSample` resources, as well as the tasks and step action definitions available by using the cluster resolver from the `openshift-pipelines` namespace.
++* All: This is the default profile used when you install the `TektonConfig` CR. This profile installs all of the Tekton components, including Tekton Pipelines, Tekton Triggers, {tekton-chains}, {tekton-results}, {pac}, and Tekton add-ons. Tekton add-ons includes the `ClusterTriggerBindings`, `ConsoleCLIDownload`, `ConsoleQuickStart`, and `ConsoleYAMLSample` resources, and the tasks and step action definitions available by using the cluster resolver from the `openshift-pipelines` namespace.
+ 
+-[discrete]
+ .Procedure
+ 
+ . In the *Administrator* perspective of the web console, navigate to *Operators* -> *OperatorHub*.
+@@ -35,9 +35,9 @@ The supported profiles are:
+ 
+ . On the *Install Operator* page:
+ +
+-.. Select *All namespaces on the cluster (default)* for the *Installation Mode*. This mode installs the Operator in the default `openshift-operators` namespace, which enables the Operator to watch and be made available to all namespaces in the cluster.
++.. Select *All namespaces on the cluster (default)* for the *Installation Mode*. This mode installs the Operator in the default `openshift-operators` namespace, which enables the Operator to watch and be available to all namespaces in the cluster.
+ 
+-.. Select *Automatic* for the *Approval Strategy*. This ensures that the future upgrades to the Operator are handled automatically by the Operator Lifecycle Manager (OLM). If you select the *Manual* approval strategy, OLM creates an update request. As a cluster administrator, you must then manually approve the OLM update request to update the Operator to the new version.
++.. Select *Automatic* for the *Approval Strategy*. This ensures that the Operator Lifecycle Manager (OLM) automatically handles future upgrades to the Operator. If you select the *Manual* approval strategy, OLM creates an update request. As a cluster administrator, you must then manually approve the OLM update request to update the Operator to the new version.
+ 
+ .. Select an *Update Channel*.
+ 
+@@ -53,17 +53,17 @@ Starting with {OCP} 4.11, the `preview` and `stable` channels for installing and
+ +
+ [NOTE]
+ ====
+-The Operator is installed automatically into the `openshift-operators` namespace.
++The Operator installs automatically into the `openshift-operators` namespace.
+ ====
+ +
+-. Verify that the *Status* is set to *Succeeded Up to date*  to confirm successful installation of {pipelines-title} Operator.
++. Verify that the *Status* displays *Succeeded Up to date*  to confirm successful installation of {pipelines-title} Operator.
+ +
+ [WARNING]
+ ====
+-The success status may show as *Succeeded Up to date* even if installation of other components is in-progress. Therefore, it is important to verify the installation manually in the terminal.
++The success status might show as *Succeeded Up to date* even if installation of other components is in-progress. Therefore, it is important to verify the installation manually in the terminal.
+ ====
+ +
+-. Verify that all components of the {pipelines-title} Operator were installed successfully. Login to the cluster on the terminal, and run the following command:
++. Verify that the {pipelines-title} Operator installed all components successfully. Login to the cluster on the terminal, and run the following command:
+ +
+ 
+ [source,terminal]
+@@ -74,13 +74,13 @@ $ oc get tektonconfig config
+ .Example output
+ [source,terminal,subs="attributes"]
+ ----
+-NAME     VERSION   READY   REASON
++NAME     VERSION                          READY   REASON
+ config   {pipelines-version-number}.0     True
+ ----
+ +
+-If the *READY* condition is *True*, the Operator and its components have been installed successfully.
++If the *READY* condition is *True*, the Operator and its components installed successfully.
+ +
+-Additonally, check the components' versions by running the following command:
++Additionally, check the components' versions by running the following command:
+ +
+ [source,terminal]
+ ----
+@@ -88,18 +88,19 @@ $ oc get tektonpipeline,tektontrigger,tektonchain,tektonaddon,pac
+ ----
+ +
+ .Example output
++[source,terminal]
+ ----
+-NAME                                          VERSION   READY   REASON
+-tektonpipeline.operator.tekton.dev/pipeline   v0.47.0   True
++NAME                                                             VERSION   READY   REASON
++tektonpipeline.operator.tekton.dev/pipeline                      v0.47.0   True
+ 
+-NAME                                        VERSION   READY   REASON
+-tektontrigger.operator.tekton.dev/trigger   v0.23.1   True
++NAME                                                             VERSION   READY   REASON
++tektontrigger.operator.tekton.dev/trigger                        v0.23.1   True
+ 
+-NAME                                    VERSION   READY   REASON
+-tektonchain.operator.tekton.dev/chain   v0.16.0   True
++NAME                                                             VERSION   READY   REASON
++tektonchain.operator.tekton.dev/chain                            v0.16.0   True
+ 
+-NAME                                    VERSION   READY   REASON
+-tektonaddon.operator.tekton.dev/addon   1.11.0     True
++NAME                                                             VERSION   READY   REASON
++tektonaddon.operator.tekton.dev/addon                            1.11.0     True
+ 
+ NAME                                                             VERSION   READY   REASON
+ openshiftpipelinesascode.operator.tekton.dev/pipelines-as-code   v0.19.0   True
+diff --git a/modules/op-installing-pipelines-operator-using-the-cli.adoc b/modules/op-installing-pipelines-operator-using-the-cli.adoc
+index 499b3a8d5a3e..85780eabb29a 100644
+--- a/modules/op-installing-pipelines-operator-using-the-cli.adoc
++++ b/modules/op-installing-pipelines-operator-using-the-cli.adoc
+@@ -5,14 +5,14 @@
+ [id="op-installing-pipelines-operator-using-the-cli_{context}"]
+ = Installing the {pipelines-shortname} Operator by using the CLI
+ 
+-You can install {pipelines-title} Operator from OperatorHub by using the command-line interface (CLI).
++[role="_abstract"]
++You can install the {pipelines-title} Operator from the OperatorHub by using the command-line interface (CLI) to manage your installation programmatically. Once you install the Operator, you can create a `Subscription` object to subscribe a namespace to the Operator and automate the deployment process.
+ 
+ .Procedure
+ 
+ . Create a `Subscription` object YAML file to subscribe a namespace to the {pipelines-title} Operator,
+ for example, `sub.yaml`:
+ +
+-.Example `Subscription` YAML
+ [source,yaml]
+ ----
+ apiVersion: operators.coreos.com/v1alpha1
+@@ -21,15 +21,19 @@ metadata:
+   name: openshift-pipelines-operator
+   namespace: openshift-operators
+ spec:
+-  channel:  <channel_name> # <1>
+-  name: openshift-pipelines-operator-rh # <2>
+-  source: redhat-operators # <3>
+-  sourceNamespace: openshift-marketplace <4>
++  channel:  <channel_name>
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
+ ----
+-<1> Name of the channel that you want to subscribe. The `pipelines-<version>` channel is the default channel. For example, the default channel for {pipelines-title} Operator version `1.7` is `pipelines-1.7`. The `latest` channel enables installation of the most recent stable version of the {pipelines-title} Operator.
+-<2> Name of the Operator to subscribe to.
+-<3> Name of the `CatalogSource` object that provides the Operator.
+-<4> Namespace of the `CatalogSource` object. Use `openshift-marketplace` for the default OperatorHub catalog sources.
++
++`spec.channel`:: Name of the channel that you want to subscribe. The `pipelines-<version>` channel is the default channel. For example, the default channel for {pipelines-title} Operator version `1.7` is `pipelines-1.7`. The `latest` channel enables installation of the most recent stable version of the {pipelines-title} Operator.
++
++`spec.name`:: Name of the Operator to subscribe to.
++
++`spec.source`:: Name of the `CatalogSource` object that provides the Operator.
++
++`spec.sourceNamespace`:: Namespace of the `CatalogSource` object. Use `openshift-marketplace` for the default OperatorHub catalog sources.
+ 
+ . Create the `Subscription` object by running the following command:
+ +
+diff --git a/modules/op-modifiable-fields-with-default-values.adoc b/modules/op-modifiable-fields-with-default-values.adoc
+index e44ee59484d7..341e62f33ab2 100644
+--- a/modules/op-modifiable-fields-with-default-values.adoc
++++ b/modules/op-modifiable-fields-with-default-values.adoc
+@@ -5,6 +5,9 @@
+ [id="op-modifiable-fields-with-default-values_{context}"]
+ = Modifiable fields with default values
+ 
++[role="_abstract"]
++You can change various default configuration fields in the `TektonConfig` custom resource (CR) to tailor the behavior of your pipelines. This reference lists the available fields, such as sidecar injection and metric levels, along with their default values and descriptions.
++
+ The following list includes all modifiable fields with their default values in the `TektonConfig` CR:
+ 
+ * `running-in-environment-with-injected-sidecars` (default: `true`): Set this field to `false` if pipelines run in a cluster that does not use injected sidecars, such as Istio. Setting it to `false` decreases the time a pipeline takes for a task run to start.
+@@ -14,9 +17,9 @@ The following list includes all modifiable fields with their default values in t
+ For clusters that use injected sidecars, setting this field to `false` can lead to an unexpected behavior.
+ ====
+ 
+-* `await-sidecar-readiness` (default: `true`): Set this field to `false` to stop {pipelines-shortname} from waiting for `TaskRun` sidecar containers to run before it begins to operate. This allows tasks to be run in environments that do not support the `downwardAPI` volume type.
++* `await-sidecar-readiness` (default: `true`): Set this field to `false` to stop {pipelines-shortname} from waiting for `TaskRun` sidecar containers to run before it begins to operate. When set to `false`, tasks run in environments that do not support the `downwardAPI` volume type.
+ 
+-* `default-service-account` (default: `pipeline`): This field contains the default service account name to use for the `TaskRun` and `PipelineRun` resources, if none is specified.
++* `default-service-account` (default: `pipeline`): This field has the default service account name to use for the `TaskRun` and `PipelineRun` resources, if none is specified.
+ 
+ * `require-git-ssh-secret-known-hosts` (default: `false`): Setting this field to `true` requires that any Git SSH secret must include the `known_hosts` field. 
+ 
+@@ -24,14 +27,14 @@ For clusters that use injected sidecars, setting this field to `false` can lead
+ 
+ * `enable-tekton-oci-bundles` (default: `false`): Set this field to `true` to enable the use of an experimental alpha feature named Tekton OCI bundle.
+ 
+-* `enable-api-fields` (default: `stable`): Setting this field determines which features are enabled. Acceptable value is `stable`, `beta`, or `alpha`.
++* `enable-api-fields` (default: `stable`): You can enable or disable API fields. Acceptable values are `stable`, `beta`, or `alpha`.
+ +
+ [NOTE]
+ ====
+ {pipelines-title} does not support the `alpha` value.
+ ====
+ 
+-* `enable-provenance-in-status` (default: `false`): Set this field to `true` to enable populating the `provenance` field in `TaskRun` and `PipelineRun` statuses. The `provenance` field contains metadata about resources used in the task run and pipeline run, such as the source from where a remote task or pipeline definition was fetched.
++* `enable-provenance-in-status` (default: `false`): Set this field to `true` to enable populating the `provenance` field in `TaskRun` and `PipelineRun` statuses. The `provenance` field has metadata about resources used in the task run and pipeline run, such as the source for fetching a remote task or pipeline definition.
+ 
+ * `enable-custom-tasks` (default: `true`): Set this field to `false` to disable the use of custom tasks in pipelines.
+ 
+@@ -39,7 +42,6 @@ For clusters that use injected sidecars, setting this field to `false` can lead
+ 
+ * `disable-affinity-assistant` (default: `true`): Set this field to `false` to enable affinity assistant for each `TaskRun` resource sharing a persistent volume claim workspace.
+ 
+-.Metrics options
+ You can modify the default values of the following metrics fields in the `TektonConfig` CR:
+ 
+ * `metrics.taskrun.duration-type` and `metrics.pipelinerun.duration-type` (default: `histogram`): Setting these fields determines the duration type for a task or pipeline run. Acceptable value is `gauge` or `histogram`.
+diff --git a/modules/op-optional-configuration-fields.adoc b/modules/op-optional-configuration-fields.adoc
+index aa87fffae4d1..bae71e91b136 100644
+--- a/modules/op-optional-configuration-fields.adoc
++++ b/modules/op-optional-configuration-fields.adoc
+@@ -5,9 +5,12 @@
+ [id="op-optional-configuration-fields_{context}"]
+ = Optional configuration fields
+ 
++[role="_abstract"]
++You can configure optional fields in the `TektonConfig` custom resource (CR) to enable advanced features or override specific defaults. These fields, such as default timeouts and pod templates, are not set by default and allow for fine-grained control over your pipeline execution environment.
++
+ The following fields do not have a default value, and are considered only if you configure them. By default, the Operator does not add and configure these fields in the `TektonConfig` custom resource (CR).
+ 
+-* `default-timeout-minutes`: This field sets the default timeout for the `TaskRun` and `PipelineRun` resources, if none is specified when creating them. If a task run or pipeline run takes more time than the set number of minutes for its execution, then the task run or pipeline run is timed out and cancelled. For example, `default-timeout-minutes: 60` sets 60 minutes as default.
++* `default-timeout-minutes`: This field sets the default timeout for the `TaskRun` and `PipelineRun` resources, if none is specified when creating them. If a task run or pipeline run takes more time than the set number of minutes for its execution, then the task run or pipeline run is timed out and canceled. For example, `default-timeout-minutes: 60` sets 60 minutes as default.
+ 
+ * `default-managed-by-label-value`: This field contains the default value given to the `app.kubernetes.io/managed-by` label that is applied to all `TaskRun` pods, if none is specified. For example, `default-managed-by-label-value: tekton-pipelines`.
+ 
+diff --git a/modules/op-performance-tuning-using-tektonconfig-cr.adoc b/modules/op-performance-tuning-using-tektonconfig-cr.adoc
+index 1f040b2d93e1..34726c72970e 100644
+--- a/modules/op-performance-tuning-using-tektonconfig-cr.adoc
++++ b/modules/op-performance-tuning-using-tektonconfig-cr.adoc
+@@ -3,11 +3,11 @@
+ 
+ :_mod-docs-content-type: REFERENCE
+ [id="op-performance-tuning-using-tektonconfig-cr_{context}"]
+-= Performance tuning using TektonConfig CR
++= Performance tuning using the TektonConfig custom resource
+ 
+-You can modify the fields under the `.spec.pipeline.performance` parameter in the `TektonConfig` custom resource (CR) to change high availability (HA) support and performance configuration for the {pipelines-shortname} controller.
++[role="_abstract"]
++You can tune the performance and high availability (HA) of the {pipelines-shortname} controller by editing the `TektonConfig` custom resource (CR). You can  adjust parameters such as replica counts, buckets, and API query limits to optimize the controller for your specific workload requirements.
+ 
+-.Example TektonConfig performance fields
+ [source,yaml]
+ ----
+ apiVersion: operator.tekton.dev/v1alpha1
+@@ -25,18 +25,18 @@ spec:
+       kube-api-burst: 10
+ ----
+ 
+-All fields are optional. If you set them, the {pipelines-title} Operator includes most of the fields as arguments in the `openshift-pipelines-controller` deployment under the `openshift-pipelines-controller` container. The {pipelines-shortname} Operator also updates the `buckets` field in the `config-leader-election` configuration map under the `openshift-pipelines` namespace.
++All fields are optional. If you set them, the {pipelines-title} Operator includes most of the fields as arguments in the `openshift-pipelines-controller` deployment under the `openshift-pipelines-controller` container. The {pipelines-shortname} Operator also updates the `buckets` field in the `config-leader-election` config map under the `openshift-pipelines` namespace.
+ 
+ If you do not specify the values, the {pipelines-shortname} Operator does not update those fields and applies the default values for the {pipelines-shortname} controller.
+ 
+ [NOTE]
+ ====
+-If you modify or remove any of the performance fields, the {pipelines-shortname} Operator updates the `openshift-pipelines-controller` deployment and the `config-leader-election` configuration map (if the `buckets` field changed) and re-creates `openshift-pipelines-controller` pods.
++If you change or remove any of the performance fields, the {pipelines-shortname} Operator updates the `openshift-pipelines-controller` deployment and the `config-leader-election` configuration map (if the `buckets` field changed) and re-creates `openshift-pipelines-controller` pods.
+ ====
+ 
+ High-availability (HA) mode applies to the {pipelines-shortname} controller, which creates and starts pods based on pipeline run and task run definitions. Without HA mode, a single pod executes these operations, potentially creating significant delays under a high load.
+ 
+-In HA mode, {pipelines-shortname} uses several pods (replicas) to execute these operations. Initially, {pipelines-shortname} assigns every controller operation into a bucket. Each replica picks operations from one or more buckets. If two replicas could pick the same operation at the same time, the controller internally determines a _leader_ that executes this operation.
++In HA mode, {pipelines-shortname} uses several pods (replicas) to run these operations. Initially, {pipelines-shortname} assigns every controller operation into a bucket. Each replica picks operations from one or more buckets. If two replicas could pick the same operation at the same time, the controller internally determines a _leader_ that executes this operation.
+ 
+ HA mode does not affect execution of task runs after the pods are created.
+ 
+@@ -54,7 +54,7 @@ HA mode does not affect execution of task runs after the pods are created.
+ 
+ | `threads-per-controller` | The number of threads (workers) to use when the work queue of the {pipelines-shortname} controller is processed. | `2`
+ 
+-| `kube-api-qps` | The maximum queries per second (QPS) to the cluster master from the REST client. | `5.0`
++| `kube-api-qps` | The maximum queries per second (QPS) to the cluster control plane from the REST client. | `5.0`
+ 
+ | `kube-api-burst` | The maximum burst for a throttle. | `10`
+ 
+diff --git a/modules/op-pipelines-operator-in-restricted-environment.adoc b/modules/op-pipelines-operator-in-restricted-environment.adoc
+index bef7bf28aa23..18c19496fb0e 100644
+--- a/modules/op-pipelines-operator-in-restricted-environment.adoc
++++ b/modules/op-pipelines-operator-in-restricted-environment.adoc
+@@ -1,10 +1,12 @@
+ // This module is included in the following assemblies:
+ // * install_config/installing-pipelines.adoc
+ 
++:_mod-docs-content-type: CONCEPT
+ [id="op-pipelines-operator-in-restricted-environment_{context}"]
+ = {pipelines-title} Operator in a restricted environment
+ 
+-The {pipelines-title} Operator enables support for installation of pipelines in a restricted network environment.
++[role="_abstract"]
++You can use the {pipelines-title} Operator to support the installation of pipelines in a restricted network environment. The Operator automatically configures proxy settings for your pipeline containers and resources, ensuring they can operate securely within your network constraints.
+ 
+ The Operator installs a proxy webhook that sets the proxy environment variables in the containers of the pod created by tekton-controllers based on the `cluster` proxy object. It also sets the proxy environment variables in the `TektonPipelines`, `TektonTriggers`, `Controllers`, `Webhooks`, and `Operator Proxy Webhook` resources.
+ 
+diff --git a/modules/op-setting-annotations-labels-namespace.adoc b/modules/op-setting-annotations-labels-namespace.adoc
+index fe6ad363ec78..93c1fa4b506e 100644
+--- a/modules/op-setting-annotations-labels-namespace.adoc
++++ b/modules/op-setting-annotations-labels-namespace.adoc
+@@ -5,7 +5,8 @@
+ [id="op-setting-annotations-labels-namespace_{context}"]
+ = Setting labels and annotations for the {pipelines-shortname} installation namespace
+ 
+-You can set labels and annotations for the `openshift-pipelines` namespace in which the operator installs {pipelines-shortname}.
++[role="_abstract"]
++You can apply custom labels and annotations to the `openshift-pipelines` namespace to integrate with your organization's metadata standards or tools. You can configure these metadata fields in the `TektonConfig` custom resource (CR) and apply them.
+ 
+ [NOTE]
+ ====
+diff --git a/modules/op-setting-resync-period.adoc b/modules/op-setting-resync-period.adoc
+index 19796c9071f5..ffe1a8503799 100644
+--- a/modules/op-setting-resync-period.adoc
++++ b/modules/op-setting-resync-period.adoc
+@@ -5,7 +5,8 @@
+ [id="op-setting-resync-period_{context}"]
+ = Setting the resync period for the pipelines controller
+ 
+-You can configure the resync period for the pipelines controller. Once every resync period, the controller reconciles all pipeline runs and task runs, regardless of events. 
++[role="_abstract"]
++You can configure the resync period for the pipelines controller to optimize resource usage in clusters with a large number of pipeline and task runs. By adjusting this interval in the `TektonConfig` custom resource, you control how often the controller reconciles all resources regardless of events. 
+ 
+ The default resync period is 10 hours. If you have a large number of pipeline runs and task runs, a full reconciliation every 10 hours might consume too many resources. In this case, you can configure a longer resync period.
+ 
+@@ -34,6 +35,7 @@ spec:
+                 containers:
+                 - name: tekton-pipelines-controller
+                   args:
+-                    - "-resync-period=24h" #<1>
++                    - "-resync-period=24h"
+ ----
+-<1> This example sets the resync period to 24 hours.
+\ No newline at end of file
++
++`name.args`:: This example sets the resync period to 24 hours.
+\ No newline at end of file
+diff --git a/modules/op-uninstalling-the-pipelines-operator.adoc b/modules/op-uninstalling-the-pipelines-operator.adoc
+index ed261b850792..c4a097ec66c9 100644
+--- a/modules/op-uninstalling-the-pipelines-operator.adoc
++++ b/modules/op-uninstalling-the-pipelines-operator.adoc
+@@ -5,7 +5,8 @@
+ [id="op-uninstalling-the-pipelines-operator_{context}"]
+ = Uninstalling the {pipelines-title} Operator
+ 
+-You can uninstall the {pipelines-title} Operator by using the *Administrator* perspective in the web console.
++[role="_abstract"]
++You can uninstall the {pipelines-title} Operator by using the {OCP} web console to remove the {pipelines-shortname} service from your cluster. This process involves deleting the Operator subscription and its associated operand instances.
+ 
+ .Procedure
+ 
+@@ -19,5 +20,5 @@ You can uninstall the {pipelines-title} Operator by using the *Administrator* pe
+ 
+ [WARNING]
+ ====
+-When you uninstall the {pipelines-shortname} Operator, all resources within the `openshift-pipelines` target namespace where {pipelines-shortname} is installed are lost, including the secrets you configured.
++When you uninstall the {pipelines-shortname} Operator, the uninstallation process deletes all resources within the `openshift-pipelines` target namespace where {pipelines-shortname} is installed, including the secrets you configured.
+ ====

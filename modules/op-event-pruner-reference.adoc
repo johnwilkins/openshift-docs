@@ -8,7 +8,60 @@
 :FeatureName: The event-based pruner
 include::snippets/technology-preview.adoc[]
 
-You can configure the pruning behavior of the event-based pruner by modifying your `TektonConfig` custom resource (CR).
+[role="_abstract"]
+You can fine-tune the event-based pruner by adjusting settings in the `TektonConfig` custom resource (CR). This reference details the available configuration options, including history limits, time-to-live (TTL) values, and namespace-specific policies.
+
+The following is an example of the `TektonConfig` CR with the default configuration that uses global pruning rules:
+
+[source,yaml]
+----
+apiVersion: operator.tekton.dev/v1alpha1
+kind: TektonConfig
+metadata:
+ name: config
+spec:
+  # ...
+  tektonpruner:
+    disabled: false
+    global-config:
+      enforcedConfigLevel: global
+      failedHistoryLimit: null
+      historyLimit: 10
+      namespaces: null
+      successfulHistoryLimit: null
+      ttlSecondsAfterFinished: null
+    options: {}
+  # ...
+----
+
+`failedHistoryLimit`:: The amount of retained failed runs.
+`historyLimit`:: The amount of runs to retain. Pruner uses this setting if status-specific limits are not defined.
+`namespaces`:: Definition of per-namespace pruning policies, when you set `enforcedConfigLevel` to `namespace`.
+`successfulHistoryLimit`:: The amount of retained successful runs. 
+`ttlSecondsAfterFinished`:: Time in seconds after completion, after which the pruner deletes resources.
+
+You can define pruning rules for individual namespaces by setting `enforcedConfigLevel` to `namespace` and configuring policies under the `namespaces` section. In the following example, a 60 second time to live (TTL) is applied to resources in the `dev-project` namespace:
+
+[source,yaml]
+----
+apiVersion: operator.tekton.dev/v1alpha1
+kind: TektonConfig
+metadata:
+ name: config
+spec:
+  # ...
+  tektonpruner:
+    disabled: false
+    global-config:
+      enforcedConfigLevel: namespace
+      ttlSecondsAfterFinished: 300
+      namespaces:
+        dev-project:
+          ttlSecondsAfterFinished: 60
+  # ...
+----
+
+You can use the following parameters in your `TektonConfig` CR `tektonpruner`:
 
 The following is an example of the `TektonConfig` CR with the default configuration that uses global pruning rules:
 
