@@ -3,12 +3,12 @@
 
 :_mod-docs-content-type: CONCEPT
 [id="op-migrating-from-tekton-hub-to-artifact-hub_{context}"]
-= Migrating from Tekton Hub to Artifact Hub
+= Migrating from {tekton-hub} to Artifact Hub
 
-Tekton Hub previously provided a hosted catalog of prebuilt Tekton resources, including Tasks and Pipelines. This service is deprecated in favor of _Artifact Hub_, a centralized catalog for Tekton resources.
+{tekton-hub} previously provided a hosted catalog of prebuilt Tekton resources, including Tasks and Pipelines. This service is deprecated in favor of _Artifact Hub_, a centralized catalog for Tekton resources.
 
 [IMPORTANT]
 ====
 * The hub resolver now defaults to the `artifact` type.
-* Tekton Hub (`type: tekton`) requires additional configuration to continue functioning.
+* {tekton-hub} (`type: tekton`) requires additional configuration to continue functioning.
 ====

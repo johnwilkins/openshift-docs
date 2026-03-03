@@ -6,7 +6,7 @@
 = Migrating to Artifact Hub
 
 [role="_abstract"]
-You can update existing Tekton resources to use Artifact Hub instead of the deprecated Tekton Hub.
+You can update existing Tekton resources to use Artifact Hub instead of the deprecated {tekton-hub}.
 
 .Procedure
 
@@ -31,7 +31,7 @@ For example, change a version such as `0.8` to `0.8.0`.
 
 . Update your resource definitions accordingly.
 +
-The following examples show how to migrate resolver parameters from Tekton Hub to Artifact Hub.
+The following examples show how to migrate resolver parameters from {tekton-hub} to Artifact Hub.
 +
 [source,yaml]
 ----

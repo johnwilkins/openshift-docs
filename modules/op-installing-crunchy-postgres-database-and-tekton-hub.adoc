@@ -3,10 +3,10 @@
 
 :_mod-docs-content-type: PROCEDURE
 [id="installing-crunchy-postgres-database-and-tekton-hub_{context}"]
-= Optional: Installing Crunchy Postgres database and {tekton-hub}
+= Installing Crunchy Postgres database and {tekton-hub}
 
 [role="_abstract"]
-Cluster administrators can install the Crunchy Postgres database and configure {tekton-hub} to use it instead of the default database.
+This is an optional procedure. Cluster administrators can install the Crunchy Postgres database and configure {tekton-hub} to use it instead of the default database.
 
 [discrete]
 .Prerequisites

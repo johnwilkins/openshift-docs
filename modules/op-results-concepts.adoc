@@ -16,14 +16,14 @@ A result corresponds to a pipeline run, and includes the records for the `Pipeli
 
 If a task run was started directly, without the use of a pipeline run, a result is created for this task run. This result contains the record for the same task run.
 
-Each result has a name that includes the namespace in which the `PipelineRun` or `TaskRun` CR was created and the UUID of the CR.  The format for the result name is `<namespace_name>/results/<parent_run_uuid>`. In this format, `<parent_run_uuid>` is the UUUD of a pipeline run or else of a task run that was started directly.
+Each result has a name that includes the namespace in which the `PipelineRun` or `TaskRun` CR was created and the UUID of the CR. The format for the result name is `<namespace_name>/results/<parent_run_uuid>`. In this format, `<parent_run_uuid>` is the UUUD of a pipeline run or else of a task run that was started directly.
 
 .Example result name
 ----
 results-testing/results/04e2fbf2-8653-405f-bc42-a262bcf02bed
 ----
 
-Each record has a name that includes name of the result that contains the record, as well as the UUID of the `PipelineRun` or `TaskRun` CR to which the record corresponds.  The format for the result name is `<namespace_name>/results/<parent_run_uuid>/results/<run_uuid>`.
+Each record has a name that includes name of the result that contains the record, as well as the UUID of the `PipelineRun` or `TaskRun` CR to which the record corresponds. The format for the result name is `<namespace_name>/results/<parent_run_uuid>/results/<run_uuid>`.
 
 .Example record name
 ----

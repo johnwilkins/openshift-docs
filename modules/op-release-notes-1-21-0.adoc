@@ -320,7 +320,7 @@ With this update, a new setting, `require-ok-to-test-sha`, is introduced in {pac
 // and SRVKP-9315
 
 Incoming webhook targets support glob patterns::
-With this update, the `targets` field in the {pac} `Repository` custom resource (CR) is enhanced to support glob patterns for incoming webhook events. In addition to exact string matching, you can utilize patterns to match multiple branch names with a single rule, helping simplify configuration and management for complex repository structures.
+With this update, the `targets` field in the {pac} `Repository` custom resource (CR) is enhanced to support glob patterns for incoming webhook events. In addition to exact string matching, you can use patterns to match multiple branch names with a single rule, helping simplify configuration and management for complex repository structures.
 +
 The following shell-style glob patterns are supported:
 +
@@ -695,8 +695,8 @@ link:https://issues.redhat.com/browse/SRVKP-9472[SRVKP-9472]
 
 .User interface
 
-Fixed PipelineRun cancelling status in OpenShift Console after TaskRuns complete::
-Before this update, the {OCP} Console showed `PipelineRuns` in a cancelling state even after all associated `TaskRuns` completed, due to an internal UI inconsistency. With this update, the OpenShift Console `PipelineRun` status mechanism is corrected. As a result, `PipelineRun` status accurately reflects the state of completed `TaskRuns`.
+Fixed PipelineRun canceling status in OpenShift Console after TaskRuns complete::
+Before this update, the {OCP} Console showed `PipelineRuns` in a canceling state even after all associated `TaskRuns` completed, due to an internal UI inconsistency. With this update, the OpenShift Console `PipelineRun` status mechanism is corrected. As a result, `PipelineRun` status accurately reflects the state of completed `TaskRuns`.
 +
 link:https://issues.redhat.com/browse/SRVKP-6960[SRVKP-6960]
 
@@ -796,7 +796,7 @@ Before this update, when `remember-ok-to-test` was set to `false`, a single `/ok
 link:https://issues.redhat.com/browse/SRVKP-9200[SRVKP-9200]
 
 GitLab API compatibility fix for canceled PipelineRuns::
-Before this update, an issue in the GitLab provider system did not properly recognize canceled `PipelineRuns` due to a spelling mismatch between "cancelled" and "canceled", which is expected by the GitLab API. This issue caused GitLab merge requests to automatically merge even though the associated `PipelineRun` was canceled. With this update, this issue is fixed. An explicit mapping from "cancelled" to "canceled" for GitLab API compatibility helps ensure that cancelled `PipelineRuns` are correctly reported and merge requests remain open as expected.
+Before this update, an issue in the GitLab provider system did not properly recognize canceled `PipelineRuns` due to a spelling mismatch between "canceled" and "canceled", which is expected by the GitLab API. This issue caused GitLab merge requests to automatically merge even though the associated `PipelineRun` was canceled. With this update, this issue is fixed. An explicit mapping from "canceled" to "canceled" for GitLab API compatibility helps ensure that canceled `PipelineRuns` are correctly reported and merge requests remain open as expected.
 +
 link:https://issues.redhat.com/browse/SRVKP-9050[SRVKP-9050]
 
@@ -837,7 +837,7 @@ link:https://issues.redhat.com/browse/SRVKP-9141[SRVKP-9141]
 
 //v0.39.x - check runs and patching
 GitHub check runs and patching logic is corrected::
-Before this update, {pac} created check runs incorrectly by always using the hardcoded state `'in_progress'`, omitting key output fields, and attempting to patch `PipelineRun` resources even after validation failed. With this update, the system uses the proper status and conclusion from `statusOpts`, adds the `Title`, `Summary`, and `Text` output fields to check runs, and prevents patch attempts when the `PipelineRun` name is invalid.
+Before this update, {pac} created check runs incorrectly by always using the hard-coded state `'in_progress'`, omitting key output fields, and attempting to patch `PipelineRun` resources even after validation failed. With this update, the system uses the proper status and conclusion from `statusOpts`, adds the `Title`, `Summary`, and `Text` output fields to check runs, and prevents patch attempts when the `PipelineRun` name is invalid.
 +
 link:https://issues.redhat.com/browse/SRVKP-9141[SRVKP-9141]
 

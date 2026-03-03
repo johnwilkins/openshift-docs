@@ -12,7 +12,7 @@ If you reference a remote task in a pipeline run, or a pipeline in a `PipelineRu
 
 [NOTE]
 ====
-The public instance of Tekton Hub (`hub.tekton.dev`) is deprecated and will be removed in a future release. Use link:https://artifacthub.io[Artifact Hub] as an alternative for Tekton `Pipeline` and `Task` resources:
+The public instance of {tekton-hub} (`hub.tekton.dev`) is deprecated and will be removed in a future release. Use link:https://artifacthub.io[Artifact Hub] as an alternative for Tekton `Pipeline` and `Task` resources:
 
 * link:https://artifacthub.io/packages/search?repo=tekton-catalog-tasks[Tekton Catalog Tasks]  
 * link:https://artifacthub.io/packages/search?repo=tekton-catalog-pipelines[Tekton Catalog Pipelines]

@@ -75,7 +75,7 @@ $ echo https://$(oc get route -n openshift-pipelines pipelines-as-code-controlle
 
 .... Use the left navigation pane of your Bitbucket Cloud repository to go to *Repository settings* –> *Webhooks* and click *Add webhook*.
 
-.... Set a *Title*. For example, "Pipelines as Code".
+.... Set a *Title*. For example, "{pac}".
 
 .... Set the *URL* to the {pac} controller public URL.
 

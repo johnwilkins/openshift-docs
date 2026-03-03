@@ -16,7 +16,7 @@ image::sbom.png[]
 
 * You have link:https://docs.openshift.com/container-platform/4.14/web_console/web-console.html#web-console[logged in to the web console].
 
-* You have the appropriate link:https://docs.openshift.com/container-platform/4.14/authentication/using-rbac.html#default-roles_using-rbac[roles and permissions] in a project to create applications and other workloads in OpenShift Container Platform.
+* You have the appropriate link:https://docs.openshift.com/container-platform/4.14/authentication/using-rbac.html#default-roles_using-rbac[roles and permissions] in a project to create applications and other workloads in {product-title}.
 
 .Procedure
 
