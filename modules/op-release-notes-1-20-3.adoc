@@ -1,0 +1,19 @@
+// This module is included in the following assemblies:
+// * release_notes/op-release-notes-1-20.adoc
+
+:_mod-docs-content-type: REFERENCE
+[id="op-release-notes-1-20-3_{context}"]
+= Release notes for {pipelines-title} 1.20.3
+
+With this update, {pipelines-title} General Availability (GA) 1.20.3 is available on {OCP} 4.14, 4.16 and later versions.
+
+[id="fixed-issues-1-20-3_{context}"]
+== Fixed issues
+
+.{pac}
+
+Non-HTTP(S) pipeline URLs are skipped before parsing, resolving 'invalid port' errors::
+Before this update, custom hub catalog references with version specifiers caused an _invalid port_ error. The Go `url.Parse()` function interpreted the version delimiter as a port separator, which caused pipeline resolution to fail. With this update, non-HTTP(S) schemes are excluded from URL parsing in task resolution logic, allowing versioned custom catalog references to function correctly.
+
+Custom Hub catalog types are correctly determined::
+Before this update, the custom Hub catalog type was always set to `artifacthub`, regardless of the provided catalog URL. This occurred because the system did not distinguish between Tekton Hub and Artifact Hub URLs when the `catalog-type` field was missing. As a result, catalogs pointing to Tekton Hub APIs did not function correctly. With this update, the system validates custom Hub catalog URL against known catalog endpoints. As a result, custom catalogs maintain their intended type.

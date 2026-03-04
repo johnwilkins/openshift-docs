@@ -37,6 +37,9 @@ include::modules/op-release-notes-1-20-1.adoc[leveloffset=+1]
 // Release notes for Red Hat OpenShift Pipelines 1.20.2
 include::modules/op-release-notes-1-20-2.adoc[leveloffset=+1]
 
+// Release notes for Red Hat OpenShift Pipelines 1.20.3
+include::modules/op-release-notes-1-20-3.adoc[leveloffset=+1]
+
 
 //Additional resources 1.20
 .Additional resources
