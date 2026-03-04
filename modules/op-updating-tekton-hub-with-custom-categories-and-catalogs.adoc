@@ -6,12 +6,12 @@
 = Updating {tekton-hub} with custom categories and catalogs
 
 [role="_abstract"]
-Cluster administrators can update Tekton Hub with custom categories, catalogs, scopes, and default scopes that reflect the context of their organization.  
+Cluster administrators can update {tekton-hub} with custom categories, catalogs, scopes, and default scopes that reflect the context of their organization.  
 
 [discrete]
 .Procedure
 
-. Optional: Edit the `categories`, `catalogs`, `scopes`, and `default:scopes` fields in the Tekton Hub CR.
+. Optional: Edit the `categories`, `catalogs`, `scopes`, and `default:scopes` fields in the {tekton-hub} CR.
 +
 [NOTE]
 ====

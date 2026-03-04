@@ -42,7 +42,7 @@ For basic authentication and SSH authentication, you can use annotations such as
 * `tekton.dev/git-1: https://gitlab.com`.
 ====
 +
-... Select the check mark to add the secret.
+... Select the checkmark to add the secret.
 
 +
 You can add multiple secrets based upon the number of resources in your pipeline.

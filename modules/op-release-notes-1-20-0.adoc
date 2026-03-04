@@ -27,7 +27,7 @@ readOnlyRootFilesystem enabled for default deployments::
 Tasks display friendly names in the web console::
 * Tasks in the {OCP} web console now use the `displayName` property instead of technical task names, improving readability and making tasks easier to search within the {pipelines-title} user interface.
 
-{pipelines-shortname} on single-node OpenShift::
+{pipelines-shortname} on {sno}::
 * Tech preview support for running {pipelines-shortname} on Single-Node OpenShift (SNO) is now available. This support is not intended for production deployments. {pipelines-shortname} on SNO has no additional limitations beyond the inherent constraints of a single-node cluster: limited scalability, no redundancy, and constrained concurrency.
 For a cluster on libvirt API, the minimum hardware requirements are:
 
@@ -128,7 +128,7 @@ New dynamic pull_request_number variable for push events::
 [id="pipelines-breaking-changes-1-20-0_{context}"]
 == Breaking changes
 
-* The public instance of Tekton Hub (`hub.tekton.dev`) is deprecated and will be removed in a future release. For more information, see "Additional resources".
+* The public instance of {tekton-hub} (`hub.tekton.dev`) is deprecated and will be removed in a future release. For more information, see "Additional resources".
 
 * Git resolver no longer sets `TEKTON_HUB_API` to the public hub. You must set the environment variable when pointing to a self-hosted hub. For more information, see link:https://tekton.dev/docs/operator/tektonconfig/#resolvers[Resolvers].
 
@@ -184,7 +184,7 @@ $ oc patch configmap pipelines-as-code -n openshift-pipelines --type=json -p='[{
 * Using `opc pr logs` in the OpenShift namespace may fail with repeated `Failed to list objects from openshift namespace` errors for both admin and non-admin users. 
 
 .{tekton-cache}
-* On IBM P and IBM Z environments, the `cache-fetch` step might fail with the `failed to change ownership: operation not permitted` error message. This issue occurs due to filesystem permission restrictions on the underlying storage.
+* On IBM P and {ibmzProductName} environments, the `cache-fetch` step might fail with the `failed to change ownership: operation not permitted` error message. This issue occurs due to filesystem permission restrictions on the underlying storage.
 
 .{tekton-chains}
 * Pod anti-affinity rules are not applied to `tekton-chains-controller` replicas.
@@ -198,7 +198,7 @@ $ oc patch configmap pipelines-as-code -n openshift-pipelines --type=json -p='[{
 .Pipelines
 * Before this update, the {pipelines-shortname} controller did not apply the `managed-by: tekton-pipelines` label when deploying `PipelineRuns` and `TaskRuns` with Helm. In addition, pods created by the controller could have the `app.kubernetes.io/managed-by` label overridden by values set by a `TaskRun` or `PipelineRun`. With this update, the controller consistently applies the correct labels, and pods use the default `app.kubernetes.io/managed-by` value.
 
-* Before this update, the {OCP} Console stated a 'Cancelling' state for `PipelineRun` objects with failed `finally` tasks, even when the actual status of the `PipelineRun` was `Canceled`, causing confusion. With this update, the issue is fixed.
+* Before this update, the {OCP} Console stated a 'Canceling' state for `PipelineRun` objects with failed `finally` tasks, even when the actual status of the `PipelineRun` was `Canceled`, causing confusion. With this update, the issue is fixed.
 
 * Before this update, the `PipelineRun` Events tab did not show events, due to an issue with the Pipeline Console plugin. As a consequence, you could not monitor the events in real-time. With this update, the issue is fixed.
 

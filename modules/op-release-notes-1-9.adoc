@@ -300,7 +300,7 @@ Workaround: To mitigate this issue, save the output of `tkn pac resolve` in a te
 * Before this update, if duplicate secrets were present in a service account for a pipelines run, it resulted in failure in task pod creation. With this update, this issue is resolved and the task pod is created successfully even if duplicate secrets are present in a service account.	
 // Vincent Demeester	
 
-* Before this update, by looking at the TaskRun's `spec.StatusMessage` field, users could not distinguish whether the `TaskRun` had been cancelled by the user or by a `PipelineRun` that was part of it. With this update, this issue is resolved and users can distinguish the status of the `TaskRun` by looking at the TaskRun's `spec.StatusMessage` field.
+* Before this update, by looking at the TaskRun's `spec.StatusMessage` field, users could not distinguish whether the `TaskRun` had been canceled by the user or by a `PipelineRun` that was part of it. With this update, this issue is resolved and users can distinguish the status of the `TaskRun` by looking at the TaskRun's `spec.StatusMessage` field.
 // Vincent Demeester	
 
 * Before this update, webhook validation was removed on deletion of old versions of invalid objects. With this update, this issue is resolved.	
@@ -370,7 +370,7 @@ spec:
 * Before this update, the `tkn pac describe` command did not display reasons for every message. With this update, this issue is fixed and the `tkn pac describe` command displays reasons for every message.	
 // Savita Ashture	
 
-* Before this update, a pull request failed if the user in the annotation provided values by using a regex form, for example, `refs/head/rel-*`. The pull request failed because it was missing `refs/heads` in its base branch. With this update, the prefix is added and checked that it matches. This resolves the issue and the pull request is successful.	
+* Before this update, a pull request failed if the user in the annotation provided values by using a regular expression form, for example, `refs/head/rel-*`. The pull request failed because it was missing `refs/heads` in its base branch. With this update, the prefix is added and checked that it matches. This resolves the issue and the pull request is successful.	
 // Savita Ashture
 
 [id="release-notes-1-9-1_{context}"]
@@ -389,7 +389,7 @@ With this update, {pipelines-title} General Availability (GA) 1.9.1 is available
 
 * Before this update, on a cluster enabled with FIPS, the `tekton-triggers-core-interceptors` core interceptor used in the `Trigger` resource did not function after the Pipelines Operator was upgraded to version 1.9. This update resolves the issue. Now, OpenShift uses MInTLS 1.2 for all its components. As a result, the `tekton-triggers-core-interceptors` core interceptor updates to TLS version 1.2and its functionality runs accurately.
 
-* Before this update, when using a pipeline run with an internal OpenShift image registry, the URL to the image had to be hardcoded in the pipeline run definition. For example:
+* Before this update, when using a pipeline run with an internal {product-registry}, the URL to the image had to be hard-coded in the pipeline run definition. For example:
 +
 [source,yaml]
 ----
@@ -399,7 +399,7 @@ With this update, {pipelines-title} General Availability (GA) 1.9.1 is available
 ...
 ----
 +
-When using a pipeline run in the context of {pac}, such hardcoded values prevented the pipeline run definitions from being used in different clusters and namespaces.
+When using a pipeline run in the context of {pac}, such hard-coded values prevented the pipeline run definitions from being used in different clusters and namespaces.
 +
 With this update, you can use the dynamic template variables instead of hardcoding the values for namespaces and pipeline run names to generalize pipeline run definitions. For example:
 +
@@ -416,7 +416,7 @@ With this update, you can use the dynamic template variables instead of hardcodi
 [id="known-issues-1-9-1_{context}"]
 == Known issues
 
-* The value for `CATALOG_REFRESH_INTERVAL`, a field in the Hub API `ConfigMap` object used in the Tekton Hub CR, is not getting updated with a custom value provided by the user.
+* The value for `CATALOG_REFRESH_INTERVAL`, a field in the Hub API `ConfigMap` object used in the {tekton-hub} CR, is not getting updated with a custom value provided by the user.
 +
 Workaround: None. You can track the issue link:https://issues.redhat.com/browse/SRVKP-2854[SRVKP-2854].
 

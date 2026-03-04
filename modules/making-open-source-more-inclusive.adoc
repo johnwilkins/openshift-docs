@@ -1,7 +1,6 @@
+:_mod-docs-content-type: CONCEPT
 // This module is included in the following assemblies:
 // * release_notes/op-release-notes-1-16.adoc
-
-:_module-type: CONCEPT
 
 [id="making-open-source-more-inclusive_{context}"]
 = Making open source more inclusive

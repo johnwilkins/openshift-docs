@@ -143,9 +143,9 @@ Previously, to add the tasks and pipelines in the catalog to the database, you p
 
 
 [id="chains-new-features-1-8_{context}"]
-=== Tekton Chains
+=== {tekton-chains}
 
-:FeatureName: Tekton Chains
+:FeatureName: {tekton-chains}
 include::snippets/technology-preview.adoc[]
 
 * With this update, you can log in to a vault by using OIDC rather than a static token. This change means that Spire can generate the OIDC credential so that only trusted workloads are allowed to log in to the vault. Additionally, you can pass the vault address as a configuration value rather than inject it as an environment variable.
@@ -167,7 +167,7 @@ include::snippets/technology-preview.adoc[]
 +
 [NOTE]
 ====
-Because {tekton-hub} login was enabled by default in {pipelines-title} 1.7, if you upgrade the Operator, the login is enabled by default in {pipelines-title} 1.8. To disable this login, see link:https://access.redhat.com/articles/6973040[Disabling Tekton Hub login after upgrading from OpenShift Pipelines 1.7.x --> 1.8.x]
+Because {tekton-hub} login was enabled by default in {pipelines-title} 1.7, if you upgrade the Operator, the login is enabled by default in {pipelines-title} 1.8. To disable this login, see link:https://access.redhat.com/articles/6973040[Disabling {tekton-hub} login after upgrading from {pipelines-shortname} 1.7.x --> 1.8.x]
 ====
 // link:https://github.com/tektoncd/hub/pull/542
 // Shiv Pratap Verma @pratap0007
@@ -286,13 +286,13 @@ data:
 
 // .Chains
 
-* For Tekton Chains, the `tekton-provenance` format has been removed in this release. Use the `in-toto` format by setting `"artifacts.taskrun.format": "in-toto"` in the `TektonChain` custom resource instead.
+* For {tekton-chains}, the `tekton-provenance` format has been removed in this release. Use the `in-toto` format by setting `"artifacts.taskrun.format": "in-toto"` in the `TektonChain` custom resource instead.
 // no link
 // Shubham Minglani
 
 // .{pac}
 
-* {pipelines-title} 1.7.x shipped with {pac} 0.5.x. The current update ships with {pac} 0.10.x. This change creates a new route in the `openshift-pipelines` namespace for the new controller. You must update this route in GitHub Apps or webhooks that use {pac}. To fetch the route, use the following command:
+* {pipelines-title} 1.7.x shipped with {pac} 0.5.x. The current update includes {pac} 0.10.x. This change creates a new route in the `openshift-pipelines` namespace for the new controller. You must update this route in GitHub Apps or webhooks that use {pac}. To fetch the route, use the following command:
 +
 [source,terminal]
 ----
@@ -372,18 +372,18 @@ Workaround: Use `nodejs:14-ubi8` rather than the `nodejs:14-ubi8-minimal` image 
 
 // .ARM (Tech Preview feature)
 
-* When you run Maven and Jib-Maven cluster tasks, the default container image is supported only on Intel (x86) architecture. Therefore, tasks will fail on ARM, IBM Power Systems (ppc64le), IBM Z, and LinuxONE (s390x) clusters.
+* When you run Maven and Jib-Maven cluster tasks, the default container image is supported only on Intel (x86) architecture. Therefore, tasks will fail on ARM, {ibmpowerProductName} Systems (ppc64le), {ibmzProductName}, and LinuxONE (s390x) clusters.
 +
 Workaround: Specify a custom image by setting the `MAVEN_IMAGE` parameter value to `maven:3.6.3-adoptopenjdk-11`.
 +
 [TIP]
 ====
-Before you install tasks that are based on the Tekton Catalog on ARM, IBM Power Systems (ppc64le), IBM Z, and LinuxONE (s390x) using `tkn hub`, verify if the task can be executed on these platforms. To check if `ppc64le` and `s390x` are listed in the "Platforms" section of the task information, you can run the following command: `tkn hub info task <name>`
+Before you install tasks that are based on the Tekton Catalog on ARM, {ibmpowerProductName} Systems (ppc64le), {ibmzProductName}, and LinuxONE (s390x) using `tkn hub`, verify if the task can be executed on these platforms. To check if `ppc64le` and `s390x` are listed in the "Platforms" section of the task information, you can run the following command: `tkn hub info task <name>`
 // issue # is unknown.
 ====
 // link:https://issues.redhat.com/browse/SRVKP-2375 for ARM issue
 
-* On ARM, IBM Power Systems, IBM Z, and LinuxONE, the `s2i-dotnet` cluster task is unsupported.
+* On ARM, {ibmpowerProductName} Systems, {ibmzProductName}, and LinuxONE, the `s2i-dotnet` cluster task is unsupported.
 // issue # is unknown. Added ARM in 1.8
 
 // Pipelines

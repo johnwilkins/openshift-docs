@@ -53,7 +53,7 @@ include::snippets/technology-preview.adoc[]
 
 * With this update, you can configure {tekton-results} to store data in an external PostgreSQL server.
 
-* With this update, you can use Google Cloud Storage (GCS) to store {tekton-results} logging information. You can provide the secret with the GCS storage credentials and then provide the secret name, secret key, and bucket name in properties under the `TektonResult` spec.  You can also use Workload Identity Federation for authentication.
+* With this update, you can use Google Cloud Storage (GCS) to store {tekton-results} logging information. You can provide the secret with the GCS storage credentials and then provide the secret name, secret key, and bucket name in properties under the `TektonResult` spec. You can also use Workload Identity Federation for authentication.
 
 * With this update, any service account authenticated with {pipelines-shortname} can access the `TektonResult` CR.
 

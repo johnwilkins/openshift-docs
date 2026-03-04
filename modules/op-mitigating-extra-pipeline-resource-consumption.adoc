@@ -1,3 +1,4 @@
+:_mod-docs-content-type: CONCEPT
 // This module is included in the following assemblies:
 // * resource/reducing-pipelines-resource-consumption.adoc
 

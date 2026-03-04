@@ -95,7 +95,7 @@ spec:
 ** `Error`: There was an error during execution of the step, for example a command returned a non-zero exit code, and this error caused the step to fail. See the log output for the details of the error.
 ** `TimeoutExceeded`: The execution of the step timed out. See the log output for the details of the timeout.
 ** `Skipped`: The step was skipped because a previous step failed.
-** `TaskRunCancelled`: The task run was cancelled.
+** `TaskRunCancelled`: The task run was canceled.
 
 * With this update, you can use the `pipeline.disable-inline-spec` spec in the `TektonConfig` CR to disable specifying pipelines and tasks inside `PipelineRun` CRs, specifying tasks inside `Pipeline` CRs, or specifying tasks inside `TaskRun` CRs. If you use this option, you must refer to pipelines by using the `pipelineRef:` specification and refer to tasks by using the `taskRef:` specification.
 
@@ -266,7 +266,7 @@ include::snippets/technology-preview.adoc[]
 
 * With this update, when {pac} generates a random secret name for storing the GitHub temporary token, it uses two additional random characters. This change decreases the probability of a collision in secret names.
 
-* With this update, when a pipeline run defined by using {pac} causes a YAML validation error, {pipelines-shortname} reports the error and the pipeline run name in the event log of the user namespace where the pipeline run executes, as well as in the {pipelines-shortname} controller log. The error report is also displayed in the Git repository provider, for example, in the GitHub CheckRun user interface. With this change, a user who does not have access to the controller namespace can access the error messages.
+* With this update, when a pipeline run defined by using {pac} causes a YAML validation error, {pipelines-shortname} reports the error and the pipeline run name in case log of the user namespace where the pipeline run executes, as well as in the {pipelines-shortname} controller log. The error report is also displayed in the Git repository provider, for example, in the GitHub CheckRun user interface. With this change, a user who does not have access to the controller namespace can access the error messages.
 
 [id="tekton-results-new-features-1-15_{context}"]
 === {tekton-results}
