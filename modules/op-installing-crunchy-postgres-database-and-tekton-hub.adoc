@@ -11,7 +11,7 @@ This is an optional procedure. Cluster administrators can install the Crunchy Po
 [discrete]
 .Prerequisites
 
-* Install the Crunchy Postgres Operator from the Operator Hub.
+* Install the Crunchy Postgres Operator from the OperatorHub.
 * Create a Postgres instance that initiates a Crunchy Postgres database.
 
 [discrete]
