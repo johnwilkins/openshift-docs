@@ -112,7 +112,7 @@ You can override the default information gathered from the Git repository by spe
 
 |===
 
-CEL::
+Common Expression Language (CEL)::
 
 [options="header"]
 |===

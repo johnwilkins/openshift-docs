@@ -71,7 +71,7 @@ spec:
 .{tekton-results}
 
 New flag to disable live collection in tekton-results-watcher::
-* {tekton-results} supports a new flag for the `tekton-results-watcher` controller to disable live collection of runs by setting the `--disable_storing_incomplete_runs=true` flag in the `TektonConfig` CRD:
+* {tekton-results} supports a new flag for the `tekton-results-watcher` controller to disable live collection of runs by setting the `--disable_storing_incomplete_runs=true` flag in the `TektonConfig` custom resource definition (CRD):
 +
 [source, yaml]
 ----

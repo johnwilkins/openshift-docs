@@ -228,7 +228,7 @@ Existing role bindings are not automatically removed from namespaces with the pi
 ====
 
 Route is automatically created for {tekton-results} API endpoint::
-With this update, the {tekton-results} component automatically creates an OpenShift `Route` CRD for its API endpoint. You can optionally configure a custom host and path for the `Route`. This helps ensure the {tekton-results} API is accessible externally without requiring additional user configuration.
+With this update, the {tekton-results} component automatically creates an OpenShift `Route` custom resource definition (CRD) for its API endpoint. You can optionally configure a custom host and path for the `Route`. This helps ensure the {tekton-results} API is accessible externally without requiring additional user configuration.
 //+
 //link:https://issues.redhat.com/browse/SRVKP-9140[SRVKP-9140]
 // and SRVKP-8057
@@ -473,7 +473,7 @@ Before this update, `{tekton-cache}` required Docker secrets to include a `confi
 .{tekton-triggers}
 
 GitHub interceptor enforces SHA-256 signature validation::
-Before this update, the GitHub interceptor supported both SHA-1 (`X-Hub-Signature`) and SHA-256 (`X-Hub-Signature-256`) signatures for webhook validation. With this update, the GitHub interceptor enforces a stricter security posture and only accepts SHA-256 signatures via the `X-Hub-Signature-256` header, dropping support for SHA-1. As a result, standard GitHub webhooks remain unaffected, but any custom webhook implementations must update their HMAC signature generation from SHA-1 to SHA-256 to avoid validation errors.
+Before this update, the GitHub interceptor supported both SHA-1 (`X-Hub-Signature`) and SHA-256 (`X-Hub-Signature-256`) signatures for webhook validation. With this update, the GitHub interceptor enforces a stricter security posture and only accepts SHA-256 signatures via the `X-Hub-Signature-256` header, dropping support for SHA-1. As a result, standard GitHub webhooks remain unaffected, but any custom webhook implementations must update their Hash-based Message Authentication Code (HMAC) signature generation from SHA-1 to SHA-256 to avoid validation errors.
 //+
 //link:https://issues.redhat.com/browse/SRVKP-9136[SRVKP-9136]
 
