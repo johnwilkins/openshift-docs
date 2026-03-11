@@ -6,7 +6,7 @@
 = Providing secure connection with OpenShift routes
 
 [role="_abstract"]
-You can provide a secure connection with OpenShift routes by using re-encrypted TLS termination.
+You can give a secure connection with OpenShift routes by using re-encrypted TLS termination.
 
 .Procedure
 
@@ -17,7 +17,7 @@ You can provide a secure connection with OpenShift routes by using re-encrypted 
 $ oc create route reencrypt --service=<svc_name> --cert=tls.crt --key=tls.key --ca-cert=ca.crt --hostname=<hostname>
 ----
 +
-Alternatively, you can create a re-encrypted TLS termination YAML file to create a secure route:
+Or, you can create a re-encrypted TLS termination YAML file to create a secure route:
 +
 .Example re-encrypt TLS termination YAML to create a secure route
 [source,yaml,subs="attributes+"]

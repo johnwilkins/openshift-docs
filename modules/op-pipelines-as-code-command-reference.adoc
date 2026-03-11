@@ -106,7 +106,7 @@ If you run the command from a source code repository, it attempts to detect the 
 
 | `tkn pac resolve -f .tekton/pr.yaml -p revision=main -p repo_name=<repository_name>` | Executes a pipeline run by overriding default parameter values derived from the Git repository.
 
-The `-f` option can also accept a directory path and apply the `tkn pac resolve` command on all `.yaml` or `.yml` files in that directory. You can also use the `-f` flag multiple times in the same command.
+The `-f` option can also accept a directory path and apply the `tkn pac resolve` command on all `.yaml` or `.yml` files in that directory. You can also use the `-f` flag many times in the same command.
 
 You can override the default information gathered from the Git repository by specifying parameter values by using the `-p` option. For example, you can use a Git branch as a revision and a different repository name.
 

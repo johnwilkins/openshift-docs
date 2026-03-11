@@ -63,7 +63,7 @@ spec:
 +
 [NOTE]
 ====
-If you don't provide custom values for the optional fields in the `TektonHub` CR, the system uses the default values configured in the {tekton-hub} API config map.
+If you don't give custom values for the optional fields in the `TektonHub` CR, the system uses the default values configured in the {tekton-hub} API config map.
 ====
 
 . Apply the `TektonHub` CR.
@@ -73,7 +73,7 @@ If you don't provide custom values for the optional fields in the `TektonHub` CR
 $ oc apply -f <tekton_hub_cr>.yaml
 ----
 
-. Check the status of the installation. The `TektonHub` CR might take some time to attain steady state.
+. Check the status of the installation. The `TektonHub` CR might take some time to reach steady state.
 +
 [source,terminal]
 ----

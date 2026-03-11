@@ -37,7 +37,7 @@ Each policy includes the following fields:
 |The retention period for matching Results. The value can be a number (days) or a duration string such as `24h` or `7d`.
 |===
 
-The following example shows a config map that defines multiple retention policies:
+The following example shows a config map that defines many retention policies:
 
 [source,yaml]
 ----

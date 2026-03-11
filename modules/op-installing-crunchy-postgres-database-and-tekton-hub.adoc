@@ -151,7 +151,7 @@ spec:
 $ oc apply -f <tekton_hub_cr>.yaml
 ----
 
-. Check the status of the installation. The `TektonHub` CR might take some time to attain a steady state.
+. Check the status of the installation. The `TektonHub` CR might take some time to reach a steady state.
 +
 [source,terminal]
 ----

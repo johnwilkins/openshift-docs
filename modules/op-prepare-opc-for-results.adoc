@@ -48,9 +48,9 @@ ssl:
    name: service_acc_1
 ----
 `address`:: The route to the {tekton-results} API. Use the same value as you set for `RESULTS_API`.
-`token`:: The authentication token that the `oc create token` command created. If you provide this token, it overrides the `service_account` setting and `opc` uses this token to authenticate.
+`token`:: The authentication token that the `oc create token` command created. If you give this token, it overrides the `service_account` setting and `opc` uses this token to authenticate.
 `ssl.roots_file_path`:: The location of the file with the SSL/TLS certificate that you configured for the API endpoint.
 `ssl.server_name_override`:: If you configured a custom target namespace for {pipelines-shortname}, replace `openshift-pipelines` with the name of this namespace.
-`service_account`:: The name of a service account for authenticating with the {tekton-results} API. If you provided the authentication token, you do not need to provide the `service_account` parameters.
+`service_account`:: The name of a service account for authenticating with the {tekton-results} API. If you provided the authentication token, you do not need to give the `service_account` parameters.
 +
-Alternatively, if you do not create the `~/.config/tkn/results.yaml` file, you can pass the token to each `opc` command by using the `--authtoken` option.
+Or, if you do not create the `~/.config/tkn/results.yaml` file, you can pass the token to each `opc` command by using the `--authtoken` option.

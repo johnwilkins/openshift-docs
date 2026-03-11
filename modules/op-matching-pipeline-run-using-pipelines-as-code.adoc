@@ -5,9 +5,9 @@
 [id="matching-pipeline-run-using-pipelines-as-code_{context}"]
 = Annotations for matching events to a pipeline run
 
-You can match different Git provider events with each pipeline run by using annotations on the pipeline run. If there are multiple pipeline runs matching an event, {pac} runs them in parallel and posts the results to the Git provider as soon as a pipeline run finishes.
+You can match different Git provider events with each pipeline run by using annotations on the pipeline run. If there are many pipeline runs matching an event, {pac} runs them in parallel and posts the results to the Git provider as soon as a pipeline run finishes.
 [role="_abstract"]
-You can match different Git provider events with each pipeline run by using annotations on the pipeline run. If there are multiple pipeline runs matching an event, {pac} runs them in parallel and posts the results to the Git provider as soon as a pipeline run finishes.
+You can match different Git provider events with each pipeline run by using annotations on the pipeline run. If there are many pipeline runs matching an event, {pac} runs them in parallel and posts the results to the Git provider as soon as a pipeline run finishes.
 
 [id="pull-matching-pipeline-run-using-pipelines-as-code_{context}"]
 == Matching a pull request event to a pipeline run
@@ -25,7 +25,7 @@ annotations:
   pipelinesascode.tekton.dev/on-event: "[pull_request]"
 # ...
 ----
-`pipelinesascode.tekton.dev/on-target-branch`:: You can specify multiple branches by adding comma-separated entries. For example, `"[main, release-nightly]"`. In addition, you can specify the following items:
+`pipelinesascode.tekton.dev/on-target-branch`:: You can specify many branches by adding comma-separated entries. For example, `"[main, release-nightly]"`. In addition, you can specify the following items:
 * Full references to branches such as `"refs/heads/main"`
 * Globs with pattern matching such as `"refs/heads/\*"`
 * Tags such as `"refs/tags/1.\*"`
@@ -46,7 +46,7 @@ annotations:
   pipelinesascode.tekton.dev/on-event: "[push]"
 # ...
 ----
-`pipelinesascode.tekton.dev/on-target-branch`:: You can specify multiple branches by adding comma-separated entries. For example, `"[main, release-nightly]"`. In addition, you can specify the following items:
+`pipelinesascode.tekton.dev/on-target-branch`:: You can specify many branches by adding comma-separated entries. For example, `"[main, release-nightly]"`. In addition, you can specify the following items:
 * Full references to branches such as `"refs/heads/main"`
 * Globs with pattern matching such as `"refs/heads/\*"`
 * Tags such as `"refs/tags/1.\*"`
@@ -181,9 +181,9 @@ metadata:
 
 [NOTE]
 ====
-If you use the `header` or `body` field for event matching, you might be unable to trigger the pipeline run using Git commands such as `retest`. If you use a Git command, the payload body is the comment that contains this command, and not the original payload.
+If you use the `header` or `body` field for event matching, you might be unable to trigger the pipeline run using Git commands such as `retest`. If you use a Git command, the payload body is the comment that has this command, and not the original payload.
 
-If you want to trigger the pipeline run again when using the `body` field for event matching, you can close and reopen the pull request or merge request, or alternatively add a new SHA commit. You can add a new SHA commit by using the following command:
+If you want to trigger the pipeline run again when using the `body` field for event matching, you can close and reopen the pull request or merge request, or or add a new SHA commit. You can add a new SHA commit by using the following command:
 
 [source,terminal]
 ----

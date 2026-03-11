@@ -57,8 +57,8 @@ stringData:
 <8> Add the time limit after which the access token expires. For example, `1m`, where m denotes minutes. The supported units of time are seconds (`s`), minutes (`m`), hours (`h`), days (`d`), and weeks (`w`).
 <9> Add the time limit after which the refresh token expires. For example, `1m`, where `m` denotes minutes. The supported units of time are seconds (`s`), minutes (`m`), hours (`h`), days (`d`), and weeks (`w`). Ensure that the expiry time set for token refresh is greater than the expiry time set for token access.
 <10> Route URL for the OAuth application.
-<11> GitHub Enterprise URL, if you are authenticating using GitHub Enterprise. Do not provide the URL to the catalog as a value for this field.
-<12> GitLab Enterprise URL, if you are authenticating using GitLab Enterprise. Do not provide the URL to the catalog as a value for this field.
+<11> GitHub Enterprise URL, if you are authenticating using GitHub Enterprise. Do not give the URL to the catalog as a value for this field.
+<12> GitLab Enterprise URL, if you are authenticating using GitLab Enterprise. Do not give the URL to the catalog as a value for this field.
 +
 [NOTE]
 ====
@@ -115,13 +115,13 @@ spec:
 <3> The name of the database secret must be `tekton-hub-db`.
 <4> Optional: Customized categories for tasks and pipelines in {tekton-hub}.
 <5> Optional: Customized catalogs for {tekton-hub}.
-<6> Optional: Additional users. You can mention multiple users, such as `[<username_1>, <username_2>, <username_3>]`.
+<6> Optional: Additional users. You can mention many users, such as `[<username_1>, <username_2>, <username_3>]`.
 <7> Optional: Customized default scopes.  
 <8> The time interval after which the catalog refreshes automatically. The supported units of time are seconds (`s`), minutes (`m`), hours (`h`), days (`d`), and weeks (`w`). The default interval is 30 minutes.
 +
 [NOTE]
 ====
-If you don't provide custom values for the optional fields in the `TektonHub` CR, the system uses the default values configured in the {tekton-hub} API config map.
+If you don't give custom values for the optional fields in the `TektonHub` CR, the system uses the default values configured in the {tekton-hub} API config map.
 ====
 
 . Apply the `TektonHub` CR.
@@ -131,7 +131,7 @@ If you don't provide custom values for the optional fields in the `TektonHub` CR
 $ oc apply -f <tekton_hub_cr>.yaml
 ----
 
-. Check the status of the installation. The `TektonHub` CR might take some time to attain steady state.
+. Check the status of the installation. The `TektonHub` CR might take some time to reach steady state.
 +
 [source,terminal]
 ----

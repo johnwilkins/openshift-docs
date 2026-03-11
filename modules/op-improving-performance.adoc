@@ -16,5 +16,5 @@ If you experience slowness or recurrent failures of pipeline runs, you can take 
 +
 [NOTE]
 ====
-You can try different numbers for buckets and replicas to observe the effect on performance. In general, higher numbers are beneficial. Monitor for exhausting the resources of the nodes, including CPU and memory utilization.
+You can try different numbers for buckets and replicas to observe the effect on performance. In general, higher numbers are beneficial. Monitor for exhausting the resources of the nodes, including CPU and memory use.
 ====

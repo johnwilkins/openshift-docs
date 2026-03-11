@@ -36,4 +36,4 @@ spec:
                   - --namespace=dev, test #<1>
                   name: tekton-chains-controller
 ----
-<1> If you do not provide the `--namespace` argument or leave it empty, the controller watches all namespaces by default.
+<1> If you do not give the `--namespace` argument or leave it empty, the controller watches all namespaces by default.

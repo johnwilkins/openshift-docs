@@ -9,11 +9,11 @@
 [role="_abstract"]
 {pac} interacts with your Git repository provider. To use {pac}, you must first configure this integration.
 
-You can use {pac} with any number of repositories within your Git repository provider. For each repository, you must create a `Repository` custom resource (CR) within an {OCP} namespace that you control. This CR contains information that {pac} can use to access this repository.
+You can use {pac} with any number of repositories within your Git repository provider. For each repository, you must create a `Repository` custom resource (CR) within an {OCP} namespace that you control. This CR has information that {pac} can use to access this repository.
 
 {pac} starts the pipeline runs for a repository within the namespace containing the `Repository` CR for this repository.
 
-Inside your Git repository, you must create a `.tekton` directory and store pipeline run definitions as YAML files in this directory. Each pipeline run that you define must include annotations that determine the events that must trigger this pipeline run.
+Inside your Git repository, you must create a `.tekton` directory and store pipeline run definitions as YAML files in this directory. Each pipeline run that you define must include annotations that find the events that must trigger this pipeline run.
 
 The definition can reference other YAML files in the same directory. For example, you can define a pipeline in a separate YAML file and refer to this pipeline in the pipeline run file. You can also use annotations in the pipeline run definition to reference task and pipeline resources from {tekton-hub}, from HTTP locations, and from other paths in your directory. You can use special variables in the definition to reference execution context, such as the name of the branch.
 

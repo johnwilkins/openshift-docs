@@ -38,4 +38,4 @@ If the same limit range is used with a task of ten steps, the final memory reque
 Thus, to reduce resource consumption of resources, you can:
 
 * Reduce the number of steps in a given task by grouping different steps into one bigger step, using the script feature, and the same image. This reduces the minimum  requested resource.
-* Distribute steps that are relatively independent of each other and can run on their own to multiple tasks instead of a single task. This lowers the number of steps in each task, making the request for each task smaller, and the scheduler can then run them when the resources are available.
+* Distribute steps that are relatively independent of each other and can run on their own to many tasks instead of a single task. This lowers the number of steps in each task, making the request for each task smaller, and the scheduler can then run them when the resources are available.

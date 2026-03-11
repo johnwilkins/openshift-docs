@@ -7,7 +7,7 @@
 
 You can override the initial configuration settings in specific pipeline runs or tasks to customize the behavior according to different use cases. You can use this method to access an authenticated provider that is not configured in the `TektonConfig` custom resource (CR).
 
-The following example task run references a remote task from a Git repository that overrides the previous resolver configuration:
+The following example task run references a remote task from a Git repository that overrides the earlier resolver configuration:
 
 [source,yaml]
 ----

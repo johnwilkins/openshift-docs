@@ -6,9 +6,9 @@
 [id="security-model-buildah-ns-task_{context}"]
 = Security model of the `buildah-ns` task
 
-The `buildah-ns` task applies user namespace isolation to provide privilege separation between containers and the host system.
+The `buildah-ns` task applies user namespace isolation to give privilege separation between containers and the host system.
 [role="_abstract"]
-The `buildah-ns` task applies user namespace isolation to provide privilege separation between containers and the host system.
+The `buildah-ns` task applies user namespace isolation to give privilege separation between containers and the host system.
 
 == UID mapping behavior
 

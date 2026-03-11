@@ -7,7 +7,7 @@
 = Searching for records
 
 [role="_abstract"]
-You can search for records by using Common Expression Language (CEL) queries. As each record contains full YAML information for a pipeline run or task run, you can find records by many different criteria.
+You can search for records by using Common Expression Language (CEL) queries. As each record has full YAML information for a pipeline run or task run, you can find records by many different criteria.
 
 .Prerequisites
 
@@ -22,7 +22,7 @@ You can search for records by using Common Expression Language (CEL) queries. As
 $ opc results records list --addr ${RESULTS_API} --filter="<cel_query>" <namespace_name>/result/-
 ----
 +
-Replace `<namespace_name>` with the namespace in which you created the pipeline runs or task runs. Alternatively, search for records within a single result by entering the following command:
+Replace `<namespace_name>` with the namespace in which you created the pipeline runs or task runs. Or, search for records within a single result by entering the following command:
 +
 [source,terminal]
 ----

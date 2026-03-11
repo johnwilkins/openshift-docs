@@ -20,15 +20,15 @@ For pipelines created using the *From Git* option, the *Start Pipeline* dialog b
 ====
 +
 .. If you have resources in your namespace, the system pre-populates the *Git Resources* and the *Image Resources* fields with those resources. If required, use the drop-downs to select or create the required resources and customize the pipeline run instance.
-. Optional: Modify the *Advanced Options* to add the credentials that authenticate the specified private Git server or the image registry.
+. Optional: Change the *Advanced Options* to add the credentials that authenticate the specified private Git server or the image registry.
 +
 .. Under *Advanced Options*, click *Show Credentials Options* and select *Add Secret*.
 .. In the *Create Source Secret* section, specify the following:
 
 ... A unique *Secret Name* for the secret.
 ... In the *Designated provider to authenticate* section, specify the provider to authenticate in the *Access to* field, and the base *Server URL*.
-... Select the *Authentication Type* and provide the credentials:
-* For the *Authentication Type* `Image Registry Credentials`, specify the *Registry Server Address* that you want to authenticate, and provide your credentials in the *Username*, *Password*, and *Email* fields.
+... Select the *Authentication Type* and give the credentials:
+* For the *Authentication Type* `Image Registry Credentials`, specify the *Registry Server Address* that you want to authenticate, and give your credentials in the *Username*, *Password*, and *Email* fields.
 +
 Select *Add Credentials* if you want to specify an additional *Registry Server Address*.
 

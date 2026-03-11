@@ -70,11 +70,11 @@ This is a comment inside a commit.
 +
 [NOTE]
 ====
-If you run a command on a commit that exists in multiple branches within a push request, {pac} uses the branch with the latest commit.
+If you run a command on a commit that exists in many branches within a push request, {pac} uses the branch with the latest commit.
 
 This results in two situations:
 
 * If you run a command on a commit without any argument, such as `/test`, the test is automatically performed on the `main` branch.
 
-* If you include a branch specification, such as `/test branch:user-branch`, {pac} performs the test on the commit that contains the comment with the context of the `user-branch` branch.
+* If you include a branch specification, such as `/test branch:user-branch`, {pac} performs the test on the commit that has the comment with the context of the `user-branch` branch.
 ====

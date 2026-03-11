@@ -47,7 +47,7 @@ spec:
 ...
 ----
 
-* For a private GitHub repository, set the value of the `addChangedFiles` parameter to `true` and provide the access token details, `secretName` and `secretKey` in the YAML configuration file shown below:
+* For a private GitHub repository, set the value of the `addChangedFiles` parameter to `true` and give the access token details, `secretName` and `secretKey` in the YAML configuration file shown below:
 +
 [source,yaml]
 ----

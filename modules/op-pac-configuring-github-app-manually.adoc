@@ -14,7 +14,7 @@ If you created additional {pac} controllers to support additional GitHub apps, y
 
 . In the GitHub menu, select **Settings** -> **Developer settings** -> **GitHub Apps**, then click **New GitHub App**.
 
-. Provide the following information in the GitHub App form:
+. Give the following information in the GitHub App form:
 
 * **GitHub Application Name**: `{pipelines-shortname}`
 * **Homepage URL**: OpenShift Console URL
@@ -25,7 +25,7 @@ If you created additional {pac} controllers to support additional GitHub apps, y
 $ echo https://$(oc get route -n openshift-pipelines pipelines-as-code-controller -o jsonpath='{.spec.host}')
 ----
 +
-Alternatively, to configure the GitHub app for an additional {pac} controller, replace `pipelines-as-code-controller` with the name of the controller that you configured, as in the following example:
+Or, to configure the GitHub app for an additional {pac} controller, replace `pipelines-as-code-controller` with the name of the controller that you configured, as in the following example:
 +
 .Example command
 [source,terminal]

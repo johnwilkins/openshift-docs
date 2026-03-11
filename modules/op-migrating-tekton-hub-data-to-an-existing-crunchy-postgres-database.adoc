@@ -32,7 +32,7 @@ $ oc cp -n <namespace> <podName>:<path_to_hub.dump> <path_to_local_system>
 $ oc cp -n openshift-pipelines tekton-hub-db-7d6d888c67-p7mdr:/tmp/hub.dump /home/test_user/Downloads/hub.dump
 ----
 +
-. Copy the file that contains the data dump from the local system to the pod running the external Crunchy Postgres database.
+. Copy the file that has the data dump from the local system to the pod running the external Crunchy Postgres database.
 +
 .Command format
 [source,terminal]
@@ -189,7 +189,7 @@ spec:
 $ oc replace -f <updated_tekton_hub_cr>.yaml
 ----
 +
-. Check the status of the {tekton-hub}. The updated `TektonHub` CR might take some time to attain a steady state.
+. Check the status of the {tekton-hub}. The updated `TektonHub` CR might take some time to reach a steady state.
 +
 [source,terminal]
 ----

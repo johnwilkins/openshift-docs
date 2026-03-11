@@ -73,7 +73,7 @@ failed to scope GitHub token as repo owner1/project1 does not exist in namespace
 
 The generated GitHub token enables access to the additional repositories that you configured in the global and repository level configuration, and the original repository where the {pac} payload files reside.
 
-If you provide both global configuration and repository level configuration, {pac} scopes the token to all the repositories from both configurations, as in the following example.
+If you give both global configuration and repository level configuration, {pac} scopes the token to all the repositories from both configurations, as in the following example.
 
 *`TektonConfig` custom resource*
 [source,yaml]

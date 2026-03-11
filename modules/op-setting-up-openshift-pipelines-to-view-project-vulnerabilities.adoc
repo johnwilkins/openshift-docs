@@ -116,7 +116,7 @@ spec:
 +
 [NOTE]
 ====
-This is an example configuration. Modify the values according to your specific scanning tool to set results in the expected format.
+This is an example configuration. Change the values according to your specific scanning tool to set results in the expected format.
 ====
 
 . Update an appropriate Pipeline to add vulnerabilities specifications in the following format:
@@ -136,7 +136,7 @@ spec:
 
 * Navigate to the `PipelineRun` details page and review the *Vulnerabilities* row for a visual representation of identified vulnerabilities.
 
-* Alternatively, you can navigate to the `PipelineRun` list view page, and review the *Vulnerabilities* column.
+* Or, you can navigate to the `PipelineRun` list view page, and review the *Vulnerabilities* column.
 
 [role="_additional-resources"]
 .Additional resources

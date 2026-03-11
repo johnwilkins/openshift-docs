@@ -173,7 +173,7 @@ spec:
 [cols="1,2,1",options="header"]
 |===
 | Parameter | Description | Default value
-|`charts_dir` |Directory in the source workspace that contains the Helm chart. |
+|`charts_dir` |Directory in the source workspace that has the Helm chart. |
 |`release_version` |Helm release version in semantic versioning format. | `v1.0.0`
 |`release_name` |Helm release name. |`helm-release`
 |`release_namespace` |Helm release namespace. |`""`
@@ -187,7 +187,7 @@ spec:
 [cols="1,3",options="header"]
 |===
 | Workspace | Description
-| `source` | The workspace that contains the Helm chart.
+| `source` | The workspace that has the Helm chart.
 |===
 
 [id="op-ctaskref-jib-maven_{context}"]
@@ -243,8 +243,8 @@ spec:
 [cols="1,3",options="header"]
 |===
 | Workspace | Description
-| `source` | Workspace that contains the Maven project.
-|`sslcertdir` | Optional workspace that contains SSL/TLS certificates.
+| `source` | Workspace that has the Maven project.
+|`sslcertdir` | Optional workspace that has SSL/TLS certificates.
 |===
 
 .Results that the `jib-maven` task returns
@@ -374,7 +374,7 @@ spec:
 |`mode` |If set to `download`, the task fetches the state of the pull request at `url`. If set to `upload`, the task updates the pull request at `url`. |
 |`url` |URL of the pull request. |
 |`provider` |Type of the SCM system. The supported values are `github` or `gitlab`. |
-|`secret-key-ref` |Name of a `Secret` object of `Opaque` type that contains a key called `token` with a base64 encoded SCM token.|
+|`secret-key-ref` |Name of a `Secret` object of `Opaque` type that has a key called `token` with a base64 encoded SCM token.|
 |`insecure-skip-tls-verify` |If set to `true`, the task disables the certificate validation. |`false`
 |===
 
@@ -382,7 +382,7 @@ spec:
 [cols="1,3",options="header"]
 |===
 | Workspace | Description
-| `pr` | The workspace that contains the state of the pull request.
+| `pr` | The workspace that has the state of the pull request.
 |===
 
 [id="op-ctaskref-trigger-jenkins-job_{context}"]

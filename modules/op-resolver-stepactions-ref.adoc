@@ -49,9 +49,9 @@ spec:
 |===
 | Parameter | Description | Type | Default value
 |`OUTPUT_PATH` | A directory for the fetched Git repository. The step action places cloned repository data in the root of the directory or in the relative path defined by the `SUBDIRECTORY` parameter. |`string` |
-|`SSH_DIRECTORY_PATH` |A `.ssh` directory with the private key, `known_hosts`, `config`, and other files as necessary. If you provide this directory, the task uses it for authentication to the Git repository. Bind the workspace providing this directory to a `Secret` resource for secure storage of authentication information. |`string` |
-|`BASIC_AUTH_PATH` |A directory containing a `.gitconfig` and `.git-credentials` files. If you provide this directory, the task uses it for authentication to the Git repository. Use a `SSH_DIRECTORY_PATH` directory for authentication instead of `BASIC_AUTH_PATH` whenever possible. Bind the workspace providing this directory to a `Secret` resource for secure storage of authentication information. |`string` |
-|`SSL_CA_DIRECTORY_PATH` |A workspace containing CA certificates. If you provide this workspace, Git uses these certificates to verify the peer when interacting with remote repositories using HTTPS. |`string` |
+|`SSH_DIRECTORY_PATH` |A `.ssh` directory with the private key, `known_hosts`, `config`, and other files as necessary. If you give this directory, the task uses it for authentication to the Git repository. Bind the workspace providing this directory to a `Secret` resource for secure storage of authentication information. |`string` |
+|`BASIC_AUTH_PATH` |A directory containing a `.gitconfig` and `.git-credentials` files. If you give this directory, the task uses it for authentication to the Git repository. Use a `SSH_DIRECTORY_PATH` directory for authentication instead of `BASIC_AUTH_PATH` whenever possible. Bind the workspace providing this directory to a `Secret` resource for secure storage of authentication information. |`string` |
+|`SSL_CA_DIRECTORY_PATH` |A workspace containing CA certificates. If you give this workspace, Git uses these certificates to verify the peer when interacting with remote repositories using HTTPS. |`string` |
 |`CRT_FILENAME` |Certificate authority (CA) bundle filename in the `ssl-ca-directory` workspace. |`string` |`ca-bundle.crt`
 |`HTTP_PROXY` |HTTP proxy server (non-TLS requests). |`string` |
 |`HTTPS_PROXY` |HTTPS proxy server (TLS requests). |`string` |
@@ -87,13 +87,13 @@ include::snippets/technology-preview.adoc[]
 
 Use the `cache-upload` and `cache-fetch` step actions to preserve the cache directory where a build process keeps its dependencies, storing it in an Amazon Simple Storage Service (S3) bucket, Google Cloud Services (GCS) bucket, or an Open Container Initiative (OCI) repository.
 
-When you use the `cache-upload` step action, the step action calculates a hash based on certain files in your build. You must provide a regular expression to select these files. The `cache-upload` step action stores an image that contains the content of your cache directory, indexed with the hash.
+When you use the `cache-upload` step action, the step action calculates a hash based on certain files in your build. You must give a regular expression to select these files. The `cache-upload` step action stores an image that has the content of your cache directory, indexed with the hash.
 
 When you use the `cache-fetch` step action, the step action calculates the same hash. Then it checks whether a cached image for this hash is already available. If the image is available, the step action populates your cache directory with the cached content. If the image is not available, the directory remains as it was.
 
-After using the `cache-fetch` step action, you can run the build process. If the cache is successfully fetched, it includes the dependencies that the build process downloaded previously. If the cache was not fetched, the build process downloads dependencies through its normal procedure.
+After using the `cache-fetch` step action, you can run the build process. If the cache is successfully fetched, it includes the dependencies that the build process downloaded earlier. If the cache was not fetched, the build process downloads dependencies through its normal procedure.
 
-The result of `cache-fetch` indicates whether it fetched a cached image. The subsequent `cache-upload` step action can use the result and skip uploading a new cache image if the cache for the current hash was already available.
+The result of `cache-fetch` indicates whether it fetched a cached image. The later `cache-upload` step action can use the result and skip uploading a new cache image if the cache for the current hash was already available.
 
 The following example task retrieves the source from a repository, fetches the cache (if available), runs a Maven build, and then, if the cache was not fetched, uploads the new cached image of the build directory.
 
@@ -238,7 +238,7 @@ spec:
 |`WORKING_DIR` |Path to the files for calculating the hash. | `string` |
 |`INSECURE` |If `"true"`, use insecure mode for uploading the cache. | `string` |`"false"`
 |`FETCHED` |If `"true"`, the cache for this hash was already fetched. | `string` |`"false"`
-|`FORCE_CACHE_UPLOAD` |If `"true"`, the step uploads the cache even if `cache-fetch` fetched it previously. | `string` |`"false"`
+|`FORCE_CACHE_UPLOAD` |If `"true"`, the step uploads the cache even if `cache-fetch` fetched it earlier. | `string` |`"false"`
 |`GOOGLE_APPLICATION_CREDENTIALS` |The path for Google credentials. Ignored if empty. | `string` |
 |`AWS_CONFIG_FILE` |Path to the AWS configuration file. Ignored if empty. | `string` |
 |`AWS_SHARED_CREDENTIALS_FILE` |Path to the AWS credentials file. Ignored if empty. | `string` |

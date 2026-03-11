@@ -115,7 +115,7 @@ The pipeline definition abstracts away the specifics of the Git source repositor
 $ oc create -f <pipeline-yaml-file-name.yaml>
 ----
 +
-Alternatively, you can also run the YAML file directly from the Git repository:
+Or, you can also run the YAML file directly from the Git repository:
 +
 [source,terminal,subs="attributes+"]
 ----

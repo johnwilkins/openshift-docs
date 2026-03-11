@@ -5,9 +5,9 @@
 [id="parameters-pipeline-run-using-pipelines-as-code_{context}"]
 = Dynamic variables in a pipeline run specification
 
-You can use dynamic variables in a pipeline run specification to provide information about the commit that triggered the pipeline run and to use the temporary GitHub App token for GitHub API operations.
+You can use dynamic variables in a pipeline run specification to give information about the commit that triggered the pipeline run and to use the temporary GitHub App token for GitHub API operations.
 [role="_abstract"]
-You can use dynamic variables in a pipeline run specification to provide information about the commit that triggered the pipeline run and to use the temporary GitHub App token for GitHub API operations.
+You can use dynamic variables in a pipeline run specification to give information about the commit that triggered the pipeline run and to use the temporary GitHub App token for GitHub API operations.
 
 [IMPORTANT]
 ====

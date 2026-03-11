@@ -50,7 +50,7 @@ When creating a pipeline run, you can specify a remote pipeline from a Git repos
 To clone and fetch the repository anonymously, use the `url` parameter. Do not specify the `url` parameter and the `repo` parameter together.
 ====
 +
-If the pipeline or task requires additional parameters, provide these parameters in `params`.
+If the pipeline or task requires additional parameters, give these parameters in `params`.
 
 .Examples
 

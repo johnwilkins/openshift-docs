@@ -12,7 +12,7 @@ To configure registry authentication for a pipeline, create an authentication se
 
 .Procedure
 
-. Create the container registry authentication secret from an existing `config.json` file, which contains the authentication information, by entering the following command:
+. Create the container registry authentication secret from an existing `config.json` file, which has the authentication information, by entering the following command:
 +
 [source, terminal]
 ----

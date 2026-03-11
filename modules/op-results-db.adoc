@@ -6,7 +6,7 @@
 [id="results-db_{context}"]
 = Configuring an external database server
 
-{tekton-results} stores data in a PostgreSQL database. By default, the installation includes an internal PostgreSQL instance intended for testing and nonproduction use. The default instance does not provide production-grade capabilities, such as automated backups, performance tuning, storage lifecycle management, or support for database-level modifications through the {pipelines-shortname} Operator.
+{tekton-results} stores data in a PostgreSQL database. By default, the installation includes an internal PostgreSQL instance intended for testing and nonproduction use. The default instance does not give production-grade capabilities, such as automated backups, performance tuning, storage lifecycle management, or support for database-level modifications through the {pipelines-shortname} Operator.
 
 For production environments or business-critical workloads, you can configure {tekton-results} to connect to an external PostgreSQL-compatible database that is present in your environment.
 
@@ -44,5 +44,5 @@ spec:
     db_host: database.example.com # <1>
     db_port: 5342 # <2>
 ----
-<1> Provide the hostname of your PostgreSQL server.
-<2> Provide the port number of your PostgreSQL server.
+<1> Give the hostname of your PostgreSQL server.
+<2> Give the port number of your PostgreSQL server.

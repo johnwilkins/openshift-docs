@@ -4,9 +4,9 @@
 
 :_mod-docs-content-type: PROCEDURE
 [id="op-resolver-git-config-multiple-providers_{context}"]
-= Configuring multiple Git providers
+= Configuring many Git providers
 
-You can configure multiple Git providers, or you can add multiple configurations for the same Git provider, to use in different task runs and pipeline runs.
+You can configure many Git providers, or you can add many configurations for the same Git provider, to use in different task runs and pipeline runs.
 
 Add details in the `TektonConfig` custom resource (CR) with your unique identifier key prefix.
 
@@ -69,5 +69,5 @@ spec:
 +
 [WARNING]
 ====
-`configKey` values with the `.` symbol are not supported. If you try to pass a `configKey` value that contains the `.` symbol, the `TaskRun` or `PipelineRun` resource where you passed the value fails to run.
+`configKey` values with the `.` symbol are not supported. If you try to pass a `configKey` value that has the `.` symbol, the `TaskRun` or `PipelineRun` resource where you passed the value fails to run.
 ====

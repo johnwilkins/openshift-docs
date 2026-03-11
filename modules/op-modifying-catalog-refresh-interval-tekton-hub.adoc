@@ -6,11 +6,11 @@
 = Modifying the catalog refresh interval of {tekton-hub}
 
 [role="_abstract"]
-The default catalog refresh interval for {tekton-hub} is 30 minutes. Cluster administrators can modify the automatic catalog refresh interval by modifying the value of the `catalogRefreshInterval` field in the `TektonHub` CR.
+The default catalog refresh interval for {tekton-hub} is 30 minutes. Cluster administrators can change the automatic catalog refresh interval by modifying the value of the `catalogRefreshInterval` field in the `TektonHub` CR.
 
 [discrete]
 .Procedure
-. Modify the value of the `catalogRefreshInterval` field in the `TektonHub` CR.
+. Change the value of the `catalogRefreshInterval` field in the `TektonHub` CR.
 +
 [source,yaml]
 ----
@@ -33,7 +33,7 @@ spec:
 $ oc apply -f <tekton_hub_cr>.yaml
 ----
 
-. Check the status of the installation. The `TektonHub` CR might take some time to attain steady state.
+. Check the status of the installation. The `TektonHub` CR might take some time to reach steady state.
 +
 [source,terminal]
 ----

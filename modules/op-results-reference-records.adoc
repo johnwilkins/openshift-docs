@@ -23,8 +23,8 @@ You can use the following fields in Common Expression Language (CEL) queries for
 `results.tekton.dev/v1alpha2.Log`
 
 | `data`
-| The YAML data for the task run or pipeline run. In log records, this field contains the logging output.
+| The YAML data for the task run or pipeline run. In log records, this field has the logging output.
 |
 |===
 
-Because the `data` field contains the entire YAML data for the task run or pipeline run, you can use all elements of this data in your CEL query. For example, `data.status.completionTime` contains the completion time of the task run or pipeline run.
+Because the `data` field has the entire YAML data for the task run or pipeline run, you can use all elements of this data in your CEL query. For example, `data.status.completionTime` has the completion time of the task run or pipeline run.
