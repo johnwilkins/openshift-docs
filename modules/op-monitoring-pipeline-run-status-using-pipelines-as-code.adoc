@@ -59,7 +59,7 @@ These error scenarios do not halt the execution of valid pipeline runs because t
 
 [source,terminal]
 ----
-$ oc get repo -n <pipelines-as-code-ci>
+$ oc get repo -n <pipelines_as_code_ci>
 ----
 
 [source,terminal]

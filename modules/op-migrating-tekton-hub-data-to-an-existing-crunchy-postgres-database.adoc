@@ -23,7 +23,7 @@ $ pg_dump -Ft -h localhost -U postgres hub -f /tmp/hub.dump
 .Command format
 [source,terminal]
 ----
-$ oc cp -n <namespace> <podName>:<path-to-hub.dump> <path-to-local-system>
+$ oc cp -n <namespace> <podName>:<path_to_hub.dump> <path_to_local_system>
 ----
 +
 .Example
@@ -37,7 +37,7 @@ $ oc cp -n openshift-pipelines tekton-hub-db-7d6d888c67-p7mdr:/tmp/hub.dump /hom
 .Command format
 [source,terminal]
 ----
-$ oc cp -n <namespace> <path-to-local-system> <podName>:<path-to-hub.dump>
+$ oc cp -n <namespace> <path_to_local_system> <podName>:<path_to_hub.dump>
 ----
 +
 .Example
@@ -51,7 +51,7 @@ $ oc cp -n openshift-operators /home/test_user/Downloads/hub.dump test-instance1
 .Command format
 [source,terminal]
 ----
-$ pg_restore -d <database-name> -h localhost -U postgres <path-where-file-is-copied>
+$ pg_restore -d <database_name> -h localhost -U postgres <path_where_file_is_copied>
 ----
 +
 .Example
@@ -186,7 +186,7 @@ spec:
 +
 [source,terminal]
 ----
-$ oc replace -f <updated-tekton-hub-cr>.yaml
+$ oc replace -f <updated_tekton_hub_cr>.yaml
 ----
 +
 . Check the status of the {tekton-hub}. The updated `TektonHub` CR might take some time to attain a steady state.

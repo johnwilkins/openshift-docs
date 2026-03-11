@@ -220,7 +220,7 @@ spec:
     params:
     - name: approvers
       value:
-      - <tech-lead>
+      - <tech_lead>
       - <group:qa-team>
       - <group:security-team>
     - name: numberOfApprovalsRequired

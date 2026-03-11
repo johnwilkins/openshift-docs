@@ -16,11 +16,11 @@ Triggering `PipelineRun` on Git tags is supported for GitHub App, GitHub Webhook
 == Supported GitOps commands
 
 * `/test tag:<tag>`:: Retrigger all matching `PipelineRun` for the tag commit
-* `/test <pipelinerun-name> tag:<tag>`:: Retrigger only the named `PipelineRun`
+* `/test <pipelinerun_name> tag:<tag>`:: Retrigger only the named `PipelineRun`
 * `/retest tag:<tag>`:: Retrigger all matching `PipelineRun` for the tag commit
-* `/retest <pipelinerun-name> tag:<tag>`:: Retrigger only the named `PipelineRun`
+* `/retest <pipelinerun_name> tag:<tag>`:: Retrigger only the named `PipelineRun`
 * `/cancel tag:<tag>`:: Cancel all running `PipelineRun` for the tag commit
-* `/cancel <pipelinerun-name> tag:<tag>`:: Cancel only the named `PipelineRun`
+* `/cancel <pipelinerun_name> tag:<tag>`:: Cancel only the named `PipelineRun`
 
 A `PipelineRun` configured to respond to tag events typically includes annotations such as `pipelinesascode.tekton.dev/on-target-branch: "[refs/tags/*]"` and `pipelinesascode.tekton.dev/on-event: "[push]"`. These annotations ensure that {pac} recognizes tag creation events as push events and processes them correctly. When you create or reference a tag, {pac} treats it as a push event and uses the resolved commit SHA to run the associated `PipelineRun`. The same logic applies to next GitOps commands added as comments on the tagged commit.
 

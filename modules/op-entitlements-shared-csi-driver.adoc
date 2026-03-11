@@ -58,9 +58,9 @@ EOF
 [source,terminal]
 ----
 $ oc create rolebinding shared-resource-rhel-entitlement --role=shared-shared-resource-rhel-entitlement \
-  --serviceaccount=<pipeline-namespace>:pipeline # <1>
+  --serviceaccount=<pipeline_namespace>:pipeline # <1>
 ----
-<1> Replace `<pipeline-namespace>` with the namespace of your pipeline.
+<1> Replace `<pipeline_namespace>` with the namespace of your pipeline.
 +
 [NOTE]
 ====

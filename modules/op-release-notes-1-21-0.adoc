@@ -297,14 +297,14 @@ This helps ensure that permission issues are easier to identify and prevents pip
 Trigger and cancel PipelineRuns for Git tags::
 With this update, you can trigger `PipelineRuns` by using comments on commits associated with a Git tag. This provides flexible, version-specific control of CI/CD workflows.
 +
-To trigger a `PipelineRun`, add a comment on the tagged commit using the format `/test <pipeline-name> tag:<tag-name>`, for example:
+To trigger a `PipelineRun`, add a comment on the tagged commit using the format `/test <pipeline_name> tag:<tag_name>`, for example:
 +
 [source]
 ----
 /test xyz-pipeline-run tag:v1.0.0
 ----
 +
-To cancel a `PipelineRun`, use the format `/cancel <pipeline-name> tag:<tag-name>`, for example:
+To cancel a `PipelineRun`, use the format `/cancel <pipeline_name> tag:<tag_name>`, for example:
 +
 [source]
 ----

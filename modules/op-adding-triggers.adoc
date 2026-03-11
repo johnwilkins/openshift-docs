@@ -175,7 +175,7 @@ spec:
 +
 [source,terminal]
 ----
-$ oc label namespace <ns-name> operator.tekton.dev/enable-annotation=enabled
+$ oc label namespace <ns_name> operator.tekton.dev/enable-annotation=enabled
 ----
 .. Create the `EventListener` resource:
 +
@@ -194,7 +194,7 @@ $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/{p
 +
 [source,terminal]
 ----
-$ oc create route reencrypt --service=<svc-name> --cert=tls.crt --key=tls.key --ca-cert=ca.crt --hostname=<hostname>
+$ oc create route reencrypt --service=<svc_name> --cert=tls.crt --key=tls.key --ca-cert=ca.crt --hostname=<hostname>
 ----
 +
 Alternatively, you can create a re-encrypt TLS termination YAML file to create a secured route.

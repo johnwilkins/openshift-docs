@@ -76,7 +76,7 @@ A red icon is displayed next to the task if a resource is missing.
 
 .. In the *Tasks* section, click the *s2i-Node.js* task to see the side panel with details for the task. In the task side panel, specify the resources and parameters for the *s2i-Node.js* task:
 
-... If required, in the *Parameters* section, add more parameters to the default ones, by using the $(params.<param-name>) syntax.
+... If required, in the *Parameters* section, add more parameters to the default ones, by using the $(params.<param_name>) syntax.
 ... In the *Image* section, enter `Img` as specified in the *Resources* section.
 ... Select a workspace from the *source* drop-down under *Workspaces* section.
 

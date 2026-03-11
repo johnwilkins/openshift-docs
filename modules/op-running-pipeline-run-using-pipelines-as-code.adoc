@@ -26,17 +26,17 @@ You can observe the execution of your pipeline runs using the `tkn pac` CLI tool
 +
 [source,terminal]
 ----
-$ tkn pac logs -n <my-pipeline-ci> -L
+$ tkn pac logs -n <my_pipeline_ci> -L
 ----
-`<my-pipeline-ci>`:: The namespace for the `Repository` CRD.
+`<my_pipeline_ci>`:: The namespace for the `Repository` CRD.
 
 * To follow the execution of any pipeline run interactively, use the following example:
 +
 [source,terminal]
 ----
-$ tkn pac logs -n <my-pipeline-ci>
+$ tkn pac logs -n <my_pipeline_ci>
 ----
-`<my-pipeline-ci>`:: The namespace for the `Repository` CRD.
+`<my_pipeline_ci>`:: The namespace for the `Repository` CRD.
 If you need to view a pipeline run other than the last one, you can use the `tkn pac logs` command to select a `PipelineRun` attached to the repository:
 
 If you have configured {pac} with a GitHub App, {pac} posts a URL in the *Checks* tab of the GitHub App. You can click the URL and follow the pipeline execution.

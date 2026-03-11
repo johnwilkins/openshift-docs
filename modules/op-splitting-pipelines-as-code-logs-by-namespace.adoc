@@ -9,6 +9,6 @@
 
 [source,terminal]
 ----
-$ oc logs pipelines-as-code-controller-<unique-id> -n openshift-pipelines | grep mynamespace <1>
+$ oc logs pipelines-as-code-controller-<unique_id> -n openshift-pipelines | grep mynamespace <1>
 ----
-<1> Replace `pipelines-as-code-controller-<unique-id>` with the {pac} controller name.
+<1> Replace `pipelines-as-code-controller-<unique_id>` with the {pac} controller name.

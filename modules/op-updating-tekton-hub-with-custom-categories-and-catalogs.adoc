@@ -21,7 +21,7 @@ The {tekton-hub} API config map gives the default information for categories, ca
 +
 [source,terminal]
 ----
-$ oc apply -f <tekton-hub-cr>.yaml
+$ oc apply -f <tekton_hub_cr>.yaml
 ----
 
 . Observe the {tekton-hub} status.

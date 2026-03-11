@@ -67,14 +67,14 @@ spec:
 +
 [source,terminal]
 ----
-$ oc apply -f <tekton-hub-cr>.yaml
+$ oc apply -f <tekton_hub_cr>.yaml
 ----
 
 .. Alternatively, if you are associating the custom database after the installation of {tekton-hub} is complete, replace the existing `TektonHub` CR with the updated `TektonHub` CR.
 +
 [source,terminal]
 ----
-$ oc replace -f <tekton-hub-cr>.yaml
+$ oc replace -f <tekton_hub_cr>.yaml
 ----
 
 . Check the status of the installation. The `TektonHub` CR might take some time to attain steady state.

@@ -70,7 +70,7 @@ If you don't provide custom values for the optional fields in the `TektonHub` CR
 +
 [source,terminal]
 ----
-$ oc apply -f <tekton-hub-cr>.yaml
+$ oc apply -f <tekton_hub_cr>.yaml
 ----
 
 . Check the status of the installation. The `TektonHub` CR might take some time to attain steady state.

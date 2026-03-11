@@ -29,7 +29,7 @@ metadata:
   namespace: openshift # <1>
   labels:
     pipeline.openshift.io/runtime: <runtime> # <2>
-    pipeline.openshift.io/type: <pipeline-type> # <3>
+    pipeline.openshift.io/type: <pipeline_type> # <3>
 # ...
 ----
 <1> The template must be created in the `openshift` namespace.
