@@ -25,7 +25,7 @@ Whenever there is an event coming from the URL such as `\https://github.com/<rep
 
 [NOTE]
 ====
-* You must create the `Repository` CR in the same namespace where pipelines associated with the source code repository will be executed; it cannot target a different namespace.
+* You must create the `Repository` CR in the same namespace where pipelines associated with the source code repository execute; it cannot target a different namespace.
 
-* If multiple `Repository` CRs match the same event, {pac} processes only the oldest one. If you need to match a specific namespace, add the `pipelinesascode.tekton.dev/target-namespace: "<mynamespace>"` annotation. Such explicit targeting prevents a malicious actor from executing a pipeline run in a namespace to which they do not have access.
+* If many `Repository` CRs match the same event, {pac} processes only the oldest one. If you need to match a specific namespace, add the `pipelinesascode.tekton.dev/target-namespace: "<mynamespace>"` annotation. Such explicit targeting prevents a malicious actor from executing a pipeline run in a namespace to which they do not have access.
 ====

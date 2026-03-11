@@ -40,7 +40,7 @@ Most pruner metrics use labels to provide additional context. You can use these 
 |===
 
 Resource processing metrics::
-The following resource processing metrics are exposed by the event-driven pruner:
+The event-driven pruner exposes the following resource processing metrics:
 +
 [cols="3,1,3,2",options="header"]
 |===
@@ -51,7 +51,7 @@ The following resource processing metrics are exposed by the event-driven pruner
 
 
 Performance timing metrics::
-The following performance timing metrics are exposed by the event-driven pruner:
+The event-driven pruner exposes the following performance timing metrics:
 +
 [cols="3,1,3,2,2",options="header"]
 |===
@@ -62,7 +62,7 @@ The following performance timing metrics are exposed by the event-driven pruner:
 |===
 
 State tracking metrics::
-The following state tracking metrics are exposed by the event-driven pruner:
+The event-driven pruner exposes the following state tracking metrics:
 +
 [cols="3,1,3",options="header"]
 |===
@@ -72,7 +72,7 @@ The following state tracking metrics are exposed by the event-driven pruner:
 |===
 
 Error monitoring metrics::
-The following error monitoring metrics are exposed by the event-driven pruner:
+The event-driven pruner exposes the following error monitoring metrics:
 +
 [cols="3,1,3,2",options="header"]
 |===

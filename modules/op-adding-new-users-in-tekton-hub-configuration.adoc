@@ -10,7 +10,7 @@ Cluster administrators can add new users to {tekton-hub} with different scopes.
 
 [discrete]
 .Procedure
-. Modify the `TektonHub` CR to add new users with different scopes.
+. Change the `TektonHub` CR to add new users with different scopes.
 +
 [source,yaml]
 ----
@@ -33,7 +33,7 @@ default:
 +
 [NOTE]
 ====
-A new user signing in to {tekton-hub} for the first time will have only the default scope. To activate additional scopes, ensure the user's username is added in the `scopes` field of the `TektonHub` CR.
+A new user signing in to {tekton-hub} for the first time will have only the default scope. To activate additional scopes, ensure you add the user's username in the `scopes` field of the `TektonHub` CR.
 ==== 
 
 . Apply the updated `TektonHub` CR.
@@ -43,7 +43,7 @@ A new user signing in to {tekton-hub} for the first time will have only the defa
 $ oc apply -f <tekton-hub-cr>.yaml
 ----
 
-. Check the status of the {tekton-hub}. The updated `TektonHub` CR might take some time to attain a steady state.
+. Check the status of the {tekton-hub}. The updated `TektonHub` CR might take some time to reach a steady state.
 +
 [source,terminal]
 ----
@@ -66,4 +66,4 @@ $ curl -X POST -H "Authorization: <access-token>" \ <1>
     --data '{"force": true} \
     <api-route>/system/config/refresh
 ----
-<1> The JWT token. 
+<1> The JSON Web Token (JWT). 

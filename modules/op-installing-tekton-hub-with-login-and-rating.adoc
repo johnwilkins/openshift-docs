@@ -10,7 +10,7 @@ You can install {tekton-hub} on your cluster with custom configuration that supp
 
 [discrete]
 .Prerequisites
-* Ensure that the {pipelines-title} Operator is installed in the default `openshift-pipelines` namespace on the cluster.
+* You installed the {pipelines-title} Operator in the default `openshift-pipelines` namespace on the cluster.
 
 [discrete]
 .Procedure 
@@ -110,18 +110,18 @@ spec:
   api:
     catalogRefreshInterval: 30m <8>   
 ----
-<1> The namespace in which {tekton-hub} must be installed; default is `openshift-pipelines`.
+<1> The namespace in which you install {tekton-hub}; default is `openshift-pipelines`.
 <2> Optional: Custom database, such as a Crunchy Postgres database.
 <3> The name of the database secret must be `tekton-hub-db`.
 <4> Optional: Customized categories for tasks and pipelines in {tekton-hub}.
 <5> Optional: Customized catalogs for {tekton-hub}.
-<6> Optional: Additional users. You can metion multiple users, such as `[<username_1>, <username_2>, <username_3>]`.
+<6> Optional: Additional users. You can mention multiple users, such as `[<username_1>, <username_2>, <username_3>]`.
 <7> Optional: Customized default scopes.  
 <8> The time interval after which the catalog refreshes automatically. The supported units of time are seconds (`s`), minutes (`m`), hours (`h`), days (`d`), and weeks (`w`). The default interval is 30 minutes.
 +
 [NOTE]
 ====
-If you don't provide custom values for the optional fields in the `TektonHub` CR, the default values configured in the {tekton-hub} API config map is used.
+If you don't provide custom values for the optional fields in the `TektonHub` CR, the system uses the default values configured in the {tekton-hub} API config map.
 ====
 
 . Apply the `TektonHub` CR.

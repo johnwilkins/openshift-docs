@@ -7,13 +7,15 @@
 = Reference information for searching results
 
 You can use the following fields in Common Expression Language (CEL) queries for results:
+[role="_abstract"]
+You can use the following fields in Common Expression Language (CEL) queries for results:
 
 .Fields available in CEL queries for results
 |===
 | CEL field | Description
 
 | `parent`
-| The namespace in which the `PipelineRun` or `TaskRun` custom resource (CR) was created.
+| The namespace in which you created the `PipelineRun` or `TaskRun` custom resource (CR).
 
 | `uid`
 | Unique identifier for the result.

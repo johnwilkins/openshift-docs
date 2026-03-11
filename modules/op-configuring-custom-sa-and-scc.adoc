@@ -6,11 +6,11 @@
 [id="configuring-custom-sa-and-scc_{context}"]
 = Configuring custom service account and security context constraint
 
-The default `pipeline` SA allows using a user id outside of the namespace range. To reduce dependency on the default SA, you can define a custom SA and SCC with necessary cluster role and role bindings for the `build` user with user id `1000`.
+The default `pipeline` SA allows using a user id outside of the namespace range. To reduce dependency on the default SA, you can define a custom SA and security context constraint (SCC) with necessary cluster role and role bindings for the `build` user with user id `1000`.
 
 [IMPORTANT]
 ====
-At this time, enabling the `allowPrivilegeEscalation` setting is required for Buildah to run successfully in the container. With this setting, Buildah can use `SETUID` and `SETGID` capabilities when running as a non-root user.
+At this time, Buildah requires enabling the `allowPrivilegeEscalation` setting to run successfully in the container. With this setting, Buildah can use `SETUID` and `SETGID` capabilities when running as a non-root user.
 ====
 
 .Procedure
@@ -95,7 +95,7 @@ subjects:
 
 <2> Define a custom SCC created based on restricted privileges, with modified `runAsUser` field.
 
-<3> At this time, enabling the `allowPrivilegeEscalation` setting is required for Buildah to run successfully in the container. With this setting, Buildah can use `SETUID` and `SETGID` capabilities when running as a non-root user.
+<3> At this time, Buildah requires enabling the `allowPrivilegeEscalation` setting to run successfully in the container. With this setting, Buildah can use `SETUID` and `SETGID` capabilities when running as a non-root user.
 
 <4> Restrict any pod that gets attached with the custom SCC through the custom SA to run as user id `1000`.
 

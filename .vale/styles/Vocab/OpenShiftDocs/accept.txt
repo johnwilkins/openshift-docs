@@ -37,3 +37,8 @@ substring
 sudo
 tkn
 upserted
+gosmee
+opc
+Rekor
+dotnet
+proxying
