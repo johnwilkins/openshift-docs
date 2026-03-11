@@ -6,7 +6,7 @@
 
 = Creating a GitHub App in administrator perspective
 
-As a cluster administrator, you can configure your GitHub App with the {OCP} cluster to use {pac}. This configuration allows you to execute a set of tasks required for build deployment.
+As a cluster administrator, you can configure your GitHub App with the {OCP} cluster to use {pac}. This configuration allows you to run a set of tasks required for build deployment.
 
 [IMPORTANT]
 ====

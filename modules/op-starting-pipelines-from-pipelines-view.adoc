@@ -5,9 +5,9 @@
 [id="op-starting-pipelines_from_pipelines_view_{context}"]
 = Starting pipelines from Pipelines view
 
-After you create a pipeline, you need to start it to execute the included tasks in the defined sequence. You can start a pipeline from the *Pipelines* view, the *Pipeline Details* page, or the *Topology* view.
+After you create a pipeline, you need to start it to run the included tasks in the defined sequence. You can start a pipeline from the *Pipelines* view, the *Pipeline Details* page, or the *Topology* view.
 [role="_abstract"]
-After you create a pipeline, you need to start it to execute the included tasks in the defined sequence. You can start a pipeline from the *Pipelines* view, the *Pipeline Details* page, or the *Topology* view.
+After you create a pipeline, you need to start it to run the included tasks in the defined sequence. You can start a pipeline from the *Pipelines* view, the *Pipeline Details* page, or the *Topology* view.
 
 .Procedure
 
@@ -53,7 +53,7 @@ You can add many secrets based upon the number of resources in your pipeline.
 You can:
 * Use the zoom in, zoom out, fit to screen, and reset view features using the standard icons, which are in the lower left corner of the *PipelineRun details* page visualization.
 * Change the zoom factor of the pipeline run visualization using the mouse wheel. At specific zoom factors, the background color of the tasks changes to indicate the error or warning status.
-* Hover over the tasks to see the details, such as the time taken to execute each step, task name, and task status.
+* Hover over the tasks to see the details, such as the time taken to run each step, task name, and task status.
 * Hover over the tasks badge to see the total number of tasks and tasks completed.
 * click a task to see the logs for each step in the task.
 * Click the *Logs* tab to see the logs relating to the execution sequence of the tasks. You can also expand the pane and download the logs individually or in bulk, by using the relevant button.

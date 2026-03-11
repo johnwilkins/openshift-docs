@@ -107,7 +107,7 @@ spec:
     - apply-manifests
 ----
 +
-The pipeline definition abstracts away the specifics of the Git source repository and image registries. You add these details as `params` when you trigger and execute a pipeline.
+The pipeline definition abstracts away the specifics of the Git source repository and image registries. You add these details as `params` when you trigger and run a pipeline.
 
 . Create the pipeline:
 +
@@ -115,7 +115,7 @@ The pipeline definition abstracts away the specifics of the Git source repositor
 $ oc create -f <pipeline-yaml-file-name.yaml>
 ----
 +
-Alternatively, you can also execute the YAML file directly from the Git repository:
+Alternatively, you can also run the YAML file directly from the Git repository:
 +
 [source,terminal,subs="attributes+"]
 ----

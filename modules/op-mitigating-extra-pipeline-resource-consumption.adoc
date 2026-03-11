@@ -7,7 +7,7 @@
 
 When you have resource limits set on the containers in your pod, {OCP} sums up the resource limits requested as all containers run simultaneously.
 
-To consume the minimum amount of resources needed to execute one step at a time in the invoked task, {pipelines-title} requests the maximum CPU, memory, and ephemeral storage as specified in the step that requires the most amount of resources. This ensures that the resource requirements of all the steps are met. Requests other than the maximum values are set to zero.
+To consume the minimum amount of resources needed to run one step at a time in the invoked task, {pipelines-title} requests the maximum CPU, memory, and ephemeral storage as specified in the step that requires the most amount of resources. This ensures that the resource requirements of all the steps are met. Requests other than the maximum values are set to zero.
 
 However, this behavior can lead to higher resource usage than required. If you use resource quotas, this could also lead to unschedulable pods.
 

@@ -660,7 +660,7 @@ spec:
 [cols="1,2,1,1",options="header"]
 |===
 | Parameter | Description | Type | Default value
-|`SCRIPT` |The `tkn` CLI script to execute. |`string` |`tkn $@`
+|`SCRIPT` |The `tkn` CLI script to run. |`string` |`tkn $@`
 |`ARGS` |The `tkn` CLI arguments to run. |`array` |`- --help`
 |===
 
@@ -729,7 +729,7 @@ spec:
             - $(context.pipelineRun.namespace)
 ----
 
-To execute the workflow defined in the `opc-task-pipeline` task, create and apply the following `PipelineRun` resource.
+To run the workflow defined in the `opc-task-pipeline` task, create and apply the following `PipelineRun` resource.
 
 [source,yaml]
 ----

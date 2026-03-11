@@ -314,7 +314,7 @@ To cancel a `PipelineRun`, use the format `/cancel <pipeline_name> tag:<tag_name
 This feature is supported for GitHub and GitLab, enabling teams to trigger or cancel `PipelineRuns` tied to specific tagged versions.
 
 SHA validation added to /OK-to-test commands to prevent race conditions::
-With this update, a new setting, `require-ok-to-test-sha`, is introduced in {pac} to enforce commit SHA validation when using the `/ok-to-test` comment command on GitHub pull requests. This feature mitigates a critical TOCTOU (Time-of-Check to Time-of-Use) race condition vulnerability, specific to the GitHub provider, where an attacker could execute a pipeline on an unapproved SHA. When the setting is enabled, users must specify the exact commit SHA, for example, `/ok-to-test <sha>`, for approval. As a result, this ties the approval directly to a specific commit, preventing pipeline execution on any subsequent malicious force-pushed SHA.
+With this update, a new setting, `require-ok-to-test-sha`, is introduced in {pac} to enforce commit SHA validation when using the `/ok-to-test` comment command on GitHub pull requests. This feature mitigates a critical TOCTOU (Time-of-Check to Time-of-Use) race condition vulnerability, specific to the GitHub provider, where an attacker could run a pipeline on an unapproved SHA. When the setting is enabled, users must specify the exact commit SHA, for example, `/ok-to-test <sha>`, for approval. As a result, this ties the approval directly to a specific commit, preventing pipeline execution on any subsequent malicious force-pushed SHA.
 //+
 //link:https://issues.redhat.com/browse/SRVKP-9317[SRVKP-9317]
 // and SRVKP-9315
@@ -481,7 +481,7 @@ Before this update, the GitHub interceptor supported both SHA-1 (`X-Hub-Signatur
 .{tekton-hub}
 
 Default database migration to PostgreSQL version 15::
-The PostgreSQL database version used by the {tekton-hub} is migrated from version 13 to version 15 to address the upcoming end of life (EOL) for PostgreSQL 13. This upgrade ensures continued stability and support for the {tekton-hub}. Additionally, the process implements an automated transition from version 13 to version 15 for existing deployments.
+The PostgreSQL database version used by the {tekton-hub} is migrated from version 13 to version 15 to address the upcoming end of life (EOL) for PostgreSQL 13. This upgrade ensures continued stability and support for the {tekton-hub}. Additionally, the process implements an automated migration from version 13 to version 15 for existing deployments.
 //+
 //link:https://issues.redhat.com/browse/SRVKP-9337[SRVKP-9337]
 
@@ -608,7 +608,7 @@ With this update, {tekton-chains} uses Cosign version 2.6.0, which no longer acc
 .User interface
 
 Duplicate Pipelines navigation entry in the OpenShift Console::
-During the transition from static to dynamic console plugins, the OpenShift Console might temporarily display two *Pipelines* entries in the navigation menu. This is a UI-only issue and does not affect pipeline execution or data.
+During the migration from static to dynamic console plugins, the OpenShift Console might temporarily display two *Pipelines* entries in the navigation menu. This is a UI-only issue and does not affect pipeline execution or data.
 +
 To work around this problem, apply the corresponding updates to the OpenShift Console and the {pipelines-title} Operator. Users running older {rhosp} versions should coordinate upgrades with {OCP} to prevent a temporary disappearance of the Pipelines menu.
 +
@@ -646,7 +646,7 @@ Before this update, status steps displayed in an incorrect order when using `Ste
 link:https://issues.redhat.com/browse/SRVKP-9135[SRVKP-9135]
 
 TaskRuns no longer fail on arm64 clusters due to platform mismatch::
-Before this update, `arm64` Kubernetes clusters experienced `TaskRun` failures due to platform variant mismatch in entrypoint lookup. This prevented successful execution on this architecture. With this update, the entrypoint logic correctly handles Linux platform variants. As a result, `TaskRuns` execute reliably on `arm64` clusters.
+Before this update, `arm64` Kubernetes clusters experienced `TaskRun` failures due to platform variant mismatch in entrypoint lookup. This prevented successful execution on this architecture. With this update, the entrypoint logic correctly handles Linux platform variants. As a result, `TaskRuns` run reliably on `arm64` clusters.
 +
 link:https://issues.redhat.com/browse/SRVKP-9135[SRVKP-9135]
 

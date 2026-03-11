@@ -6,7 +6,7 @@
 = Finally tasks
 
 [role="_abstract"]
-You can use `finally` tasks to execute a final set of tasks in your pipeline regardless of whether the earlier tasks succeed or fail. These tasks run in parallel after all other pipeline tasks finish, allowing you to perform cleanup or notification actions before the pipeline exits.
+You can use `finally` tasks to run a final set of tasks in your pipeline regardless of whether the earlier tasks succeed or fail. These tasks run in parallel after all other pipeline tasks finish, allowing you to perform cleanup or notification actions before the pipeline exits.
 
 The `finally` tasks are the final set of tasks specified using the `finally` field in the pipeline YAML file. A `finally` task always executes the tasks within the pipeline, irrespective of whether the pipeline runs succeed.
 
