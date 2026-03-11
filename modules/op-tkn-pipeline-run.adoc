@@ -6,7 +6,7 @@
 = Pipeline run commands
 
 
-== pipelinerun
+== `pipelinerun`
 Manage pipeline runs.
 
 .Example: Display help

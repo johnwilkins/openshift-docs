@@ -6,7 +6,7 @@
 [id="op-tkn-task-run_{context}"]
 = Task run commands
 
-== taskrun
+== `taskrun`
 Manage task runs.
 
 .Example: Display help

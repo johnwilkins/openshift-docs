@@ -16,7 +16,7 @@ When {pac} detects an error in one of the tasks of a pipeline, a small snippet c
 
 [NOTE]
 ====
-{pac} avoids leaking secrets by looking into the pipeline run and replacing secret values with hidden characters. However, {pac} cannot hide secrets coming from workspaces and envFrom source.
+{pac} avoids leaking secrets by looking into the pipeline run and replacing secret values with hidden characters. However, {pac} cannot hide secrets coming from workspaces and `envFrom` source.
 ====
 
 *Annotations for log error snippets*

@@ -592,7 +592,7 @@ With this update, the legacy static console plugin is fully deprecated. After in
 .{pac}
 
 //https://issues.redhat.com/browse/SRVKP-8663
-pipelinerun_status field in Repository custom resource is depracated::
+pipelinerun_status field in Repository custom resource is deprecated::
 With this update, the `pipelinerun_status` field of the `Repository` custom resource (CR) is deprecated and will be removed in a future release. Update any integrations or automation that reference this field to ensure compatibility with upcoming versions.
 
 .{tekton-chains}
@@ -620,7 +620,7 @@ link:https://issues.redhat.com/browse/SRVKP-10006[SRVKP-10006]
 
 .Pipelines
 
-PipelineRuns fail clearly on invalid apiVersion::
+PipelineRuns fail clearly on invalid `apiVersion`::
 Before this update, setting the `spec.tasks[].taskRef.apiVersion` field to an invalid value caused `PipelineRun` execution to fail silently. With this update, `PipelineRun` displays a clear error when `taskRef.apiVersion` is invalid.
 +
 link:https://issues.redhat.com/browse/SRVKP-8514[SRVKP-8514]
@@ -654,17 +654,17 @@ link:https://issues.redhat.com/browse/SRVKP-9135[SRVKP-9135]
 .Operator
 
 Improved proxy webhook performance by replacing synchronous checks::
-Before this update, the proxy webhook could timeout under high-concurrency workloads because it performed synchronous API calls to verify config map existence during pod admission. With this update, the webhook uses optional config map volumes that gracefully handle missing CA bundles without blocking pod creation. As a result, the defaulting webhook is less affected by etcd performance issues, the CA bundles configmaps are always mounted as Optional volumes, and the environment variable `SSL_CERT_DIR` is always set on TaskRun step-containers.
+Before this update, the proxy webhook could timeout under high-concurrency workloads because it performed synchronous API calls to verify config map existence during pod admission. With this update, the webhook uses optional config map volumes that gracefully handle missing CA bundles without blocking pod creation. As a result, the defaulting webhook is less affected by etcd performance issues, the CA bundles `configmaps` are always mounted as Optional volumes, and the environment variable `SSL_CERT_DIR` is always set on TaskRun step-containers.
 +
 link:https://issues.redhat.com/browse/SRVKP-8377[SRVKP-8377]
 
-Corrected prioritySemaphore locking to prevent deadlocks and race conditions::
+Corrected `prioritySemaphore` locking to prevent deadlocks and race conditions::
 Before this update, the `prioritySemaphore` implementation could cause deadlocks, race conditions, and panics due to unsynchronized data access. With this update, the locking logic is corrected and all shared data is properly synchronized, preventing these concurrency issues.
 +
 link:https://issues.redhat.com/browse/SRVKP-8198[SRVKP-8198]
 
 Retained pods on TaskRun timeout when the keep-pod-on-cancel flag is true::
-Before this update, when the `keep-pod-on-cancel` setting was set to `true`, `TaskRun` pods were retained only if the `TaskRun` was canceled. When a `TaskRun` timed out its pods would be deleted. With this update, `TaskRun` pods are not deleted if their `TaskRun` times out when the `keep-pod-on-cancel` seeting is set to `true`.
+Before this update, when the `keep-pod-on-cancel` setting was set to `true`, `TaskRun` pods were retained only if the `TaskRun` was canceled. When a `TaskRun` timed out its pods would be deleted. With this update, `TaskRun` pods are not deleted if their `TaskRun` times out when the `keep-pod-on-cancel` setting is set to `true`.
 +
 link:https://issues.redhat.com/browse/SRVKP-9176[SRVKP-9176]
 
@@ -678,7 +678,7 @@ Before this update, upgrading from versions 1.19.x to 1.20.0 incorrectly set the
 +
 link:https://issues.redhat.com/browse/SRVKP-8930[SRVKP-8930]
 
-nodeSelector and tolerations propagate correctly to Results pods::
+`nodeSelector` and tolerations propagate correctly to Results pods::
 Before this update, the `nodeSelector` and `tolerations` settings configured in the Tekton Config under the Results section were not applied to {tekton-results} pods. As a consequence, pod scheduling behavior did not reflect the user-configured preferences. With this update, the `nodeSelector` and `tolerations` configurations from the Tekton Config propagate correctly to all {tekton-results} pods.
 +
 link:https://issues.redhat.com/browse/SRVKP-8922[SRVKP-8922]
@@ -725,7 +725,7 @@ Previously, when the `tekton-results-postgres` or `tekton-results-api` pods were
 +
 link:https://issues.redhat.com/browse/SRVKP-8076[SRVKP-8076]
 
-Fixed immediate YAML editor updates using useEffect hook::
+Fixed immediate YAML editor updates using `useEffect` hook::
 Before this update, YAML editor changes were not applied until the component was remounted. With this update, changes are immediately reflected using the `useEffect` hook, improving the editing experience.
 +
 link:https://issues.redhat.com/browse/SRVKP-8205[SRVKP-8205]
@@ -781,7 +781,7 @@ Before this update, when a pull request was opened by an unauthorized user on Bi
 link:https://issues.redhat.com/browse/SRVKP-8269[SRVKP-8269]
 
 install info and namespace binding corrected::
-Before this update, the `opc-pac` CLI incorrectly bound `--namespace/-n` to kubeconfig, and the `install info` command did not show repositories for a single CR. With this update, the CLI binds correctly and `install info` displays repositories properly.
+Before this update, the `opc-pac` CLI incorrectly bound `--namespace/-n` to `kubeconfig`, and the `install info` command did not show repositories for a single CR. With this update, the CLI binds correctly and `install info` displays repositories properly.
 +
 link:https://issues.redhat.com/browse/SRVKP-7152[SRVKP-7152]
 
@@ -878,7 +878,7 @@ Before this update, {tekton-results} used a multi-step logic and merge patches f
 +
 link:https://issues.redhat.com/browse/SRVKP-9138[SRVKP-9138]
 
-The defaultRetention field takes precedence over the deprecated maxRetention field::
+The `defaultRetention` field takes precedence over the deprecated `maxRetention` field::
 Before this update, the configuration behavior was inconsistent if the deprecated maxRetention field was carried over during an upgrade. With this update, the defaultRetention field correctly takes precedence over the deprecated field. As a result, the retention policy remains consistent with the TektonConfig CR specification, maintaining backward compatibility during the deprecation period.
 +
 link:https://issues.redhat.com/browse/SRVKP-9425[SRVKP-9425]

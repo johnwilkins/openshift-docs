@@ -60,13 +60,13 @@ spec:
 | The secret name used for authentication.
 | my-secret-token
 
-| tokenKey
+| `tokenKey`
 | The key name for the token.
 | token
 
-| scmType
+| `scmType`
 | The type of SCM (Source Control Management) system.
-| github
+| `github`
 
 | serverURL
 | The URL of the server hosting the repository.

@@ -31,7 +31,7 @@ spec:
 # ...
 ----
 <1> The name of the controller. This name must be unique and not exceed 25 characters in length.
-<2> This parameter is optional. Set this parameter to `true` to enable the additional controller or to `false` to disable the additional controller. The default vaule is `true`.
+<2> This parameter is optional. Set this parameter to `true` to enable the additional controller or to `false` to disable the additional controller. The default value is `true`.
 <3> Set this parameter to the name of a secret that you must create for the GitHub app.
 <4> This section is optional. In this section, you can set any {pac} settings for this controller if the settings must be different from the main {pac} controller.
 
