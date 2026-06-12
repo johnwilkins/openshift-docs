@@ -51,7 +51,7 @@ spec:
       outputRefs:
         - tenant-b-splunk
 ----
-+
+
 Each tenant input creates multiple Vector components, increasing cardinality. This configuration with 100 tenants creates approximately 400-500 unique `component_id` values.
 
 The following configuration example shows the recommended approach with a single input and filtering:
@@ -106,7 +106,7 @@ spec:
       outputRefs:
         - tenant-b-splunk
 ----
-+
+
 A single input for all tenant logs reduces component count. Use pod labels to control which pods are included in log collection. This configuration creates far fewer Vector components because there is only one input source.
 
 If multiple tenants send logs to the same destination system (for example, the same Splunk instance or `LokiStack`), use a single output rather than creating separate outputs per tenant.
@@ -129,7 +129,7 @@ spec:
         token:
           secretName: tenant-b-splunk-token
 ----
-+
+
 Both outputs point to the same Splunk instance, creating duplicate components.
 
 The following configuration example shows the recommended approach with a single output and tenant identification:
@@ -159,7 +159,7 @@ spec:
       outputRefs:
         - shared-splunk
 ----
-+
+
 A single output reduces component count. Multiple pipelines can share the same output. Tenant isolation is maintained by the namespace information in the log records. Use Splunk, Loki, or other destination capabilities to filter and route logs by tenant.
 
 Each pipeline creates additional components for routing and processing. Where possible, combine pipelines that share inputs and outputs.
