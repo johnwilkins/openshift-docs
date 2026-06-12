@@ -9,12 +9,9 @@
 [role="_abstract"]
 In multitenant {product-title} clusters, you can configure logging to isolate logs between tenants while minimizing the impact on the monitoring stack. The key is to balance tenant isolation requirements with the metrics cardinality that your configuration creates.
 
-[id="consolidate-inputs-with-selectors_{context}"]
-== Consolidate inputs with label selectors
-
 Instead of creating separate inputs for each tenant or namespace, use label selectors to route logs from multiple sources through a single input.
 
-.Anti-pattern: Separate input per namespace
+The following configuration example shows an anti-pattern with separate inputs per namespace:
 [source,yaml]
 ----
 apiVersion: observability.openshift.io/v1
@@ -57,7 +54,7 @@ spec:
 +
 Each tenant input creates multiple Vector components, increasing cardinality. This configuration with 100 tenants creates approximately 400-500 unique `component_id` values.
 
-.Recommended: Single input with filtering
+The following configuration example shows the recommended approach with a single input and filtering:
 [source,yaml]
 ----
 apiVersion: observability.openshift.io/v1
@@ -112,12 +109,9 @@ spec:
 +
 A single input for all tenant logs reduces component count. Use pod labels to control which pods are included in log collection. This configuration creates far fewer Vector components because there is only one input source.
 
-[id="consolidate-outputs-same-destination_{context}"]
-== Consolidate outputs to the same destination
+If multiple tenants send logs to the same destination system (for example, the same Splunk instance or `LokiStack`), use a single output rather than creating separate outputs per tenant.
 
-If multiple tenants send logs to the same destination system (for example, the same Splunk instance or LokiStack), use a single output rather than creating separate outputs per tenant.
-
-.Anti-pattern: Separate output per tenant to same destination
+The following configuration example shows an anti-pattern with separate outputs per tenant to the same destination:
 [source,yaml]
 ----
 spec:
@@ -138,7 +132,7 @@ spec:
 +
 Both outputs point to the same Splunk instance, creating duplicate components.
 
-.Recommended: Single output with tenant identification
+The following configuration example shows the recommended approach with a single output and tenant identification:
 [source,yaml]
 ----
 spec:
@@ -168,38 +162,29 @@ spec:
 +
 A single output reduces component count. Multiple pipelines can share the same output. Tenant isolation is maintained by the namespace information in the log records. Use Splunk, Loki, or other destination capabilities to filter and route logs by tenant.
 
-[id="minimize-pipeline-count_{context}"]
-== Minimize the number of pipelines
-
 Each pipeline creates additional components for routing and processing. Where possible, combine pipelines that share inputs and outputs.
 
-.When separate pipelines are necessary
+Separate pipelines are necessary when:
 * Logs require different transformations before reaching different outputs
 * Security or compliance requires strict separation of processing paths
 * Different tenants require different delivery guarantees (for example, `AtLeastOnce` versus `AtMostOnce`)
 
-.When pipelines can be combined
+Pipelines can be combined when:
 * Logs go through the same filters to reach the same output
 * Only difference is the source namespace or labels
 * Tenant isolation is handled at the destination
 
-[id="use-single-clusterlogforwarder_{context}"]
-== Use a single ClusterLogForwarder when possible
-
 Creating multiple `ClusterLogForwarder` custom resources increases the overall component count because each `ClusterLogForwarder` deploys a separate collector pod with its own set of components.
 
-.When to use multiple ClusterLogForwarders
+Use multiple `ClusterLogForwarder` instances when:
 * Different service accounts are required for different log collection purposes
 * Different security or network policies apply
 * Logs from different sources require completely different processing pipelines
 
-.When a single ClusterLogForwarder is sufficient
+A single `ClusterLogForwarder` is sufficient when:
 * All logs can use the same service account
 * Tenant isolation is achieved through filtering and routing
 * Network policies allow a single collector to reach all destinations
-
-[id="example-multitenant-architecture_{context}"]
-== Example multitenant architecture
 
 The following example shows a multitenant logging configuration that balances tenant isolation with low metrics cardinality:
 
@@ -272,15 +257,12 @@ This configuration uses:
 +
 This configuration creates approximately 40-60 `component_id` values, compared to 400-500 values for a per-tenant input/output design.
 
-Tenant isolation is achieved in LokiStack through the namespace labels in the logs. Use LogQL queries to filter logs by tenant:
+Tenant isolation is achieved in `LokiStack` through the namespace labels in the logs. Use `LogQL` queries to filter logs by tenant:
 
 [source,logql]
 ----
 {kubernetes_namespace_name="tenant-a"}
 ----
-
-[id="estimating-cardinality-impact_{context}"]
-== Estimating cardinality impact
 
 Use the following rough estimates to predict the cardinality impact of your `ClusterLogForwarder` configuration:
 
@@ -289,9 +271,7 @@ Use the following rough estimates to predict the cardinality impact of your `Clu
 * Each filter creates approximately 1-2 components
 * Each pipeline adds approximately 2-4 components for routing
 
-.Example calculation
-
-A `ClusterLogForwarder` with:
+For example, a `ClusterLogForwarder` with:
 
 * 5 inputs → ~40 components
 * 3 outputs → ~12 components

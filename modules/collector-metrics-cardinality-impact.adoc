@@ -11,22 +11,9 @@ The Vector log collector exposes Prometheus metrics that track the performance a
 
 Understanding how `ClusterLogForwarder` configuration affects metrics cardinality helps you balance tenant isolation requirements with monitoring stack stability.
 
-[id="what-is-metrics-cardinality_{context}"]
-== What is metrics cardinality
+Metrics cardinality refers to the number of unique time series created by a metric. Each unique combination of metric name and label values creates a separate time series that Prometheus must store and query. For example, if a metric has labels `component_id` and `namespace`, and there are 100 unique `component_id` values and 50 unique `namespace` values, the potential cardinality is 100 × 50 = 5,000 time series for that metric.
 
-Metrics cardinality refers to the number of unique time series created by a metric. Each unique combination of metric name and label values creates a separate time series that Prometheus must store and query.
-
-For example, if a metric has labels `component_id` and `namespace`, and there are 100 unique `component_id` values and 50 unique `namespace` values, the potential cardinality is 100 × 50 = 5,000 time series for that metric.
-
-High cardinality metrics require:
-
-* More memory in Prometheus pods to store time series
-* More CPU to process queries across many series
-* More storage to persist historical data
-* Longer query response times
-
-[id="how-clusterlogforwarder-creates-cardinality_{context}"]
-== How ClusterLogForwarder configuration creates cardinality
+High cardinality metrics require more memory in Prometheus pods to store time series, more CPU to process queries across many series, more storage to persist historical data, and longer query response times.
 
 The Vector log collector creates internal components for each stage of log processing. Each component is identified by a `component_id` label in Vector metrics. The number of components grows with the complexity of your `ClusterLogForwarder` configuration.
 
@@ -54,9 +41,6 @@ In multitenant environments with many separate inputs, outputs, or pipelines for
 
 This configuration can create 400-500 unique `component_id` values or more.
 
-[id="which-metrics-are-affected_{context}"]
-== Which Vector metrics are affected by high cardinality
-
 The following Vector metrics use the `component_id` label and are most affected by high cardinality:
 
 `vector_component_received_events_count_bucket`:: Histogram tracking the number of events received by each component. This is typically the highest cardinality metric.
@@ -83,9 +67,6 @@ With 450 unique `component_id` values:
 * `vector_buffer_send_duration_seconds_bucket`: 450 × 10 = 4,500 time series
 * Additional histogram metrics contribute similarly
 
-[id="impact-on-monitoring-stack_{context}"]
-== Impact on the monitoring stack
-
 High cardinality from Vector metrics affects the {product-title} monitoring stack in several ways:
 
 Memory consumption:: Prometheus stores all active time series in memory. High cardinality can cause Prometheus pods to consume significantly more memory, potentially triggering out-of-memory (OOM) conditions.
@@ -107,9 +88,6 @@ Cluster stability:: The monitoring stack is critical for cluster operations incl
 --
 +
 Monitoring stack instability or resource exhaustion can impact these operations.
-
-[id="when-to-be-concerned_{context}"]
-== When to be concerned about cardinality
 
 Consider reviewing your `ClusterLogForwarder` configuration if:
 
