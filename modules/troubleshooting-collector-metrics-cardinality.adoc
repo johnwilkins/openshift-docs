@@ -150,7 +150,7 @@ $ oc get clusterlogforwarder app-logforward-customers -n openshift-logging -o ya
 
 Based on your diagnosis, apply the appropriate remediation:
 
-Consolidate inputs using label selectors:: If you have many inputs that differ only by namespace or pod labels, replace them with a single input that uses label selectors to include all required pods.
+Consolidate inputs by using label selectors:: If you have many inputs that differ only by namespace or pod labels, replace them with a single input that uses label selectors to include all required pods.
 +
 For example, instead of separate inputs for `tenant-a`, `tenant-b`, and so on, create one input with:
 +

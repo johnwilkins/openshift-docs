@@ -98,7 +98,7 @@ Consider reviewing your `ClusterLogForwarder` configuration if:
 * Prometheus queries are slow or timing out
 * You observe high cardinality warnings in Prometheus logs
 
-You can check the current cardinality of Vector metrics using the Prometheus API. See "Troubleshooting high collector metrics cardinality" for diagnostic procedures.
+You can check the current cardinality of Vector metrics by using the Prometheus API. See "Troubleshooting high collector metrics cardinality" for diagnostic procedures.
 
 [role="_additional-resources"]
 .Additional resources
