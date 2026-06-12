@@ -1,0 +1,315 @@
+// Module included in the following assemblies:
+//
+// * observability/logging/log_collection_forwarding/cluster-logging-collector.adoc
+
+:_mod-docs-content-type: REFERENCE
+[id="best-practices-multitenant-logging_{context}"]
+= Best practices for multitenant logging configurations
+
+[role="_abstract"]
+In multitenant {product-title} clusters, you can configure logging to isolate logs between tenants while minimizing the impact on the monitoring stack. The key is to balance tenant isolation requirements with the metrics cardinality that your configuration creates.
+
+[id="consolidate-inputs-with-selectors_{context}"]
+== Consolidate inputs with label selectors
+
+Instead of creating separate inputs for each tenant or namespace, use label selectors to route logs from multiple sources through a single input.
+
+.Anti-pattern: Separate input per namespace
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: tenant-logs
+  namespace: openshift-logging
+spec:
+  inputs:
+    - name: tenant-a-logs  # <1>
+      type: application
+      application:
+        namespaces:
+          - tenant-a
+    - name: tenant-b-logs  # <1>
+      type: application
+      application:
+        namespaces:
+          - tenant-b
+    # ... 98 more tenant inputs
+  outputs:
+    - name: tenant-a-splunk
+      type: splunk
+      # ...
+    - name: tenant-b-splunk
+      type: splunk
+      # ...
+  pipelines:
+    - name: tenant-a-pipeline
+      inputRefs:
+        - tenant-a-logs
+      outputRefs:
+        - tenant-a-splunk
+    - name: tenant-b-pipeline
+      inputRefs:
+        - tenant-b-logs
+      outputRefs:
+        - tenant-b-splunk
+----
+<1> Each tenant input creates multiple Vector components, increasing cardinality.
+
+This configuration with 100 tenants creates ~400-500 unique `component_id` values.
+
+.Recommended: Single input with filtering
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: tenant-logs
+  namespace: openshift-logging
+spec:
+  inputs:
+    - name: all-tenants  # <1>
+      type: application
+      application:
+        selector:
+          matchLabels:
+            tenant-logging: "enabled"  # <2>
+  filters:
+    - name: tenant-a-filter
+      type: drop
+      drop:
+        - test:
+            - field: .kubernetes.namespace_name
+              notMatches: "^tenant-a$"
+    - name: tenant-b-filter
+      type: drop
+      drop:
+        - test:
+            - field: .kubernetes.namespace_name
+              notMatches: "^tenant-b$"
+  outputs:
+    - name: tenant-a-splunk
+      type: splunk
+      # ...
+    - name: tenant-b-splunk
+      type: splunk
+      # ...
+  pipelines:
+    - name: tenant-a-pipeline
+      inputRefs:
+        - all-tenants
+      filterRefs:
+        - tenant-a-filter
+      outputRefs:
+        - tenant-a-splunk
+    - name: tenant-b-pipeline
+      inputRefs:
+        - all-tenants
+      filterRefs:
+        - tenant-b-filter
+      outputRefs:
+        - tenant-b-splunk
+----
+<1> Single input for all tenant logs reduces component count.
+<2> Use pod labels to control which pods are included in log collection.
+
+This configuration creates far fewer Vector components because there is only one input source.
+
+[id="consolidate-outputs-same-destination_{context}"]
+== Consolidate outputs to the same destination
+
+If multiple tenants send logs to the same destination system (for example, the same Splunk instance or LokiStack), use a single output rather than creating separate outputs per tenant.
+
+.Anti-pattern: Separate output per tenant to same destination
+[source,yaml]
+----
+spec:
+  outputs:
+    - name: tenant-a-splunk
+      type: splunk
+      splunk:
+        url: https://splunk.example.com:8088
+        token:
+          secretName: tenant-a-splunk-token
+    - name: tenant-b-splunk  # <1>
+      type: splunk
+      splunk:
+        url: https://splunk.example.com:8088  # <1>
+        token:
+          secretName: tenant-b-splunk-token
+----
+<1> Both outputs point to the same Splunk instance, creating duplicate components.
+
+.Recommended: Single output with tenant identification
+[source,yaml]
+----
+spec:
+  outputs:
+    - name: shared-splunk  # <1>
+      type: splunk
+      splunk:
+        url: https://splunk.example.com:8088
+        token:
+          secretName: splunk-token
+  pipelines:
+    - name: tenant-a-pipeline
+      inputRefs:
+        - all-tenants
+      filterRefs:
+        - tenant-a-filter
+      outputRefs:
+        - shared-splunk  # <2>
+    - name: tenant-b-pipeline
+      inputRefs:
+        - all-tenants
+      filterRefs:
+        - tenant-b-filter
+      outputRefs:
+        - shared-splunk  # <2>
+----
+<1> Single output reduces component count.
+<2> Multiple pipelines can share the same output.
+
+Tenant isolation is maintained by the namespace information in the log records. Use Splunk, Loki, or other destination capabilities to filter and route logs by tenant.
+
+[id="minimize-pipeline-count_{context}"]
+== Minimize the number of pipelines
+
+Each pipeline creates additional components for routing and processing. Where possible, combine pipelines that share inputs and outputs.
+
+.When separate pipelines are necessary
+* Logs require different transformations before reaching different outputs
+* Security or compliance requires strict separation of processing paths
+* Different tenants require different delivery guarantees (for example, `AtLeastOnce` versus `AtMostOnce`)
+
+.When pipelines can be combined
+* Logs go through the same filters to reach the same output
+* Only difference is the source namespace or labels
+* Tenant isolation is handled at the destination
+
+[id="use-single-clusterlogforwarder_{context}"]
+== Use a single ClusterLogForwarder when possible
+
+Creating multiple `ClusterLogForwarder` custom resources increases the overall component count because each `ClusterLogForwarder` deploys a separate collector pod with its own set of components.
+
+.When to use multiple ClusterLogForwarders
+* Different service accounts are required for different log collection purposes
+* Different security or network policies apply
+* Logs from different sources require completely different processing pipelines
+
+.When a single ClusterLogForwarder is sufficient
+* All logs can use the same service account
+* Tenant isolation is achieved through filtering and routing
+* Network policies allow a single collector to reach all destinations
+
+[id="example-multitenant-architecture_{context}"]
+== Example multitenant architecture
+
+The following example shows a multitenant logging configuration that balances tenant isolation with low metrics cardinality:
+
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: multitenant-logging
+  namespace: openshift-logging
+spec:
+  serviceAccount:
+    name: logcollector
+  inputs:
+    - name: application-logs  # <1>
+      type: application
+      application:
+        selector:
+          matchExpressions:
+            - key: logging-enabled
+              operator: In
+              values:
+                - "true"
+    - name: infrastructure-logs
+      type: infrastructure
+  filters:
+    - name: add-tenant-label  # <2>
+      type: detectMultilineException
+  outputs:
+    - name: tenant-lokistack  # <3>
+      type: lokiStack
+      lokiStack:
+        target:
+          name: logging-loki
+          namespace: openshift-logging
+    - name: compliance-s3  # <4>
+      type: s3
+      s3:
+        bucketName: audit-logs
+        # ...
+  pipelines:
+    - name: application-to-loki  # <5>
+      inputRefs:
+        - application-logs
+      filterRefs:
+        - add-tenant-label
+      outputRefs:
+        - tenant-lokistack
+    - name: infrastructure-to-loki
+      inputRefs:
+        - infrastructure-logs
+      outputRefs:
+        - tenant-lokistack
+    - name: audit-to-s3
+      inputRefs:
+        - audit
+      outputRefs:
+        - compliance-s3
+----
+<1> Single input for all application logs, controlled by pod label.
+<2> Single filter applies to all tenants.
+<3> Single LokiStack output for all tenant application and infrastructure logs.
+<4> Separate output for compliance because it goes to a different destination type.
+<5> Three pipelines for different log types, sharing inputs and outputs where possible.
+
+This configuration creates approximately 40-60 `component_id` values, compared to 400-500 values for a per-tenant input/output design.
+
+Tenant isolation is achieved in LokiStack through the namespace labels in the logs. Use LogQL queries to filter logs by tenant:
+
+[source,logql]
+----
+{kubernetes_namespace_name="tenant-a"}
+----
+
+[id="estimating-cardinality-impact_{context}"]
+== Estimating cardinality impact
+
+Use the following rough estimates to predict the cardinality impact of your `ClusterLogForwarder` configuration:
+
+* Each input creates approximately 5-10 components (source + metadata + routing)
+* Each output creates approximately 3-5 components (routing + sink + buffer management)
+* Each filter creates approximately 1-2 components
+* Each pipeline adds approximately 2-4 components for routing
+
+.Example calculation
+
+A `ClusterLogForwarder` with:
+
+* 5 inputs → ~40 components
+* 3 outputs → ~12 components
+* 2 filters → ~4 components
+* 5 pipelines → ~15 components
+
+Estimated total: ~70 component_id values
+
+Each histogram metric creates 10 time series per component_id:
+
+* `vector_component_received_events_count_bucket`: 70 × 10 = 700 series
+* `vector_buffer_send_duration_seconds_bucket`: 70 × 10 = 700 series
+
+These estimates are approximate. Use the diagnostic procedures in "Troubleshooting high collector metrics cardinality" to measure actual cardinality.
+
+[role="_additional-resources"]
+.Additional resources
+
+* xref:../configuring/cluster-logging-collector.adoc#collector-metrics-cardinality-impact_cluster-logging-collector[Understanding collector metrics cardinality and monitoring impact]
+* xref:../configuring/cluster-logging-collector.adoc#troubleshooting-collector-metrics-cardinality_cluster-logging-collector[Troubleshooting high collector metrics cardinality]
+* xref:../configuring/configuring-log-forwarding.adoc#configuring-inputs_configuring-log-forwarding[Configuring inputs]
+* xref:../configuring/configuring-log-forwarding.adoc#configuring-filters_configuring-log-forwarding[Configuring filters]
