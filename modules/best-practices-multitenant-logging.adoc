@@ -24,12 +24,12 @@ metadata:
   namespace: openshift-logging
 spec:
   inputs:
-    - name: tenant-a-logs  # <1>
+    - name: tenant-a-logs
       type: application
       application:
         namespaces:
           - tenant-a
-    - name: tenant-b-logs  # <1>
+    - name: tenant-b-logs
       type: application
       application:
         namespaces:
@@ -54,9 +54,8 @@ spec:
       outputRefs:
         - tenant-b-splunk
 ----
-<1> Each tenant input creates multiple Vector components, increasing cardinality.
-
-This configuration with 100 tenants creates ~400-500 unique `component_id` values.
++
+Each tenant input creates multiple Vector components, increasing cardinality. This configuration with 100 tenants creates approximately 400-500 unique `component_id` values.
 
 .Recommended: Single input with filtering
 [source,yaml]
@@ -68,12 +67,12 @@ metadata:
   namespace: openshift-logging
 spec:
   inputs:
-    - name: all-tenants  # <1>
+    - name: all-tenants
       type: application
       application:
         selector:
           matchLabels:
-            tenant-logging: "enabled"  # <2>
+            tenant-logging: "enabled"
   filters:
     - name: tenant-a-filter
       type: drop
@@ -110,10 +109,8 @@ spec:
       outputRefs:
         - tenant-b-splunk
 ----
-<1> Single input for all tenant logs reduces component count.
-<2> Use pod labels to control which pods are included in log collection.
-
-This configuration creates far fewer Vector components because there is only one input source.
++
+A single input for all tenant logs reduces component count. Use pod labels to control which pods are included in log collection. This configuration creates far fewer Vector components because there is only one input source.
 
 [id="consolidate-outputs-same-destination_{context}"]
 == Consolidate outputs to the same destination
@@ -131,21 +128,22 @@ spec:
         url: https://splunk.example.com:8088
         token:
           secretName: tenant-a-splunk-token
-    - name: tenant-b-splunk  # <1>
+    - name: tenant-b-splunk
       type: splunk
       splunk:
-        url: https://splunk.example.com:8088  # <1>
+        url: https://splunk.example.com:8088
         token:
           secretName: tenant-b-splunk-token
 ----
-<1> Both outputs point to the same Splunk instance, creating duplicate components.
++
+Both outputs point to the same Splunk instance, creating duplicate components.
 
 .Recommended: Single output with tenant identification
 [source,yaml]
 ----
 spec:
   outputs:
-    - name: shared-splunk  # <1>
+    - name: shared-splunk
       type: splunk
       splunk:
         url: https://splunk.example.com:8088
@@ -158,19 +156,17 @@ spec:
       filterRefs:
         - tenant-a-filter
       outputRefs:
-        - shared-splunk  # <2>
+        - shared-splunk
     - name: tenant-b-pipeline
       inputRefs:
         - all-tenants
       filterRefs:
         - tenant-b-filter
       outputRefs:
-        - shared-splunk  # <2>
+        - shared-splunk
 ----
-<1> Single output reduces component count.
-<2> Multiple pipelines can share the same output.
-
-Tenant isolation is maintained by the namespace information in the log records. Use Splunk, Loki, or other destination capabilities to filter and route logs by tenant.
++
+A single output reduces component count. Multiple pipelines can share the same output. Tenant isolation is maintained by the namespace information in the log records. Use Splunk, Loki, or other destination capabilities to filter and route logs by tenant.
 
 [id="minimize-pipeline-count_{context}"]
 == Minimize the number of pipelines
@@ -218,7 +214,7 @@ spec:
   serviceAccount:
     name: logcollector
   inputs:
-    - name: application-logs  # <1>
+    - name: application-logs
       type: application
       application:
         selector:
@@ -230,22 +226,22 @@ spec:
     - name: infrastructure-logs
       type: infrastructure
   filters:
-    - name: add-tenant-label  # <2>
+    - name: add-tenant-label
       type: detectMultilineException
   outputs:
-    - name: tenant-lokistack  # <3>
+    - name: tenant-lokistack
       type: lokiStack
       lokiStack:
         target:
           name: logging-loki
           namespace: openshift-logging
-    - name: compliance-s3  # <4>
+    - name: compliance-s3
       type: s3
       s3:
         bucketName: audit-logs
         # ...
   pipelines:
-    - name: application-to-loki  # <5>
+    - name: application-to-loki
       inputRefs:
         - application-logs
       filterRefs:
@@ -263,12 +259,17 @@ spec:
       outputRefs:
         - compliance-s3
 ----
-<1> Single input for all application logs, controlled by pod label.
-<2> Single filter applies to all tenants.
-<3> Single LokiStack output for all tenant application and infrastructure logs.
-<4> Separate output for compliance because it goes to a different destination type.
-<5> Three pipelines for different log types, sharing inputs and outputs where possible.
-
++
+This configuration uses:
++
+--
+* A single input for all application logs, controlled by pod label
+* A single filter that applies to all tenants
+* A single LokiStack output for all tenant application and infrastructure logs
+* A separate output for compliance because it goes to a different destination type
+* Three pipelines for different log types, sharing inputs and outputs where possible
+--
++
 This configuration creates approximately 40-60 `component_id` values, compared to 400-500 values for a per-tenant input/output design.
 
 Tenant isolation is achieved in LokiStack through the namespace labels in the logs. Use LogQL queries to filter logs by tenant:

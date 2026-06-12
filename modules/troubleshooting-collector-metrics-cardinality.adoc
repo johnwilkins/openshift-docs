@@ -40,13 +40,14 @@ Most common label pairs:
 3105098 app_kubernetes_io_component=collector
 
 Highest cardinality metric names:
-727740 vector_component_received_events_count_bucket  # <1>
-719960 vector_buffer_send_duration_seconds_bucket     # <1>
+727740 vector_component_received_events_count_bucket
+719960 vector_buffer_send_duration_seconds_bucket
 166536 etcd_request_duration_seconds_bucket
 150240 vector_source_lag_time_seconds_bucket
 137720 vector_adaptive_concurrency_limit_bucket
 ----
-<1> Vector metrics with significantly higher cardinality than other cluster metrics.
++
+Vector metrics have significantly higher cardinality than other cluster metrics.
 
 . Count the number of unique `component_id` values for Vector metrics:
 +
@@ -60,9 +61,10 @@ $ oc exec -n openshift-monitoring prometheus-k8s-0 -- \
 .Example output
 [source,terminal]
 ----
-484  # <1>
+484
 ----
-<1> There are 484 unique `component_id` values contributing to cardinality.
++
+This output shows there are 484 unique `component_id` values contributing to cardinality.
 
 . Count how many of these components are inputs:
 +
@@ -76,9 +78,10 @@ $ oc exec -n openshift-monitoring prometheus-k8s-0 -- \
 .Example output
 [source,terminal]
 ----
-188  # <1>
+188
 ----
-<1> 188 of the 484 components are input sources.
++
+This output shows that 188 of the 484 components are input sources.
 
 . Identify which `ClusterLogForwarder` instances contribute most to cardinality:
 +
@@ -95,9 +98,10 @@ This query returns the number of components per `ClusterLogForwarder` instance.
 [source,terminal]
 ----
 {app_kubernetes_io_instance="instance"} 31
-{app_kubernetes_io_instance="app-logforward-customers"} 453  # <1>
+{app_kubernetes_io_instance="app-logforward-customers"} 453
 ----
-<1> The `app-logforward-customers` ClusterLogForwarder creates 453 unique components.
++
+This output shows that the `app-logforward-customers` ClusterLogForwarder creates 453 unique components.
 
 . Retrieve the configuration of the `ClusterLogForwarder` with high component count:
 +
