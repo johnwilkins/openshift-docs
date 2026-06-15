@@ -76,7 +76,20 @@ spec:
   sourceNamespace: openshift-marketplace
 ----
 +
-`spec.channel`:: Specify `stable-{logging-major-version}` as the channel.
+`spec.channel`:: Specify `stable-{logging-major-version}` as the channel. The channel version corresponds to the {product-title} minor version. For example, {product-title} 4.18 uses the `stable-6.5` channel.
++
+[NOTE]
+====
+To verify which channels are available for your cluster, run:
+
+[source,terminal]
+----
+$ oc get packagemanifest loki-operator -n openshift-marketplace \
+  -o jsonpath='{.status.channels[*].name}'
+----
+
+If you receive an error about the channel not being found, use one of the available channels listed in the output.
+====
 `spec.installPlanApproval`:: If the approval strategy in the subscription is set to `Automatic`, the update process initiates as soon as a new Operator version is available in the selected channel. If the approval strategy is set to `Manual`, you must manually approve pending updates.
 `spec.source`:: Specify `redhat-operators` as the value. If your {ocp-product-title} cluster is installed on a restricted network, also known as a disconnected cluster, specify the name of the `CatalogSource` object that you created when you configured {olm-first}.
 +
