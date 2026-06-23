@@ -1,0 +1,218 @@
+// Module included in the following assemblies:
+//
+// * configuring/configuring-log-forwarding.adoc
+
+:_mod-docs-content-type: PROCEDURE
+[id="configuring-prune-filters-cost_{context}"]
+= Configuring prune filters for cost optimization
+
+[role="_abstract"]
+Prune filters remove specific fields from log records while preserving the records themselves. Reducing log payload size lowers storage costs and network bandwidth consumption without losing the record count needed for analytics and alerting.
+
+.Prerequisites
+
+* You have installed the {clo-full}.
+* You have administrator permissions.
+* You have created a `ClusterLogForwarder` custom resource.
+
+.Procedure
+
+[discrete]
+== Example 1: Prune verbose Kubernetes metadata
+
+Kubernetes adds extensive metadata to every log record. This example removes redundant fields to reduce payload size while keeping essential identification fields.
+
+. Edit your `ClusterLogForwarder`:
++
+[source,terminal]
+----
+$ oc edit clusterlogforwarder instance -n openshift-logging
+----
+
+. Add a prune filter that removes verbose metadata:
++
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  filters:
+  - name: prune-k8s-metadata
+    type: prune
+    prune:
+      in:
+      - .kubernetes.labels <1>
+      - .kubernetes.annotations <2>
+      - .kubernetes.pod_ips <3>
+      notIn:
+      - .kubernetes.labels.app <4>
+      - .kubernetes.labels.version
+
+  pipelines:
+  - name: application-logs
+    inputRefs:
+    - application
+    filterRefs:
+    - prune-k8s-metadata
+    outputRefs:
+    - default-lokistack
+----
+<1> Remove all labels (high cardinality)
+<2> Remove all annotations (often verbose)
+<3> Remove pod IP addresses (not typically needed for log analysis)
+<4> Keep specific labels that are useful for querying (app name, version)
++
+Fields listed in `notIn` are exempted from pruning and are kept in the record.
+
+[discrete]
+== Example 2: Prune high-cardinality fields for external forwarding
+
+When forwarding to external systems with per-GB pricing, reducing payload size directly reduces costs. This example strips fields that add volume but limited value.
+
+. Add a prune filter optimized for cost:
++
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  filters:
+  - name: prune-for-splunk
+    type: prune
+    prune:
+      in:
+      - .kubernetes.container_image <1>
+      - .kubernetes.container_image_id
+      - .kubernetes.pod_id
+      - .kubernetes.master_url
+      - .kubernetes.flat_labels <2>
+
+  pipelines:
+  - name: application-to-splunk
+    inputRefs:
+    - application
+    filterRefs:
+    - prune-for-splunk
+    outputRefs:
+    - external-splunk
+----
+<1> Container images are immutable; recording them in every log adds size without value
+<2> Flat labels are a string representation of the labels map; prune if you keep the structured labels
++
+This filter reduces payload size by approximately 30-40% for typical application logs.
+
+[discrete]
+== Example 3: Selective pruning per pipeline
+
+Different destinations may need different field sets. This example shows how to apply different pruning strategies to pipelines routing to different outputs.
+
+. Configure multiple prune filters for different pipelines:
++
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  filters:
+  - name: prune-minimal <1>
+    type: prune
+    prune:
+      in:
+      - .kubernetes.pod_ips
+      - .kubernetes.container_image_id
+
+  - name: prune-aggressive <2>
+    type: prune
+    prune:
+      in:
+      - .kubernetes.labels
+      - .kubernetes.annotations
+      - .kubernetes.container_image
+      - .kubernetes.pod_ips
+      notIn:
+      - .kubernetes.labels.app
+      - .kubernetes.namespace_name
+
+  pipelines:
+  - name: to-lokistack <3>
+    inputRefs:
+    - application
+    filterRefs:
+    - prune-minimal
+    outputRefs:
+    - default-lokistack
+
+  - name: to-s3-archive <4>
+    inputRefs:
+    - application
+    filterRefs:
+    - prune-aggressive
+    outputRefs:
+    - long-term-s3
+----
+<1> Minimal pruning for interactive queries in LokiStack (keep most fields)
+<2> Aggressive pruning for long-term archival (minimize storage cost)
+<3> Pipeline for recent logs where users need full context
+<4> Pipeline for archival where cost optimization is priority
+
+.Verification
+
+After applying prune filters, verify the payload size reduction:
+
+. Compare log record sizes before and after pruning by examining sample records:
++
+.. Query a log record without pruning (use a different pipeline or check before applying the filter):
++
+[source,terminal]
+----
+$ oc logs -n openshift-logging <collector-pod-name> --tail=1 | jq 'length'
+----
++
+.Example output (unpruned)
+[source,terminal]
+----
+1847
+----
+
+.. Query a log record with pruning applied:
++
+[source,terminal]
+----
+$ oc logs -n openshift-logging <collector-pod-name> --tail=1 | jq 'length'
+----
++
+.Example output (pruned)
+[source,terminal]
+----
+1124
+----
++
+This example shows approximately 39% reduction in payload size.
+
+. Check the collector logs to confirm pruning is active:
++
+[source,terminal]
+----
+$ oc logs -n openshift-logging -l app.kubernetes.io/component=collector --tail=50 | grep -i prune
+----
+
+. Monitor storage consumption over time:
++
+.. For LokiStack, check the object storage bucket size before and after applying prune filters.
+.. For external destinations, review billing reports to confirm reduced data transfer and storage costs.
+
+[role="_additional-resources"]
+.Additional resources
+
+* xref:../configuring/configuring-log-forwarding.adoc#log-filtering-use-cases_{context}[Understanding log filtering use cases]
+* xref:../configuring/configuring-log-forwarding.adoc#clf-filters-reference_{context}[ClusterLogForwarder filters reference]
+* xref:../configuring/configuring-log-forwarding.adoc#adding-a-prune-filter_{context}[Adding a prune filter]

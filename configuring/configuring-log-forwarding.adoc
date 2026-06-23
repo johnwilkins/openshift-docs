@@ -48,7 +48,15 @@ include::modules/adding-audit-log-collection.adoc[leveloffset=+2]
 [id="configuring-filters_{context}"]
 == Configuring filters
 
+include::modules/log-filtering-use-cases.adoc[leveloffset=+2]
+
 include::modules/clf-filters-reference.adoc[leveloffset=+2]
+
+include::modules/configuring-drop-filters-performance.adoc[leveloffset=+2]
+
+include::modules/configuring-prune-filters-cost.adoc[leveloffset=+2]
+
+include::modules/configuring-multi-pipeline-filtering.adoc[leveloffset=+2]
 
 include::modules/logging-audit-log-filtering.adoc[leveloffset=+2]
 

@@ -1,0 +1,187 @@
+// Module included in the following assemblies:
+//
+// * configuring/configuring-log-forwarding.adoc
+
+:_mod-docs-content-type: PROCEDURE
+[id="configuring-drop-filters-performance_{context}"]
+= Configuring drop filters for performance
+
+[role="_abstract"]
+Drop filters discard log records at the source before forwarding, reducing network bandwidth, storage costs, and collector resource consumption. Use drop filters when high log volume degrades performance or when certain logs provide no operational value.
+
+.Prerequisites
+
+* You have installed the {clo-full}.
+* You have administrator permissions.
+* You have created a `ClusterLogForwarder` custom resource.
+
+.Procedure
+
+[discrete]
+== Example 1: Drop debug logs from a specific namespace
+
+This example drops all debug-level logs from the `test-app` namespace while keeping all other logs.
+
+. Edit your `ClusterLogForwarder`:
++
+[source,terminal]
+----
+$ oc edit clusterlogforwarder instance -n openshift-logging
+----
+
+. Add a drop filter that matches debug logs:
++
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  filters:
+  - name: drop-test-debug-logs
+    type: drop
+    drop:
+    - test:
+      - field: .kubernetes.namespace_name
+        matches: test-app
+      - field: .level
+        matches: debug
+
+  pipelines:
+  - name: application-logs
+    inputRefs:
+    - application
+    filterRefs:
+    - drop-test-debug-logs
+    outputRefs:
+    - default-lokistack
+----
++
+This filter drops records only when both conditions match: namespace is `test-app` AND level is `debug`.
+
+[discrete]
+== Example 2: Drop health check requests cluster-wide
+
+This example drops noisy HTTP health check requests (GET `/health`, `/readiness`, `/liveness`) from all applications.
+
+. Add a drop filter that matches health check patterns:
++
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  filters:
+  - name: drop-health-checks
+    type: drop
+    drop:
+    - test:
+      - field: .message
+        matches: 'GET /(health|readiness|liveness)'
+
+  pipelines:
+  - name: application-logs
+    inputRefs:
+    - application
+    filterRefs:
+    - drop-health-checks
+    outputRefs:
+    - default-lokistack
+----
++
+The regex pattern matches any GET request to health check endpoints.
+
+[discrete]
+== Example 3: Drop logs by multiple criteria (complex filtering)
+
+This example demonstrates advanced drop logic: drop all logs from `dev-*` namespaces that are either debug level OR contain "connection established" messages.
+
+. Add a drop filter with multiple test groups:
++
+[source,yaml]
+----
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  filters:
+  - name: drop-dev-noise
+    type: drop
+    drop:
+    - test: <1>
+      - field: .kubernetes.namespace_name
+        matches: ^dev-
+      - field: .level
+        matches: debug
+    - test: <2>
+      - field: .kubernetes.namespace_name
+        matches: ^dev-
+      - field: .message
+        matches: connection established
+
+  pipelines:
+  - name: application-logs
+    inputRefs:
+    - application
+    filterRefs:
+    - drop-dev-noise
+    outputRefs:
+    - default-lokistack
+----
+<1> First test group: Drop if namespace starts with `dev-` AND level is `debug`
+<2> Second test group: Drop if namespace starts with `dev-` AND message contains "connection established"
++
+Records that match either test group are dropped. Within a test group, all conditions must match.
+
+.Verification
+
+After applying the filter, verify that records are being dropped:
+
+. Check the collector pod logs for drop filter metrics:
++
+[source,terminal]
+----
+$ oc logs -n openshift-logging -l app.kubernetes.io/component=collector --tail=100 | grep -i drop
+----
++
+.Example output
+[source,terminal]
+----
+2026-06-23T14:32:15.123Z INFO VectorSink: Records dropped by filter 'drop-health-checks': 1250
+2026-06-23T14:32:20.456Z INFO VectorSink: Records dropped by filter 'drop-test-debug-logs': 340
+----
+
+. Query your log store to confirm the filtered logs are not present:
++
+.. In the {product-title} web console, go to *Observe* > *Logs*.
+.. Run a query for the pattern you expect to be dropped:
++
+[source,terminal]
+----
+{kubernetes_namespace_name="test-app"} |~ "debug"
+----
++
+No results should appear if the filter is working correctly.
+
+. Monitor collector resource usage before and after applying filters:
++
+[source,terminal]
+----
+$ oc adm top pods -n openshift-logging -l app.kubernetes.io/component=collector
+----
++
+You should see reduced CPU and memory usage after dropping high-volume logs.
+
+[role="_additional-resources"]
+.Additional resources
+
+* xref:../configuring/configuring-log-forwarding.adoc#log-filtering-use-cases_{context}[Understanding log filtering use cases]
+* xref:../configuring/configuring-log-forwarding.adoc#clf-filters-reference_{context}[ClusterLogForwarder filters reference]
+* xref:../configuring/configuring-log-forwarding.adoc#adding-a-drop-filter_{context}[Adding a drop filter]
