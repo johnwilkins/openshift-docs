@@ -17,7 +17,7 @@ Reducing the volume of logs that collectors process, transport, and store improv
 Cost management::
 Smaller log payloads and fewer stored records directly reduce storage costs and network bandwidth consumption.
 
-Multi-tenant routing::
+Multitenant routing::
 Different teams often need different subsets of logs with team-specific filtering applied before delivery to their preferred destinations.
 
 == Filter types and when to use them
@@ -45,7 +45,7 @@ a|* Strip verbose Kubernetes metadata
 |`detectMultilineException`
 |Combine stack traces into single records
 a|* Consolidate Java exception stack traces
-* Group Python tracebacks
+* Group Python traceback messages
 * Merge multi-line error messages
 |Low - Improves readability
 
@@ -66,7 +66,7 @@ Follow this workflow to choose the appropriate filtering approach:
 ** Too many logs → Use `drop` filters to discard unwanted records
 ** Log payloads too large → Use `prune` filters to remove fields
 ** Downstream system overloaded → Use output rate limiting
-** Multiple teams need different log views → Use multi-pipeline filtering
+** Many teams need different log views → Use multi-pipeline filtering
 
 . *Determine where to filter:*
 ** At the source (collector) → Drop or prune before forwarding saves network and storage costs
@@ -82,10 +82,10 @@ Follow this workflow to choose the appropriate filtering approach:
 Filters apply at two points in the log pipeline:
 
 Pipeline-level filters::
-Defined in `spec.filters` and referenced by name in `spec.pipelines[].filterRefs`. These filters process records before the pipeline routes them to outputs. Use pipeline-level filters when multiple pipelines need the same filtering logic.
+Defined in `spec.filters` and referenced by name in `spec.pipelines[].filterRefs`. These filters process records before the pipeline routes them to outputs. Use pipeline-level filters when many pipelines need the same filtering logic.
 
 Output-level tuning::
-Rate limiting is configured in `spec.outputs[].limit.maxRecordsPerSecond`. This controls delivery rate to specific destinations. Use output-level limits to protect individual downstream systems.
+Configure rate limiting in `spec.outputs[].limit.maxRecordsPerSecond`. This controls delivery rate to specific destinations. Use output-level limits to protect individual downstream systems.
 
 .Example filter placement
 [source,yaml]
@@ -96,7 +96,7 @@ metadata:
   name: instance
   namespace: openshift-logging
 spec:
-  filters: <1>
+  filters:
   - name: drop-debug-logs
     type: drop
     drop:
@@ -108,7 +108,7 @@ spec:
   - name: application-logs
     inputRefs:
     - application
-    filterRefs: <2>
+    filterRefs:
     - drop-debug-logs
     outputRefs:
     - default-lokistack
@@ -116,12 +116,11 @@ spec:
   outputs:
   - name: external-splunk
     type: splunk
-    limit: <3>
+    limit:
       maxRecordsPerSecond: 1000
 ----
-<1> Define filters in the filters section
-<2> Reference filters by name in pipelines
-<3> Apply rate limits at the output level
++
+Define filters in the `filters` section, reference them by name in the `filterRefs` field of pipelines, and apply rate limits at the output level.
 
 == Performance and cost trade-offs
 
@@ -145,7 +144,7 @@ a|* Reduces payload size
 a|* Protects downstream systems
 * Prevents quota overruns
 * Smooths traffic spikes
-|May create backpressure during sustained high volume
+|Might create backpressure during sustained high volume
 
 |Multi-pipeline with per-team filters
 a|* Each team sees relevant logs only
@@ -160,5 +159,5 @@ a|* Each team sees relevant logs only
 
 * xref:../configuring/configuring-log-forwarding.adoc#configuring-drop-filters-performance_{context}[Configuring drop filters for performance]
 * xref:../configuring/configuring-log-forwarding.adoc#configuring-prune-filters-cost_{context}[Configuring prune filters for cost optimization]
-* xref:../configuring/configuring-log-forwarding.adoc#configuring-multi-pipeline-filtering_{context}[Configuring multi-pipeline filtering for multiple teams]
-* xref:../configuring/configuring-log-forwarding.adoc#clf-filters-reference_{context}[ClusterLogForwarder filters reference]
+* xref:../configuring/configuring-log-forwarding.adoc#configuring-multi-pipeline-filtering_{context}[Configuring multi-pipeline filtering for many teams]
+* xref:../configuring/configuring-log-forwarding.adoc#clf-filters-reference_{context}[`ClusterLogForwarder` filters reference]

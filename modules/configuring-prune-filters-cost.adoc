@@ -17,10 +17,11 @@ Prune filters remove specific fields from log records while preserving the recor
 
 .Procedure
 
-[discrete]
-== Example 1: Prune verbose Kubernetes metadata
-
-Kubernetes adds extensive metadata to every log record. This example removes redundant fields to reduce payload size while keeping essential identification fields.
+. Choose the pruning scenario that matches your use case:
++
+** *Scenario 1*: Prune verbose Kubernetes metadata
+** *Scenario 2*: Prune high-cardinality fields for external forwarding
+** *Scenario 3*: Apply selective pruning per pipeline
 
 . Edit your `ClusterLogForwarder`:
 +
@@ -29,7 +30,11 @@ Kubernetes adds extensive metadata to every log record. This example removes red
 $ oc edit clusterlogforwarder instance -n openshift-logging
 ----
 
-. Add a prune filter that removes verbose metadata:
+. Add the appropriate prune filter configuration:
++
+*Scenario 1: Prune verbose Kubernetes metadata*
++
+Kubernetes adds extensive metadata to every log record. This filter removes redundant fields to reduce payload size while keeping essential identification fields.
 +
 [source,yaml]
 ----
@@ -44,11 +49,11 @@ spec:
     type: prune
     prune:
       in:
-      - .kubernetes.labels <1>
-      - .kubernetes.annotations <2>
-      - .kubernetes.pod_ips <3>
+      - .kubernetes.labels
+      - .kubernetes.annotations
+      - .kubernetes.pod_ips
       notIn:
-      - .kubernetes.labels.app <4>
+      - .kubernetes.labels.app
       - .kubernetes.labels.version
 
   pipelines:
@@ -60,19 +65,12 @@ spec:
     outputRefs:
     - default-lokistack
 ----
-<1> Remove all labels (high cardinality)
-<2> Remove all annotations (often verbose)
-<3> Remove pod IP addresses (not typically needed for log analysis)
-<4> Keep specific labels that are useful for querying (app name, version)
 +
-Fields listed in `notIn` are exempted from pruning and are kept in the record.
-
-[discrete]
-== Example 2: Prune high-cardinality fields for external forwarding
-
-When forwarding to external systems with per-GB pricing, reducing payload size directly reduces costs. This example strips fields that add volume but limited value.
-
-. Add a prune filter optimized for cost:
+This filter removes all labels, annotations, and pod IP addresses except for the `app` and `version` labels. Fields listed in `notIn` are exempted from pruning and are kept in the record.
++
+*Scenario 2: Prune high-cardinality fields for external forwarding*
++
+When forwarding to external systems with per-GB pricing, reducing payload size directly reduces costs. This filter strips fields that add volume but limited value.
 +
 [source,yaml]
 ----
@@ -87,11 +85,11 @@ spec:
     type: prune
     prune:
       in:
-      - .kubernetes.container_image <1>
+      - .kubernetes.container_image
       - .kubernetes.container_image_id
       - .kubernetes.pod_id
       - .kubernetes.master_url
-      - .kubernetes.flat_labels <2>
+      - .kubernetes.flat_labels
 
   pipelines:
   - name: application-to-splunk
@@ -102,17 +100,12 @@ spec:
     outputRefs:
     - external-splunk
 ----
-<1> Container images are immutable; recording them in every log adds size without value
-<2> Flat labels are a string representation of the labels map; prune if you keep the structured labels
 +
-This filter reduces payload size by approximately 30-40% for typical application logs.
-
-[discrete]
-== Example 3: Selective pruning per pipeline
-
-Different destinations may need different field sets. This example shows how to apply different pruning strategies to pipelines routing to different outputs.
-
-. Configure multiple prune filters for different pipelines:
+Container images are immutable; recording them in every log adds size without value. The `flat_labels` field is a string representation of the labels map and can be pruned if you keep the structured labels. This filter reduces payload size by approximately 30-40% for typical application logs.
++
+*Scenario 3: Apply selective pruning per pipeline*
++
+Different destinations might need different field sets. This configuration applies different pruning strategies to pipelines routing to different outputs.
 +
 [source,yaml]
 ----
@@ -123,14 +116,14 @@ metadata:
   namespace: openshift-logging
 spec:
   filters:
-  - name: prune-minimal <1>
+  - name: prune-minimal
     type: prune
     prune:
       in:
       - .kubernetes.pod_ips
       - .kubernetes.container_image_id
 
-  - name: prune-aggressive <2>
+  - name: prune-aggressive
     type: prune
     prune:
       in:
@@ -143,7 +136,7 @@ spec:
       - .kubernetes.namespace_name
 
   pipelines:
-  - name: to-lokistack <3>
+  - name: to-lokistack
     inputRefs:
     - application
     filterRefs:
@@ -151,7 +144,7 @@ spec:
     outputRefs:
     - default-lokistack
 
-  - name: to-s3-archive <4>
+  - name: to-s3-archive
     inputRefs:
     - application
     filterRefs:
@@ -159,25 +152,21 @@ spec:
     outputRefs:
     - long-term-s3
 ----
-<1> Minimal pruning for interactive queries in LokiStack (keep most fields)
-<2> Aggressive pruning for long-term archival (minimize storage cost)
-<3> Pipeline for recent logs where users need full context
-<4> Pipeline for archival where cost optimization is priority
++
+The `prune-minimal` filter applies minimal pruning for interactive queries in `LokiStack` where users need full context. The `prune-aggressive` filter applies aggressive pruning for long-term archival where cost optimization is the priority.
 
 .Verification
 
-After applying prune filters, verify the payload size reduction:
-
 . Compare log record sizes before and after pruning by examining sample records:
 +
-.. Query a log record without pruning (use a different pipeline or check before applying the filter):
+.. Query a log record without pruning:
 +
 [source,terminal]
 ----
-$ oc logs -n openshift-logging <collector-pod-name> --tail=1 | jq 'length'
+$ oc logs -n openshift-logging _<collector-pod-name>_ --tail=1 | jq 'length'
 ----
 +
-.Example output (unpruned)
+.Example output before pruning
 [source,terminal]
 ----
 1847
@@ -187,10 +176,10 @@ $ oc logs -n openshift-logging <collector-pod-name> --tail=1 | jq 'length'
 +
 [source,terminal]
 ----
-$ oc logs -n openshift-logging <collector-pod-name> --tail=1 | jq 'length'
+$ oc logs -n openshift-logging _<collector-pod-name>_ --tail=1 | jq 'length'
 ----
 +
-.Example output (pruned)
+.Example output pruned
 [source,terminal]
 ----
 1124
@@ -207,12 +196,11 @@ $ oc logs -n openshift-logging -l app.kubernetes.io/component=collector --tail=5
 
 . Monitor storage consumption over time:
 +
-.. For LokiStack, check the object storage bucket size before and after applying prune filters.
-.. For external destinations, review billing reports to confirm reduced data transfer and storage costs.
+For `LokiStack`, check the object storage bucket size before and after applying prune filters. For external destinations, review billing reports to confirm reduced data transfer and storage costs.
 
 [role="_additional-resources"]
 .Additional resources
 
 * xref:../configuring/configuring-log-forwarding.adoc#log-filtering-use-cases_{context}[Understanding log filtering use cases]
-* xref:../configuring/configuring-log-forwarding.adoc#clf-filters-reference_{context}[ClusterLogForwarder filters reference]
+* xref:../configuring/configuring-log-forwarding.adoc#clf-filters-reference_{context}[`ClusterLogForwarder` filters reference]
 * xref:../configuring/configuring-log-forwarding.adoc#adding-a-prune-filter_{context}[Adding a prune filter]

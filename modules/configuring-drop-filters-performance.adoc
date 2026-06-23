@@ -7,7 +7,7 @@
 = Configuring drop filters for performance
 
 [role="_abstract"]
-Drop filters discard log records at the source before forwarding, reducing network bandwidth, storage costs, and collector resource consumption. Use drop filters when high log volume degrades performance or when certain logs provide no operational value.
+Drop filters discard log records at the source before forwarding, reducing network bandwidth, storage costs, and collector resource consumption. Use drop filters when high log volume degrades performance or when certain logs offer no operational value.
 
 .Prerequisites
 
@@ -17,10 +17,11 @@ Drop filters discard log records at the source before forwarding, reducing netwo
 
 .Procedure
 
-[discrete]
-== Example 1: Drop debug logs from a specific namespace
-
-This example drops all debug-level logs from the `test-app` namespace while keeping all other logs.
+. Choose the filtering scenario that matches your use case:
++
+** *Scenario 1*: Drop debug logs from a specific namespace
+** *Scenario 2*: Drop health check requests cluster-wide
+** *Scenario 3*: Drop logs by many criteria with complex filtering logic
 
 . Edit your `ClusterLogForwarder`:
 +
@@ -29,7 +30,11 @@ This example drops all debug-level logs from the `test-app` namespace while keep
 $ oc edit clusterlogforwarder instance -n openshift-logging
 ----
 
-. Add a drop filter that matches debug logs:
+. Add the appropriate drop filter configuration:
++
+*Scenario 1: Drop debug logs from a specific namespace*
++
+This filter drops all debug-level logs from the `test-app` namespace while keeping all other logs.
 +
 [source,yaml]
 ----
@@ -59,14 +64,11 @@ spec:
     - default-lokistack
 ----
 +
-This filter drops records only when both conditions match: namespace is `test-app` AND level is `debug`.
-
-[discrete]
-== Example 2: Drop health check requests cluster-wide
-
-This example drops noisy HTTP health check requests (GET `/health`, `/readiness`, `/liveness`) from all applications.
-
-. Add a drop filter that matches health check patterns:
+This filter drops records only when both conditions match: namespace is `test-app` and level is `debug`.
++
+*Scenario 2: Drop health check requests cluster-wide*
++
+This filter drops noisy HTTP health check requests from all applications.
 +
 [source,yaml]
 ----
@@ -95,13 +97,10 @@ spec:
 ----
 +
 The regex pattern matches any GET request to health check endpoints.
-
-[discrete]
-== Example 3: Drop logs by multiple criteria (complex filtering)
-
-This example demonstrates advanced drop logic: drop all logs from `dev-*` namespaces that are either debug level OR contain "connection established" messages.
-
-. Add a drop filter with multiple test groups:
++
+*Scenario 3: Drop logs by many criteria with complex filtering*
++
+This filter demonstrates advanced drop logic: drop all logs from `dev-*` namespaces that are either debug level or contain "connection established" messages.
 +
 [source,yaml]
 ----
@@ -115,12 +114,12 @@ spec:
   - name: drop-dev-noise
     type: drop
     drop:
-    - test: <1>
+    - test:
       - field: .kubernetes.namespace_name
         matches: ^dev-
       - field: .level
         matches: debug
-    - test: <2>
+    - test:
       - field: .kubernetes.namespace_name
         matches: ^dev-
       - field: .message
@@ -135,14 +134,10 @@ spec:
     outputRefs:
     - default-lokistack
 ----
-<1> First test group: Drop if namespace starts with `dev-` AND level is `debug`
-<2> Second test group: Drop if namespace starts with `dev-` AND message contains "connection established"
 +
-Records that match either test group are dropped. Within a test group, all conditions must match.
+The first test group drops records if namespace starts with `dev-` and level is `debug`. The second test group drops records if namespace starts with `dev-` and message contains "connection established". Records that match either test group are dropped. Within a test group, all conditions must match.
 
 .Verification
-
-After applying the filter, verify that records are being dropped:
 
 . Check the collector pod logs for drop filter metrics:
 +
@@ -183,5 +178,5 @@ You should see reduced CPU and memory usage after dropping high-volume logs.
 .Additional resources
 
 * xref:../configuring/configuring-log-forwarding.adoc#log-filtering-use-cases_{context}[Understanding log filtering use cases]
-* xref:../configuring/configuring-log-forwarding.adoc#clf-filters-reference_{context}[ClusterLogForwarder filters reference]
+* xref:../configuring/configuring-log-forwarding.adoc#clf-filters-reference_{context}[`ClusterLogForwarder` filters reference]
 * xref:../configuring/configuring-log-forwarding.adoc#adding-a-drop-filter_{context}[Adding a drop filter]
