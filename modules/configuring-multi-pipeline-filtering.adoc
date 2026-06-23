@@ -11,7 +11,7 @@ Different teams often need different views of cluster logs. Multi-pipeline filte
 
 .Prerequisites
 
-* You have installed the {clo-full}.
+* You have installed the {clo}.
 * You have administrator permissions.
 * You have created a `ClusterLogForwarder` custom resource.
 * You have configured output destinations for each team.

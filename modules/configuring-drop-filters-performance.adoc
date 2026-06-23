@@ -11,7 +11,7 @@ Drop filters discard log records at the source before forwarding, reducing netwo
 
 .Prerequisites
 
-* You have installed the {clo-full}.
+* You have installed the {clo}.
 * You have administrator permissions.
 * You have created a `ClusterLogForwarder` custom resource.
 

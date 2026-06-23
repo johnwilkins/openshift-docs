@@ -11,7 +11,7 @@ Prune filters remove specific fields from log records while preserving the recor
 
 .Prerequisites
 
-* You have installed the {clo-full}.
+* You have installed the {clo}.
 * You have administrator permissions.
 * You have created a `ClusterLogForwarder` custom resource.
 
