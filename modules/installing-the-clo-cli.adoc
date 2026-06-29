@@ -14,9 +14,31 @@ Install the {clo} to manage log collection and forwarding by using the {oc-first
 * You have administrator permissions.
 * You have installed the {oc-first}.
 * You have installed and configured the {loki-op} and deployed a `LokiStack` instance.
-* You have created the `openshift-logging` namespace.
 
 .Procedure
+
+. Create the `openshift-logging` namespace with the required labels for monitoring:
++
+[source,yaml]
+----
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-logging
+  annotations:
+    openshift.io/node-selector: ""
+  labels:
+    openshift.io/cluster-monitoring: "true"
+----
++
+The `openshift.io/cluster-monitoring: "true"` label enables monitoring of the namespace, which allows you to view metrics for the logging components.
+
+. Apply the namespace by running the following command:
++
+[source,terminal]
+----
+$ oc apply -f <filename>.yaml
+----
 
 . Create an `OperatorGroup` object:
 +
