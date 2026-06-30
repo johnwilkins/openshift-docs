@@ -83,20 +83,25 @@ After the logging stack is running, calculate the correct size based on observed
 
 . Wait at least 24 hours after installation to capture representative log volume patterns.
 
-. Query the actual log ingestion rate using Prometheus:
+. Query the actual log ingestion rate at the Loki distributor using Prometheus:
 +
 [source,terminal]
 ----
-sum by (component_name) (rate(vector_component_sent_bytes_total{component_type="loki", component_kind="sink"}[5m]))
+sum(increase(loki_distributor_bytes_received_total[24h])) / 1024 / 1024 / 1024
 ----
++
+This query returns the total GB ingested per day, measured at the Loki distributor (the entry point for all logs). Using a 24-hour window provides a more accurate daily average than shorter sampling periods.
 
-. Convert the rate to GB per day and compare against the sizing table:
+. Compare the result against the sizing table and choose the appropriate size:
 +
 [source,terminal]
 ----
-# Example: If query returns 5242880 bytes/second
-# = 5242880 * 86400 / 1073741824 = ~421 GB per day
+# Example: Query returns 421 GB
 # → Requires 1x.small (500 GB per day capacity)
+#
+# If the value falls between sizes (for example, 550 GB):
+# → Either choose 1x.medium (2 TB per day capacity)
+# → Or choose 1x.small and scale distributor/ingester replicas
 ----
 
 . Update the LokiStack CR with the new size if needed:
