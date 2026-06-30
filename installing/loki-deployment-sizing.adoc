@@ -25,6 +25,8 @@ include::modules/loki-sizing-1x-medium.adoc[leveloffset=+2]
 
 include::modules/loki-sizing-interpretation-guide.adoc[leveloffset=+2]
 
+include::modules/loki-sizing-vs-component-scaling.adoc[leveloffset=+1]
+
 [role="_additional-resources"]
 [id="additional-resources_loki-deployment-sizing"]
 == Additional resources
