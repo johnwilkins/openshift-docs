@@ -1,0 +1,107 @@
+// Module included in the following assemblies:
+//
+// * configuring/tuning-the-log-store.adoc
+
+:_mod-docs-content-type: CONCEPT
+[id="loki-resource-limits_{context}"]
+= Setting resource limits for LokiStack components
+
+:FeatureName: Setting resource limits equal to resource requests for LokiStack components
+include::snippets/technology-preview.adoc[]
+
+[role="_abstract"]
+By default, LokiStack components specify resource requests but allow resource limits to exceed those requests, enabling components to use additional node resources when available. You can configure LokiStack to set resource limits equal to resource requests, which imposes a hard limit on resource usage but prevents node memory exhaustion.
+
+[id="understanding-resource-limits_{context}"]
+== Understanding resource limits
+
+Kubernetes resource requests and limits control pod resource allocation:
+
+Resource requests:: The minimum amount of CPU and memory guaranteed to a pod. The scheduler uses requests to determine pod placement on nodes.
+
+Resource limits:: The maximum amount of CPU and memory a pod can consume. If a pod exceeds its memory limit, Kubernetes terminates the pod (OOMKilled).
+
+By default, LokiStack components have resource requests configured but no resource limits set. This allows components to burst above their requested resources when the node has available capacity, which helps components handle temporary load spikes.
+
+[id="when-to-set-limits_{context}"]
+== When to set resource limits equal to requests
+
+Setting resource limits equal to requests (`spec.template.useRequestsAsLimits: true`) is useful in the following scenarios:
+
+Preventing node memory exhaustion::
+On nodes running multiple workloads, unconstrained LokiStack components can consume all available memory during load spikes, affecting other workloads. Setting limits prevents this.
+
+Predictable resource consumption::
+When you need guaranteed resource boundaries for capacity planning and cost control, setting limits ensures components never exceed their allocated resources.
+
+Multitenant clusters::
+In clusters with strict resource isolation requirements between tenants, setting limits enforces hard boundaries.
+
+[IMPORTANT]
+====
+Setting resource limits equal to requests reduces LokiStack's ability to handle load spikes. Components cannot burst above their requested resources even when the node has available capacity. This can result in:
+
+* Query timeouts during peak load
+* Ingestion backpressure and log loss
+* Component restarts due to OOMKilled events
+
+Only enable this setting if node resource exhaustion is a confirmed problem. Monitor component resource usage after enabling to ensure limits are not too restrictive.
+====
+
+[id="configuring-resource-limits_{context}"]
+== Configuring resource limits
+
+To set resource limits equal to requests for all LokiStack components, set `spec.template.useRequestsAsLimits` to `true`:
+
+[source,yaml]
+----
+apiVersion: loki.grafana.com/v1
+kind: LokiStack
+metadata:
+  name: logging-loki
+  namespace: openshift-logging
+spec:
+  size: 1x.small
+  template:
+    useRequestsAsLimits: true  # <1>
+----
+
+Sets resource limits equal to resource requests for all LokiStack components (distributor, ingester, querier, query front end, compactor, index-gateway, ruler, gateway).
+
+This setting applies to all components. You cannot set limits for individual components.
+
+[id="verifying-resource-limits_{context}"]
+== Verifying resource limits
+
+After enabling `useRequestsAsLimits`, verify that resource limits are set correctly:
+
+. Check a LokiStack pod's resource configuration:
++
+[source,terminal]
+----
+$ oc get pod -n openshift-logging -l app.kubernetes.io/component=ingester -o jsonpath='{.items[0].spec.containers[0].resources}' | jq
+----
++
+.Example output
+[source,json]
+----
+{
+  "limits": {
+    "cpu": "1",
+    "memory": "2Gi"
+  },
+  "requests": {
+    "cpu": "1",
+    "memory": "2Gi"
+  }
+}
+----
+
+. Verify that `requests` and `limits` values are identical for both CPU and memory.
+
+[role="_additional-resources"]
+.Additional resources
+
+* xref:../configuring/tuning-the-log-store.adoc#tuning-the-log-store[Tuning the log store]
+* xref:../installing/loki-deployment-sizing.adoc#loki-deployment-sizing[Loki deployment sizing]
+* link:https://access.redhat.com/solutions/7039657[How to set resource limits for LokiStack components]
