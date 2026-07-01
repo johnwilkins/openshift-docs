@@ -14,13 +14,13 @@ Select your deployment scenario to determine the required storage backend and si
 * *Storage backend:* Cloud-managed object storage is available (S3, GCS, Azure Blob Storage)
 * *TLS CA bundle:* Typically not required when using standard public endpoints. Required when using custom endpoints, VPC endpoints, or private link configurations with custom certificates.
 * *Authentication:* Configure IAM roles (AWS STS recommended) or service accounts
-* *Sizing:* Choose initial size based on expected log volume. See xref:../installing/loki-deployment-sizing.adoc#loki-deployment-sizing[Loki deployment sizing] for guidance based on GB/day ingestion rates.
+* *Sizing:* Choose initial size based on expected log volume. See Additional resources for sizing guidance based on GB/day ingestion rates.
 
 *On-premise deployment (bare metal, VMware)*::
 * *Storage backend:* Requires S3-compatible object storage. Common options include NetApp StorageGRID, Ceph RGW, or other enterprise S3-compatible storage solutions.
 * *TLS CA bundle:* Required when using self-signed certificates or internal certificate authorities. Not required when using publicly trusted certificates.
 * *Authentication:* Create Kubernetes secret with storage credentials
-* *Sizing:* Choose initial size based on expected log volume. See xref:../installing/loki-deployment-sizing.adoc#loki-deployment-sizing[Loki deployment sizing] for guidance based on GB/day ingestion rates.
+* *Sizing:* Choose initial size based on expected log volume. See Additional resources for sizing guidance based on GB/day ingestion rates.
 
 *Edge deployment (single-node clusters, remote sites)*::
 * *Log storage:* Forward logs to a central cluster's `LokiStack`, or deploy local `LokiStack` with S3-compatible storage and limited retention
@@ -31,10 +31,15 @@ Select your deployment scenario to determine the required storage backend and si
 
 *Multi-cluster or enterprise deployment*::
 * *Storage backend:* Centralized object storage with multi-region replication
-* *Sizing:* Choose size based on expected log volume. See xref:../installing/loki-deployment-sizing.adoc#loki-deployment-sizing[Loki deployment sizing] for guidance based on GB/day ingestion rates. Consider enabling ruler for alerting and retention policies.
+* *Sizing:* Choose size based on expected log volume. See Additional resources for sizing guidance based on GB/day ingestion rates. Consider enabling ruler for alerting and retention policies.
 * *Consider:* Deploy separate `LokiStack` instances per environment (dev/staging/prod). Each `LokiStack` instance can only store logs from the cluster where it is deployed.
 
 [IMPORTANT]
 ====
 A `LokiStack` instance can only store and query logs from the {ocp-product-title} cluster where it is deployed. Cross-cluster log aggregation to a single `LokiStack` instance is not supported. For multi-cluster logging, deploy a `LokiStack` instance in each cluster, or forward logs from all clusters to an external centralized logging system.
 ====
+
+[role="_additional-resources"]
+.Additional resources
+
+* xref:../installing/loki-deployment-sizing.adoc#loki-deployment-sizing[Loki deployment sizing]

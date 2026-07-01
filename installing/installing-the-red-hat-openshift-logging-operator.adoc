@@ -9,26 +9,15 @@ toc::[]
 [role="_abstract"]
 The {clo} deploys and manages the log collector (Vector) that tails container logs and forwards them to a log store. You can install the {clo} by using the {oc-first} or the {ocp-product-title} web console.
 
-[id="installing-the-operator_{context}"]
-== Installing the Operator
+include::modules/installing-the-clo-cli.adoc[leveloffset=+1]
 
-You can install the {clo} by using the CLI or the web console. Choose one of the following procedures.
+include::modules/installing-the-clo-web-console.adoc[leveloffset=+1]
 
-include::modules/installing-the-clo-cli.adoc[leveloffset=+2]
+include::modules/creating-logfilesmetricexporter.adoc[leveloffset=+1]
 
-include::modules/installing-the-clo-web-console.adoc[leveloffset=+2]
+include::modules/verifying-logging-installation.adoc[leveloffset=+1]
 
-[id="additional-configuration_{context}"]
-== Additional configuration
-
-include::modules/creating-logfilesmetricexporter.adoc[leveloffset=+2]
-
-[id="verification-and-troubleshooting_{context}"]
-== Verification and troubleshooting
-
-include::modules/verifying-logging-installation.adoc[leveloffset=+2]
-
-include::modules/troubleshooting-logging-installation.adoc[leveloffset=+2]
+include::modules/troubleshooting-logging-installation.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 .Additional resources
