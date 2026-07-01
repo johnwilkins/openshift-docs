@@ -18,21 +18,10 @@ include::modules/installing-the-clo-cli.adoc[leveloffset=+2]
 
 include::modules/installing-the-clo-web-console.adoc[leveloffset=+2]
 
-[id="configuring-log-collection_{context}"]
-== Configuring log collection
-
-After installing the Operator, complete the following steps to configure log collection and forwarding.
-
-include::modules/creating-collector-rbac.adoc[leveloffset=+2]
-
-include::modules/creating-the-clusterlogforwarder.adoc[leveloffset=+2]
-
-[id="optional-configuration_{context}"]
-== Optional: Additional configuration
+[id="additional-configuration_{context}"]
+== Additional configuration
 
 include::modules/creating-logfilesmetricexporter.adoc[leveloffset=+2]
-
-include::modules/enabling-the-logs-tab.adoc[leveloffset=+2]
 
 [id="verification-and-troubleshooting_{context}"]
 == Verification and troubleshooting

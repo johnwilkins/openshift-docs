@@ -23,8 +23,9 @@ Select your deployment scenario to determine the required storage backend and si
 * *Sizing:* Choose initial size based on expected log volume. See xref:../installing/loki-deployment-sizing.adoc#loki-deployment-sizing[Loki deployment sizing] for guidance based on GB/day ingestion rates.
 
 *Edge deployment (single-node clusters, remote sites)*::
-* *Storage backend:* Forward logs to central cluster with `LokiStack`, or use local S3 Compatible storage with limited retention
-* *StorageClass:* _Must configure_ Local Storage Operator or Logical Volume Manager Storage for persistent volumes
+* *Log storage:* Forward logs to a central cluster's `LokiStack`, or deploy local `LokiStack` with S3-compatible storage and limited retention
+* *Storage backend (if using local LokiStack):* S3-compatible object storage with limited retention
+* *StorageClass (if using local LokiStack):* _Must configure_ Local Storage Operator or Logical Volume Manager Storage for persistent volumes
 * *Sizing:* Use `1x.pico` or `1x.extra-small` with short retention (7-14 days)
 * *Consider:* Log forwarding to central hub instead of local storage for capacity-constrained nodes
 
